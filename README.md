@@ -1,10 +1,13 @@
-Phase 1 : mesures et protocoles
+Phase 1 : mesures et protocoles \n
 Phase 2 : IA (cours en ligne avant)
 
 
 09/04 : avoir fini pages web et protocoles
+
 11/04 : premières mesures
+
 13/04 - 20/04 (vacances) : documentation sur les traitements des données + traiter 1ères données
+
 24/04 : tests sur nous-mêmes
 
 A partir du 25/04 : nouvelles mesures et traitement de données (mesures le jeudi et traitement en cours)
