@@ -8,13 +8,19 @@ body {
   position: absolute;
   font-size: 50px;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0s;
 }
 
-#message {
-  color: red;
+#cross {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  transform: rotate(-135deg);
+  opacity: 0;
 }
 
-#time {
+#results {
   color: green;
 }
