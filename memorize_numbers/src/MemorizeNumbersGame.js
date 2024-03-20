@@ -74,4 +74,5 @@ function MemorizeNumbersGame() {
     </div>
   );
 }
+
 export default MemorizeNumbersGame;
