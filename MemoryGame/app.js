@@ -96,9 +96,9 @@ function ChangeSequence(){
     }
     
     else{
-        var nextPhaseButton = document.getElementById("secondsequence")
-        secondsequenceButton.style.display = "block";
-        secondsequenceButton.style.margin = "0 auto";
+        var secondSequenceButton = document.getElementById("secondsequence")
+        secondSequenceButton.style.display = "block";
+        secondSequenceButton.style.margin = "0 auto";
         document.getElementById("firstsequence").style.display = "none";
         document.getElementById("secondsequence").style.display = "block";
         console.log('end of Phase 1/firstsequence');
