@@ -119,7 +119,7 @@ function ChangeSequence(){
         }
         if (pointeur_seq < sequence.length - 1){
             pointeur_seq++;
-            setTimeout(CheckSequence, 1000);
+            setTimeout(checkSequence, 1000);
 
         }
         else{
