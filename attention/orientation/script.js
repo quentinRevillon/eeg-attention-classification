@@ -56,10 +56,10 @@ function hideArrow() {
 
 function showIndicator() {
   indicator.textContent = '*'
-  indicator.style.left = arrow.style.left
+  indicator.style.left = `${window.innerWidth / 2 - 10}px`
   indicator.style.top = arrow.style.top
   indicator.style.opacity = 1;
-  setTimeout(hideIndicator, 100)
+  setTimeout(hideIndicator, 200)
 }
 
 function hideIndicator() {
@@ -81,7 +81,7 @@ function startTest() {
   isRunning = true;
   setArrow()
   showCross()
-  setTimeout(showIndicator, Math.random() * 5000 + 500)
+  setTimeout(showIndicator, Math.random() * 2500 + 500)
 }
 
 function endTest() {
