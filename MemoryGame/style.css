@@ -71,7 +71,7 @@ button:hover {
 }
 
 /* Hide the next phase button by default */
-#nextPhase {
+#nextPhase, #secondsequence {
     display: none;
     
 }
