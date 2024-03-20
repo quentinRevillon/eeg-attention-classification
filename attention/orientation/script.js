@@ -67,6 +67,7 @@ function showIndicator() {
   indicator.style.top = `${window.innerHeight / 2 + 10 + 35*coef}px`;
   indicator.style.opacity = 1;
   setTimeout(hideIndicator, 200)
+  setTimeout(hideIndicator, 200)
 }
 
 function hideIndicator() {
