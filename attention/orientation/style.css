@@ -4,20 +4,37 @@ body {
   background-color: #f0f0f0;
 }
 
-#arrow {
+#arrow, #arrow-left1, #arrow-left2, #arrow-right1, #arrow-right2 {
   position: absolute;
   font-size: 50px;
   opacity: 0;
-  transition: opacity 0s;
+}
+
+#arrow-left1 {
+  left: calc(50% - 125px);
+}
+
+#arrow-left2 {
+  left: calc(50% - 75px);
+}
+
+#arrow-right1 {
+  left: calc(50% + 25px);
+}
+
+#arrow-right2 {
+  left: calc(50% + 75px);
 }
 
 #cross {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  border-left: 2px solid black;
-  border-top: 2px solid black;
-  transform: rotate(-135deg);
+  font-size: 50px;
+  opacity: 0;
+}
+
+#indicator {
+  position: absolute;
+  font-size: 50px;
   opacity: 0;
 }
 

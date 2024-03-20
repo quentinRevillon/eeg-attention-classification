@@ -1,4 +1,9 @@
 const arrow = document.getElementById('arrow');
+const arrowLeft1 = document.getElementById('arrow-left1');
+const arrowLeft2 = document.getElementById('arrow-left2');
+const arrowRight1 = document.getElementById('arrow-right1');
+const arrowRight2 = document.getElementById('arrow-right2');
+const indicator = document.getElementById('indicator');
 const cross = document.getElementById('cross');
 const resultsElement = document.getElementById('results');
 const startButton = document.getElementById('start');
@@ -12,24 +17,57 @@ let numArrows = 0;
 
 startButton.addEventListener('click', startTest);
 
+function negOrPos() {
+  return Math.random() < 0.5 ? -1 : 1;
+}
+
 function setArrow() {
-  arrow.style.left = `${Math.random() * (window.innerWidth - 50)}px`;
-  arrow.style.top = `${Math.random() * (window.innerHeight - 50)}px`;
+  var coef = negOrPos();
+  arrow.style.left = `${window.innerWidth / 2 - 25}px`;
+  arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
+  arrowLeft1.style.top = arrow.style.top
+  arrowLeft2.style.top = arrow.style.top
+  arrowRight1.style.top = arrow.style.top
+  arrowRight2.style.top = arrow.style.top
   direction = Math.random() < 0.5 ? 'left' : 'right';
-  arrow.textContent = direction === 'left' ? '←' : '→';
+    arrow.textContent = direction === 'left' ? '←' : '→';
+  arrowLeft1.textContent = Math.random() < 0.5 ? '←' : '→';
+  arrowLeft2.textContent = Math.random() < 0.5 ? '←' : '→';
+  arrowRight1.textContent = Math.random() < 0.5 ? '←' : '→';
+  arrowRight2.textContent = Math.random() < 0.5 ? '←' : '→';
 }
 
 function showArrow() {
-  arrow.style.opacity = 1
+  arrow.style.opacity = 1;
+  arrowLeft1.style.opacity = 1;
+  arrowLeft2.style.opacity = 1;
+  arrowRight1.style.opacity = 1;
+  arrowRight2.style.opacity = 1;
 }
 
 function hideArrow() {
-  arrow.style.opacity = 0
+  arrow.style.opacity = 0;
+  arrowLeft1.style.opacity = 0;
+  arrowLeft2.style.opacity = 0;
+  arrowRight1.style.opacity = 0;
+  arrowRight2.style.opacity = 0;
+}
+
+function showIndicator() {
+  cross.textContent = '*'
+  cross.style.left = arrow.style.left
+  cross.style.top = arrow.style.top
+  indicator.style.opacity = 1;
+}
+
+function hideIndicator() {
+  indicator.style.opacity = 0
 }
 
 function showCross() {
-  cross.style.left = arrow.style.left;
-  cross.style.top = arrow.style.top;
+  cross.textContent = 'X'
+  cross.style.left = `${window.innerWidth / 2 - 15}px`;
+  cross.style.top = `${window.innerHeight / 2}px`;
   cross.style.opacity = 1;
 }
 
@@ -40,7 +78,10 @@ function startTest() {
   isRunning = true;
   setArrow()
   showCross()
-  setTimeout(showArrow, Math.random() * 5000 + 500)
+  setTimeout(showIndicator, Math.random() * 5000 + 500)
+  setTimeout(hideIndicator, 100)
+  
+  showArrow()
   startTime = new Date();
 }
 
