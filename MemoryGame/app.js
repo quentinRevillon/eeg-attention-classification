@@ -97,8 +97,29 @@ function ChangeSequence(){
     
     else{
         console.log('end of Phase 1');
+        return pointeur_seq = 0;
     }
-    
-     
-    
     }
+
+    function checkSequence(){
+        var correctSequence = sequence[pointeur_seq];
+        var userInput = document.getElementById("userInput").value;
+        var resultMessage = document.getElementById("resultMessage");
+
+        if (userInput == correctSequence){
+            resultMessage.textContent = "Correct sequence!";
+        } else {
+            resultMessage.textContent = "Incorrect Sequence";
+        }
+        if (pointeur_seq < sequence.length - 1){
+            pointeur_seq++;
+            setTimeout(CheckSequence, 1000);
+
+        }
+        else{
+            console.log("end of Phase 2");
+        }
+
+
+    } 
+
