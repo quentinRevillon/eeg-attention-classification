@@ -30,7 +30,7 @@ function setArrow() {
   arrowRight1.style.top = arrow.style.top
   arrowRight2.style.top = arrow.style.top
   direction = Math.random() < 0.5 ? 'left' : 'right';
-    arrow.textContent = direction === 'left' ? '←' : '→';
+  arrow.textContent = direction === 'left' ? '←' : '→';
   arrowLeft1.textContent = Math.random() < 0.5 ? '←' : '→';
   arrowLeft2.textContent = Math.random() < 0.5 ? '←' : '→';
   arrowRight1.textContent = Math.random() < 0.5 ? '←' : '→';
@@ -43,6 +43,7 @@ function showArrow() {
   arrowLeft2.style.opacity = 1;
   arrowRight1.style.opacity = 1;
   arrowRight2.style.opacity = 1;
+  startTime = new Date();
 }
 
 function hideArrow() {
@@ -54,14 +55,16 @@ function hideArrow() {
 }
 
 function showIndicator() {
-  cross.textContent = '*'
-  cross.style.left = arrow.style.left
-  cross.style.top = arrow.style.top
+  indicator.textContent = '*'
+  indicator.style.left = arrow.style.left
+  indicator.style.top = arrow.style.top
   indicator.style.opacity = 1;
+  setTimeout(hideIndicator, 100)
 }
 
 function hideIndicator() {
   indicator.style.opacity = 0
+  showArrow()
 }
 
 function showCross() {
@@ -79,10 +82,6 @@ function startTest() {
   setArrow()
   showCross()
   setTimeout(showIndicator, Math.random() * 5000 + 500)
-  setTimeout(hideIndicator, 100)
-  
-  showArrow()
-  startTime = new Date();
 }
 
 function endTest() {
