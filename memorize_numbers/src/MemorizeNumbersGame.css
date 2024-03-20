@@ -1,0 +1,38 @@
+.game-container {
+    background-color: #f8f9fa;
+    color: #343a40;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    width: 80%; /* Increase the width to 80% of the screen */
+    margin: 5% auto; /* Add vertical margin to center the box vertically */
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    max-width: 800px; /* Optional: Set a max-width to prevent the box from becoming too wide on large screens */
+  }
+  
+  .game-container input, .game-container button {
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    width: 90%; /* Increase the width to 90% of the container */
+    box-sizing: border-box;
+  }
+  
+  .game-container button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .game-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .game-container p {
+    font-size: 18px;
+    color: #6c757d;
+  }
