@@ -8,12 +8,14 @@ const cross = document.getElementById('cross');
 const resultsElement = document.getElementById('results');
 const startButton = document.getElementById('start');
 
+let alert = new Audio('alert.mp3');
 let direction;
 let startTime;
 let reactionTime;
 let results = [];
 let isRunning = false;
 let numArrows = 0;
+let coef;
 
 startButton.addEventListener('click', startTest);
 
@@ -22,7 +24,7 @@ function negOrPos() {
 }
 
 function setArrow() {
-  var coef = negOrPos();
+  coef = negOrPos();
   arrow.style.left = `${window.innerWidth / 2 - 25}px`;
   arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
   arrowLeft1.style.top = arrow.style.top
@@ -54,12 +56,17 @@ function hideArrow() {
   arrowRight2.style.opacity = 0;
 }
 
+function playAlert(){
+  alert.play();
+  setTimeout(showIndicator, 500)
+}
+
 function showIndicator() {
   indicator.textContent = '*'
-  indicator.style.left = arrow.style.left
-  indicator.style.top = arrow.style.top
+  indicator.style.left = `${window.innerWidth / 2 - 10}px`;
+  indicator.style.top = `${window.innerHeight / 2 + 10 + 35*coef}px`;
   indicator.style.opacity = 1;
-  setTimeout(hideIndicator, 100)
+  setTimeout(hideIndicator, 200)
 }
 
 function hideIndicator() {
@@ -81,7 +88,7 @@ function startTest() {
   isRunning = true;
   setArrow()
   showCross()
-  setTimeout(showIndicator, Math.random() * 5000 + 500)
+  setTimeout(playAlert, Math.random() * 2500 + 500)
 }
 
 function endTest() {
