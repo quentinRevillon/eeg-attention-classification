@@ -135,7 +135,10 @@ function ChangeSequence(){
 
     function pause(){
         console.log("remember the sequence");
-        sequenceContainer.removeChild(sequenceContainer.firstChild);
+        while (sequenceContainer.firstChild){
+            sequenceContainer.removeChild(sequenceContainer.firstChild);
+        }
+        
     }
 
     function checkSequence(){
