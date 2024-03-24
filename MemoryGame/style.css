@@ -71,7 +71,7 @@ button:hover {
 }
 
 /* Hide the next phase button by default */
-#nextPhase, #secondsequence {
+#nextPhase {
     display: none;
     
 }
@@ -115,3 +115,5 @@ h2 {
     line-height: 1.5;
     color: #333;
 }
+
+

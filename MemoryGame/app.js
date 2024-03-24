@@ -14,9 +14,13 @@ var images2 = [
     "ballon.jpeg"
 ];
 
+var Answers = [0,1,0]; // 0 if the image is seen 1 if unknown
+
 var pointeur1 = 0;
 
-var pointeur2 = 0;
+var currentImageIndex = -1;
+
+var score = 0;
  
 function ChangerImage1(){
 document.getElementById("monimage").src = images1[pointeur1];
@@ -39,25 +43,43 @@ return 'end of Phase 1';
  
 setTimeout("ChangerImage1()", 1000)
 }
- 
 
-function ChangerImage2(){
-    document.getElementById("monimage2").src = images2[pointeur2];
-     
-    if(pointeur2 < images2.length - 1){
-    pointeur2++;
+function displayFirstImage(){
+    currentImageIndex = -1;
+    score = 0;
+    console.log(currentImageIndex);
+    displayNextImage();
+}
+function displayNextImage(){
+    currentImageIndex++;
+    if (currentImageIndex < images2.length){
+        var currentImageElement = document.getElementById("currentImage");
+        currentImageElement.src = images2[currentImageIndex];
     }
-    
     else{
-    //pointeur = 0;
-    console.log('end of Phase 2');
-    return 'end of Phase 2';
-    }
-    
-     
-    setTimeout("ChangerImage2()", 1000)
+        endGame();
     }
 
+}
+
+
+    function IncrementScoreSeen(){
+        if (Answers[currentImageIndex] == 0){
+            score ++;
+        }
+        displayNextImage();
+    }
+
+    function IncrementScoreUnknown(){
+        if (Answers[currentImageIndex] == 1){
+            score++;
+        }
+        displayNextImage();
+    }
+
+function endGame(){
+    alert("End of game! Your score is :" + score);
+}
 // Define your sequence of strings
 var sequence = ["String 1", "String 2", "String 3", "String 4"];
 
@@ -85,14 +107,18 @@ function ChangeSequence(){
     console.log('start');
      var paragraph = document.createElement("p");
      paragraph.textContent = sequence[pointeur_seq];
+/*
      while (sequenceContainer.firstChild) {
         sequenceContainer.removeChild(sequenceContainer.firstChild);
     }
+    */
      sequenceContainer.appendChild(paragraph);
+     setTimeout(pause(), 5000);
+     
 
     if(pointeur_seq < sequence.length - 1){
         pointeur_seq++;
-        setTimeout(ChangeSequence, 1000);
+        setTimeout(ChangeSequence, 20000);
     }
     
     else{
@@ -107,6 +133,11 @@ function ChangeSequence(){
     }
     }
 
+    function pause(){
+        console.log("remember the sequence");
+        sequenceContainer.removeChild(sequenceContainer.firstChild);
+    }
+
     function checkSequence(){
         var correctSequence = sequence[pointeur_seq];
         var userInput = document.getElementById("userInput").value;
@@ -117,6 +148,7 @@ function ChangeSequence(){
         } else {
             resultMessage.textContent = "Incorrect Sequence";
         }
+        /*
         if (pointeur_seq < sequence.length - 1){
             pointeur_seq++;
             setTimeout(checkSequence, 1000);
@@ -125,7 +157,7 @@ function ChangeSequence(){
         else{
             console.log("end of Phase 2");
         }
+        */
 
 
     } 
-
