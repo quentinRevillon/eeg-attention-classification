@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './MemorizeNumbersGame.css';
+import './index.css';
 
 function MemorizeNumbersGame() {
   const [sequence, setSequence] = useState([]);
@@ -9,15 +10,24 @@ function MemorizeNumbersGame() {
   const [gameOver, setGameOver] = useState(false);
   const [message, setMessage] = useState("");
   const [countdown, setCountdown] = useState(5); // 5 seconds countdown
+  const [sequenceLength, setSequenceLength] = useState(5); // New state for sequence length
+
 
   function generateSequence() {
     const newSequence = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < sequenceLength; i++) { // Use sequenceLength instead of 5
       newSequence.push(Math.floor(Math.random() * 10));
     }
     setSequence(newSequence);
     setShowSequence(true);
     setCountdown(5); // Start the countdown here
+  }
+
+  const increaseSequenceLength = () => {
+    setSequenceLength(prevLength => prevLength + 1);
+  }
+  const decreaseSequenceLength = () => {
+    setSequenceLength(prevLength => prevLength - 1);
   }
 
   useEffect(() => {
@@ -58,6 +68,12 @@ function MemorizeNumbersGame() {
       {!gameStarted || gameOver ? (
         <div>
           <button onClick={startGame}>Start Game</button>
+          <p>Current Sequence Length: {sequenceLength}</p> {/* Display the current sequence length */}
+          <button variant="contained" color="primary" onClick={increaseSequenceLength}>
+        Increase Sequence Length</button>
+          <button variant="contained" color="primary" onClick={decreaseSequenceLength}>
+        Decrease Sequence Length </button>
+        
           <p>{message}</p>
         </div>
       ) : showSequence ? (
@@ -69,6 +85,7 @@ function MemorizeNumbersGame() {
         <div>
           <input type="text" value={userInput} onChange={handleInputChange} />
           <button onClick={checkAnswer}>Enter</button>
+      
         </div>
       )}
     </div>
