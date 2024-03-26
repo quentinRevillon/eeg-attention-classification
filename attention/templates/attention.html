@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Test de temps de réaction</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div id="arrow"></div>
@@ -14,6 +14,6 @@
   <div id="cross"></div>
   <p id="results"></p>
   <button id="start">Démarrer le test</button>
-  <script src="script.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
