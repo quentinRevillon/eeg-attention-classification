@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './index.css';
+import './assets/css/index.css';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -14,9 +14,9 @@ const HomePage = () => {
   }
 
   return (
-    <div>
-      <button onClick={navigateToGame1}>Play Game 1</button>
-      <button onClick={navigateToGame2}>Play Game 2</button>
+    <div className="game-container">
+      <button onClick={navigateToGame1}>Play Memorize Numbers</button>
+      <button onClick={navigateToGame2}>Play Memory Game</button>
     </div>
   );
 }

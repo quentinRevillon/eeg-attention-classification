@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './MemorizeNumbersGame.css';
-import './index.css';
+import './assets/css/index.css';
 
 function MemorizeNumbersGame() {
   const [sequence, setSequence] = useState([]);
