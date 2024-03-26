@@ -1,0 +1,45 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f0f0f0;
+}
+
+#arrow, #arrow-left1, #arrow-left2, #arrow-right1, #arrow-right2 {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+}
+
+#arrow-left1 {
+  left: calc(50% - 125px);
+  max-height: 1px;
+}
+
+#arrow-left2 {
+  left: calc(50% - 75px);
+  max-height: 1px;
+}
+
+#arrow-right1 {
+  left: calc(50% + 25px);
+}
+
+#arrow-right2 {
+  left: calc(50% + 75px);
+}
+
+#cross {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+}
+
+#indicator {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+}
+
+#results {
+  color: green;
+}
