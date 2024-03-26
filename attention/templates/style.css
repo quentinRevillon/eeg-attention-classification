@@ -12,12 +12,10 @@ body {
 
 #arrow-left1 {
   left: calc(50% - 125px);
-  max-height: 1px;
 }
 
 #arrow-left2 {
   left: calc(50% - 75px);
-  max-height: 1px;
 }
 
 #arrow-right1 {
