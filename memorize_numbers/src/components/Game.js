@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Card from "./Card";
 import { cardsData } from "../cards_deck";
 
@@ -7,6 +7,7 @@ function Memory() {
   let [cardsState, setCardsState] = useState(cardsData);
   let [gameStarted, setGameStarted] = useState(false);
   let [gameReady, setGameReady] = useState(false);
+  let [cardsFlipped, setCardsFlipped] = useState(false);
 
   // kep first card info
   let [firstCard, setFirstCard] = useState(null);
@@ -57,30 +58,13 @@ function Memory() {
     }
   };
 
-   // Show all cards for 2 seconds before the game starts
-   useEffect(() => {
-    if (gameReady) {
-      let newCardsState = cardsState.map(card => ({ ...card, isFlipped: true }));
-      setCardsState(newCardsState);
-  
-      const timer = setTimeout(() => {
-        setGameStarted(true);
-        newCardsState = newCardsState.map(card => ({ ...card, isFlipped: false }));
-        setCardsState(newCardsState);
-      }, 2);
-      return () => clearTimeout(timer); // This will clear the timer when the component unmounts
-    }
-  }, [gameReady]);
-
   const startGame = () => {
     setGameReady(true);
+    setCardsFlipped(true);
     const timer = setTimeout(() => {
       setGameStarted(true);
-      cardsState.forEach(card => {
-        card.isFlipped = false;
-      });
-      setCardsState([...cardsState]);
-    }, 2000);
+      setCardsFlipped(false);
+    }, 500);
     return () => clearTimeout(timer); // This will clear the timer when the component unmounts
   }
 
@@ -93,7 +77,7 @@ function Memory() {
           return (
             <Card
               key={card.id}
-              card={card.isFlipped || !gameStarted ? card : {...card, isFlipped: true}}
+              card={cardsFlipped || card.isFlipped ? {...card, isFlipped: true} : card}
               onClick={(e) => handleClick(e, card)}
             />
           );
