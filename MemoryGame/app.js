@@ -107,13 +107,14 @@ function ChangeSequence(){
     console.log('start');
      var paragraph = document.createElement("p");
      paragraph.textContent = sequence[pointeur_seq];
+     document.getElementById("firstsequence").style.display = "block";
 /*
      while (sequenceContainer.firstChild) {
         sequenceContainer.removeChild(sequenceContainer.firstChild);
     }
     */
      sequenceContainer.appendChild(paragraph);
-     setTimeout(pause(), 5000);
+     // setTimeout(pause(), 20000);
      
 
     if(pointeur_seq < sequence.length - 1){
@@ -142,7 +143,7 @@ function ChangeSequence(){
     }
 
     function checkSequence(){
-        var correctSequence = sequence[pointeur_seq];
+        var correctSequence = sequence[pointeur_seq-1];
         var userInput = document.getElementById("userInput").value;
         var resultMessage = document.getElementById("resultMessage");
 
