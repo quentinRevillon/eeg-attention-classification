@@ -80,12 +80,15 @@ function displayNextImage(){
 function endGame(){
     alert("End of game! Your score is :" + score);
 }
+
+/*
+
 // Define your sequence of strings
 var sequence = ["String 1", "String 2", "String 3", "String 4"];
 
 // Get a reference to the container element
 var sequenceContainer = document.getElementById("sequenceContainer");
-/*
+
 function ChangeSequence(){
 // Loop through the sequence array and create HTML elements for each string
 sequence.forEach(function(string,index) {
@@ -99,40 +102,44 @@ sequence.forEach(function(string,index) {
     }, index * 2000);
 });
 }
-*/
+
 
 
 var pointeur_seq = 0;
+var paragraph = document.createElement("p");
 function ChangeSequence(){
     console.log('start');
-     var paragraph = document.createElement("p");
      paragraph.textContent = sequence[pointeur_seq];
      document.getElementById("firstsequence").style.display = "block";
-/*
+     
      while (sequenceContainer.firstChild) {
         sequenceContainer.removeChild(sequenceContainer.firstChild);
     }
-    */
+    
+    
      sequenceContainer.appendChild(paragraph);
-     // setTimeout(pause(), 20000);
+     //setTimeout(pause(), 20000);
+     
      
 
-    if(pointeur_seq < sequence.length - 1){
+    if(pointeur_seq < sequence.length -1){
         pointeur_seq++;
-        setTimeout(ChangeSequence, 20000);
+        console.log(pointeur_seq);
+        setTimeout(ChangeSequence(),20000);
+        }
+        else{
+            var secondSequenceButton = document.getElementById("secondsequence")
+            secondSequenceButton.style.display = "block";
+            secondSequenceButton.style.margin = "0 auto";
+            document.getElementById("firstsequence").style.display = "none";
+            document.getElementById("secondsequence").style.display = "block";
+            console.log('end of Phase 1/firstsequence');
+    
+            return pointeur_seq = 0;
+        }
+
     }
     
-    else{
-        var secondSequenceButton = document.getElementById("secondsequence")
-        secondSequenceButton.style.display = "block";
-        secondSequenceButton.style.margin = "0 auto";
-        document.getElementById("firstsequence").style.display = "none";
-        document.getElementById("secondsequence").style.display = "block";
-        console.log('end of Phase 1/firstsequence');
-
-        return pointeur_seq = 0;
-    }
-    }
 
     function pause(){
         console.log("remember the sequence");
@@ -152,7 +159,7 @@ function ChangeSequence(){
         } else {
             resultMessage.textContent = "Incorrect Sequence";
         }
-        /*
+        
         if (pointeur_seq < sequence.length - 1){
             pointeur_seq++;
             setTimeout(checkSequence, 1000);
@@ -161,7 +168,8 @@ function ChangeSequence(){
         else{
             console.log("end of Phase 2");
         }
-        */
+
 
 
     } 
+    */
