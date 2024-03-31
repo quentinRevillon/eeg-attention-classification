@@ -7,7 +7,7 @@ import './assets/css/index.css';
 import { Link } from 'react-router-dom';
 
 
-const App = () => {
+const App = () => { // App component
   return (
     <Router>
       <Link to="/"><button className="home-button">Home</button></Link>
@@ -18,7 +18,7 @@ const App = () => {
         <Route path="/game2" element={<Memory />} /> {/* Game2 is the component for your second game */}
       </Routes>
     </Router>
-  );
+  );//return
 }
 
 export default App;

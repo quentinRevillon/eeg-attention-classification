@@ -96,14 +96,14 @@ body {
 .game-container p {
   font-size: 25px;
   color: #6c757d;
+}
+
+.memory-game p {
+  font-size: 25px;
+  color: #6c757d;
   position: fixed;
   bottom: 20px;
   left: 20px;
-}
-
-.memory-gamep {
-  font-size: 25px;
-  color: #6c757d;
 
 }
 

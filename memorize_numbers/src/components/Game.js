@@ -59,14 +59,18 @@ function Memory() {
   };
 
   const startGame = () => {
+    // Reset all states to their initial values
+    setCardsState(cardsData);
+    setGameStarted(true);
+    setGameReady(false);
+    setCardsFlipped(false);
+    setFirstCard(null);
+    setSecondClick(false);
+    setWait(false);
     setGameReady(true);
-    setCardsFlipped(true);
-    const timer = setTimeout(() => {
-      setGameStarted(true);
-      setCardsFlipped(false);
-    }, 500);
-    return () => clearTimeout(timer); // This will clear the timer when the component unmounts
-  }
+    setGameStarted(true);
+  } //Instructions for starting the game
+
 
   return (
     <section className="memory-game">
@@ -85,6 +89,6 @@ function Memory() {
       )}
     </section>
   );
-}
+} //Memory game component
 
 export default Memory;

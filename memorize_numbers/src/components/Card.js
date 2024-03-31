@@ -12,6 +12,5 @@ function Card({ card, onClick }) {
       <img className="back-face" src={ecg} alt="JS Badge" />
     </div>
   );
-}
-
+}//Card component
 export default Card;

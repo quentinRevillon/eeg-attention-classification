@@ -19,6 +19,6 @@ const HomePage = () => {
       <button onClick={navigateToGame2}>Play Memory Game</button>
     </div>
   );
-}
+}//HomePage component
 
 export default HomePage;
