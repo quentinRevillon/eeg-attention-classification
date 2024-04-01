@@ -1,0 +1,24 @@
+Protocole de test :
+
+Partie Mémoire (Prisha et Manon)
+
+Accueil de l'étudiant :
+-Le faire s'assoir devant l'ordinateur
+- Lui expliquer les différents tests qu'il va passer.
+- Lui installer le casque
+
+Test 1 : Mémoire instantanée :
+-Lancer le jeu avec 5 chiffres à mémoriser.
+-Tant que l'étudiant ne se trompe pas, augmenter le nombre de chiffre entre
+chaque partie.
+- Arrivé au seuil de difficulté, on commence la prise de données :
+- Lancer l'acquisition au moment d'appuyer sur start.
+- Faire jouer l'étudiant pendant 5 minutes soit 20 parties (=(5+10)*20/60)
+- Arrêter l'acquisition
+
+Test 2 : Mémoire de travail :
+- Lancer le jeu de memory une fois sans acquisition.
+- Une fois le jeu pris en main, début de l'acquisition :
+- Lancer le jeu de memory (1 minute) en même temps que l'acquisition
+- Cooldown (15 secondes)
+- Répeter 4 fois (=5 minutes au total)
