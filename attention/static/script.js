@@ -8,7 +8,8 @@ const cross = document.getElementById('cross');
 const resultsElement = document.getElementById('results');
 const startButton = document.getElementById('start');
 
-let alert = new Audio('alert.mp3');
+let alert = new Audio('../assets/alert.mp3');
+
 let direction;
 let startTime;
 let reactionTime;
@@ -103,7 +104,33 @@ function endTest() {
   }
 }
 
+function sendResults() {
+  fetch('/results', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: "{{ session['email'] }}", // Replace with the user's email
+      results: results
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Results have been successfully saved.');
+    } else {
+      console.error('An error occurred while saving the results.');
+    }
+  })
+  .catch(error => {
+    console.error('An error occurred while saving the results.', error);
+  });
+}
+
+
+
 function showResults() {
+  sendResults();
   resultsElement.textContent = `Vos temps de réaction sont : ${results.join(', ')}`;
 }
 
