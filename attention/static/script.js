@@ -76,7 +76,7 @@ function hideIndicator() {
 }
 
 function showCross() {
-  cross.textContent = 'X'
+  cross.textContent = '+'
   cross.style.left = `${window.innerWidth / 2 - 15}px`;
   cross.style.top = `${window.innerHeight / 2}px`;
   cross.style.opacity = 1;
