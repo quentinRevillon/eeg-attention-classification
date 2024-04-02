@@ -2,18 +2,18 @@ Protocole de test :
 
 Partie Mémoire (Prisha et Manon)
 
-Accueil de l'étudiant :
+Accueil du participant :
 -Le faire s'assoir devant l'ordinateur
 - Lui expliquer les différents tests qu'il va passer.
 - Lui installer le casque
 
 Test 1 : Mémoire instantanée :
 -Lancer le jeu avec 5 chiffres à mémoriser.
--Tant que l'étudiant ne se trompe pas, augmenter le nombre de chiffre entre
+-Tant que le participant ne se trompe pas, augmenter le nombre de chiffre entre
 chaque partie.
 - Arrivé au seuil de difficulté, on commence la prise de données :
 - Lancer l'acquisition au moment d'appuyer sur start.
-- Faire jouer l'étudiant pendant 5 minutes soit 20 parties (=(5+10)*20/60)
+- Faire jouer le participant pendant 5 minutes soit 20 parties (=(5+10)*20/60)
 - Arrêter l'acquisition
 
 Test 2 : Mémoire de travail :
@@ -26,7 +26,7 @@ Test 2 : Mémoire de travail :
 Test 3 : mémoire à long terme :
 - Lancer l'aquisition dès le début
 - Lancer le jeu avec 20 images à retenir (3 secondes par image, soit 1 min)
-- Deuxième phase où 40 images vont défiler, l'étudiant doit dire s'il a déjà vu ou non l'image
+- Deuxième phase où 40 images vont défiler, le participant doit dire s'il a déjà vu ou non l'image
 - Terminer l'aquisition
 Lors de l'aquisition :
 - Marquer le temps de début et de fin de la première phase
