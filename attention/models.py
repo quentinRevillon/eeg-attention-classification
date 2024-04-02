@@ -10,5 +10,9 @@ class Email(db.Model):
         return f'<Email {self.email}>'
 
 class Result(db.Model):
-    email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False, primary_key=True)
-    results = db.Column(db.Text, nullable=False)
+    email = db.Column(db.String(120), db.ForeignKey('email.email'), nullable=False, primary_key=True)
+    result1 = db.Column(db.Integer, nullable=False)
+    result2 = db.Column(db.Integer, nullable=False)
+    result3 = db.Column(db.Integer, nullable=False)
+    result4 = db.Column(db.Integer, nullable=False)
+    result5 = db.Column(db.Integer, nullable=False)

@@ -46,9 +46,13 @@ def attention():
 def results():
     data = request.get_json()
     email = data["email"]
-    results = data["results"]
+    result1 = data["results"][0]
+    result2 = data["results"][1]
+    result3 = data["results"][2]
+    result4 = data["results"][3]
+    result5 = data["results"][4]
 
-    result = Result(email=email, results=results)
+    result = Result(email=email, result1=result1, result2=result2, result3=result3, result4=result4, result5=result5)
     db.session.add(result)
     db.session.commit()
 
