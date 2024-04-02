@@ -22,3 +22,12 @@ Test 2 : Mémoire de travail :
 - Lancer le jeu de memory (1 minute) en même temps que l'acquisition
 - Cooldown (15 secondes)
 - Répeter 4 fois (=5 minutes au total)
+
+Test 3 : mémoire à long terme :
+- Lancer l'aquisition dès le début
+- Lancer le jeu avec 20 images à retenir (3 secondes par image, soit 1 min)
+- Deuxième phase où 40 images vont défiler, l'étudiant doit dire s'il a déjà vu ou non l'image
+- Terminer l'aquisition
+Lors de l'aquisition :
+- Marquer le temps de début et de fin de la première phase
+- Marquer le temps pris pour la reconnaissance de chaque image
