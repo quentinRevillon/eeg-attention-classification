@@ -111,7 +111,6 @@ function sendResults() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      email: "{{ session['email'] }}", // Replace with the user's email
       results: results
     })
   })

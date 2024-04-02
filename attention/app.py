@@ -45,7 +45,7 @@ def attention():
 @app.route('/results', methods=['POST'])
 def results():
     data = request.get_json()
-    email = data["email"]
+    email = session['email']
     result1 = data["results"][0]
     result2 = data["results"][1]
     result3 = data["results"][2]
