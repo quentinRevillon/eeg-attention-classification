@@ -15,7 +15,7 @@
             <div class="image-container">
             <!-- Images will be loaded here via JavaScript -->
             <button onclick="ChangerImage1()">Start Phase 1</button>
-            <img id="monimage" src="croix.webp" width="200" height="200"/>
+            <img id="monimage" src="./images/croix.webp" width="200" height="200"/>
             </div>    
         </div>
         <div id="phase2" style="display:none;">
@@ -30,6 +30,16 @@
             </div> 
         </div>
     </div>
+    <div id="game2">
+        <h2>GAME 2</h2>
+        <p id="sentence">This is a test sentence</p>
+        <div id="submissionPhase" style="display:none;">
+        <form id="form">
+            <input type="text" id="input" />
+            <button type="submit">Submit</button>
+        </form>
+        </div>
+        <p id="result"></p>
 
 
         <script src = "app.js"></script>

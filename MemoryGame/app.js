@@ -1,17 +1,18 @@
-//<img src="croix.webp" width="950" height="120" id="monimage" />
- 
+//<img src="./images/croix.webp" width="950" height="120" id="monimage" />
+var I = "./images/";
+
 
 // Un tableau qui va contenir toutes tes images.
 var images1 = [
-    "clown.jpeg",
-    "redvelvet.jpeg",
-    "ballon.jpeg"
+    I + "clown.jpeg",
+    I + "redvelvet.jpeg",
+    I + "ballon.jpeg", I + "abricots.jpg", I + "animalArbre.jpg", I + "animalBresil.webp"
 ];
 
 var images2 = [
-    "clown.jpeg",
-    "redvelvet.jpeg",
-    "ballon.jpeg"
+    I + "clown.jpeg",
+    I + "redvelvet.jpeg",
+    I + "ballon.jpeg"
 ];
 
 var Answers = [0,1,0]; // 0 if the image is seen 1 if unknown
@@ -81,3 +82,47 @@ function endGame(){
     alert("End of game! Your score is :" + score);
 }
 
+const sentenceElement = document.getElementById('sentence');
+const formElement = document.getElementById('form');
+const inputElement = document.getElementById('input');
+const resultElement = document.getElementById('result');
+const submitButton = document.querySelector('#form button')
+
+let sentence = ['This is a the first sentence', "This is the second sentence", "This is the third sentence", "This is the last sentence"];
+let currentSentenceIndex = 0;
+let score2 = 0;
+
+function displayNextSentence() {
+    document.getElementById("submissionPhase").style.display = "none";
+    if (currentSentenceIndex < sentence.length) {
+        submitButton.disabled = false;
+        sentenceElement.textContent = sentence[currentSentenceIndex];
+        currentSentenceIndex++;
+        setTimeout(submissionPhase, 5000); // display next sentence after 5 seconds
+    } else {
+        sentenceElement.textContent = '';
+        endGame2();
+    }
+}
+function submissionPhase(){
+    sentenceElement.textContent = '';
+    document.getElementById("submissionPhase").style.display = "block";
+setTimeout(displayNextSentence, 10000); // hide sentence after 5 seconds
+}
+
+displayNextSentence();
+
+formElement.addEventListener('submit', (event) => {
+    event.preventDefault();
+    submitButton.disabled = true;
+    if (inputElement.value === sentence[currentSentenceIndex - 1]) {
+        resultElement.textContent = 'Correct!';
+        score2++;
+    } else {
+        resultElement.textContent = 'Incorrect, try again.';
+    }
+});
+
+function endGame2(){
+    alert("End of game! Your score is :" + score2);
+}
