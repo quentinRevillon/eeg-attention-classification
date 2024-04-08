@@ -86,11 +86,36 @@ const sentenceElement = document.getElementById('sentence');
 const formElement = document.getElementById('form');
 const inputElement = document.getElementById('input');
 const resultElement = document.getElementById('result');
-const submitButton = document.querySelector('#form button')
+const submitButton = document.querySelector('#form button');
+const numWordsElement = document.getElementById('numWords');
 
-let sentence = ['Une souris verte', "This is the second sentence", "Je m'appelle Toto"];
+let words = ['the', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog', 'dog', 'cat', 'car', 'tree', 'book', 'phone', 'computer', 'city', 'bird', 'flower', 'river', 'mountain', 'cloud', 'ocean', 'star', 'forest', 'street', 'island', 'sun', 'moon', 'run', 'jump', 'swim', 'fly', 'read', 'write', 'think', 'dream', 'sing', 'dance', 'laugh', 'cry', 'see', 'hear', 'feel', 'smile', 'frown', 'speak', 'listen', 'walk'];
+let sentence;
 let currentSentenceIndex = 0;
 let score2 = 0;
+
+
+numWordsElement.addEventListener('change', () => {
+    sentence = generateSentences(5, words, Number(numWordsElement.value)); // generate 5 sentences from the words, each sentence is as long as the user wants theme to be
+    let currentSentenceIndex = 0;
+    currentSentenceIndex = 0;
+    score = 0;
+    displayNextSentence();
+});
+
+function generateSentences(numSentences, words, wordsPerSentence) {
+    let sentences = [];
+    for (let i = 0; i < numSentences; i++) {
+        let sentenceWords = [];
+        for (let j = 0; j < wordsPerSentence; j++) {
+            let randomIndex = Math.floor(Math.random() * words.length);
+            sentenceWords.push(words[randomIndex]);
+        }
+        sentences.push(sentenceWords.join(' '));
+    }
+    return sentences;
+}
+
 
 function displayNextSentence() {
     document.getElementById("submissionPhase").style.display = "none";
@@ -110,7 +135,7 @@ function submissionPhase(){
 setTimeout(displayNextSentence, 15000); // hide sentence after 5 seconds
 }
 
-displayNextSentence();
+// displayNextSentence();
 
 formElement.addEventListener('submit', (event) => {
     event.preventDefault();
