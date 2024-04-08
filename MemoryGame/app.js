@@ -88,7 +88,7 @@ const inputElement = document.getElementById('input');
 const resultElement = document.getElementById('result');
 const submitButton = document.querySelector('#form button')
 
-let sentence = ['This is a the first sentence', "This is the second sentence", "This is the third sentence", "This is the last sentence"];
+let sentence = ['Une souris verte', "This is the second sentence", "Je m'appelle Toto"];
 let currentSentenceIndex = 0;
 let score2 = 0;
 
@@ -107,7 +107,7 @@ function displayNextSentence() {
 function submissionPhase(){
     sentenceElement.textContent = '';
     document.getElementById("submissionPhase").style.display = "block";
-setTimeout(displayNextSentence, 10000); // hide sentence after 5 seconds
+setTimeout(displayNextSentence, 15000); // hide sentence after 5 seconds
 }
 
 displayNextSentence();
