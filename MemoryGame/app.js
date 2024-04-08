@@ -6,16 +6,89 @@ var I = "./images/";
 var images1 = [
     I + "clown.jpeg",
     I + "redvelvet.jpeg",
-    I + "ballon.jpeg", I + "abricots.jpg", I + "animalArbre.jpg", I + "animalBresil.webp"
+    I + "ballon.jpeg",
+    I + "abricots.jpg",
+    I + "animalArbre.jpg",
+    I + "animalBresil.webp",
+    I + "animalCouleur.jpg",
+    I + "arbrePommes.jpg",
+    I + "bateau.jpeg",
+    I + "cerise.jpg",
+    I+ "cheval.jpg",
+    I + "chevalBlanc.jpeg",
+    I + "fruitsExotiques.webp",
+    I + "gateauDamier.jpg",
+    I + "livre.png",
+    I + "myrtillier.jpg",
+    I + "oiseauxfleurs.jpg",
+    I + "paysagesFleurs.jpg",
+    I+ "poires.jpg.webp",
+    I + "pommier.jpg",
+    I + "tigre.jpg"
 ];
 
 var images2 = [
     I + "clown.jpeg",
     I + "redvelvet.jpeg",
-    I + "ballon.jpeg"
+    I + "ballon.jpeg",
+    I + "arbrePommier.jpg", 
+    I + "arbres.jpg",
+    I + "abricots.jpg",
+    I + "animalArbre.jpg",
+    I + "animalBresil.webp",
+    I + "animalCouleur.jpg",
+    I + "arbrePommes.jpg",
+    I + "arbrePommier.jpg",
+    I + "arbres.jpg",
+    I + "bateau.jpeg",
+    I + "cerise.jpg",
+    I + "cheval.jpg",
+    I + "chevalBlanc.jpeg",
+    I + "chevalBlanc2.jpeg",
+    I + "crocodile.avif",
+    I + "fleursviolettes.jpg",
+    I + "fruitsEtLegumes.jpg",
+    I + "fruitsExotiques.webp",
+    I + "gateauDamier.jpg",
+    I + "gateauFraise.jpeg",
+    I + "lacMontagne.jpg",
+    I + "layercake.webp",
+    I + "legumes.jpg",
+    I + "lion.png",
+    I + "livre.png",
+    I + "livrerouge.jpg",
+    I + "loup.jpg",
+    I + "myrtillier.jpg",
+    I + "nature.jpg",
+    I + "oiseaufleurs.jpg",
+    I + "oiseauxColorés.jpg",
+    I + "oranges.webp",
+    I + "panda.jpg",
+    I + "paysageFleurs.jpg",
+    I + "peche.webp",
+    I + "poire.jpg",
+    I + "poires.webp",
+    I + "poirier.jpg",
+    I + "pommes.jpg",
+    I + "pommier.jpg",
+    I + "redvelvet.jpeg",
+    I + "tigre.jpg",
+    I + "zebre.jpg"
 ];
 
-var Answers = [0,1,0]; // 0 if the image is seen 1 if unknown
+
+var Answers = [
+    1,
+    1,
+    1,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1
+]; // 0 if the image is seen 1 if unknown
 
 var pointeur1 = 0;
 
