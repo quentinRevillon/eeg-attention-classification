@@ -10,8 +10,8 @@ db.init_app(app)
 
 print(app.config['SQLALCHEMY_DATABASE_URI'])
 
-# app.app_context().push()     
-# db.create_all()
+app.app_context().push()     
+db.create_all()
 # with app.app_context():
 #    db.create_all()
 
@@ -69,25 +69,26 @@ def results():
     timeCodes = data["timeCodes"]
     
      # Récupérer l'ID maximal actuel de la colonne "session" dans la table "Result"
-    max_session_id = db.session.query(func.max(Result.session)).scalar()
+    session_id = db.session.query(func.max(Result.session)).scalar()
 
     # Si aucun ID maximal n'est trouvé, définir le nouvel ID de session à 1
     # Sinon, ajouter 1 à l'ID maximal actuel pour obtenir le nouvel ID de session
-    new_session_id = max_session_id if max_session_id is not None else 1
-    new_session_id += 1
+    session_id = session_id if session_id is not None else 0
+    session_id += 1
 
+    # Récupérer l'ID maximal actuel de la colonne "session" dans la table "Result"
+    id = db.session.query(func.max(Result.id)).scalar()
 
-    result = [
-        {"email" : email, "session":session, "reactionTime": reactionTimes[i], "timeCode": timeCodes[i]} for i in range(len(reactionTimes))
-    ]
-    print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    # Si aucun ID maximal n'est trouvé, définir le nouvel ID de session à 1
+    # Sinon, ajouter 1 à l'ID maximal actuel pour obtenir le nouvel ID de session
+    id = id if id is not None else 0
+    id += 1
+
     for i in range(len(reactionTimes)):
 
-        db.session.add(Result(email= email, session=session, reactionTime=reactionTimes[i], timeCode=timeCodes[i]))
+        db.session.add(Result(id=id, email= email, session=session_id, reactionTime=reactionTimes[i], timeCode=timeCodes[i]))
+        id += 1
         db.session.commit()
-    print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
-    
-    print("cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc")
 
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
