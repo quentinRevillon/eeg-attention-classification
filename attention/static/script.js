@@ -35,12 +35,12 @@ function setArrow1() {   //fonction pour afficher les flèches congruentes
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
   arrowRight2.style.top = arrow.style.top
-  directionCentre = Math.random() < 0.5 ? 'left' : 'right';
-  arrow.textContent = directionCentre === 'left' ? '←' : '→';
-  arrowLeft1.textContent = directionCote === 'left' ? '←' : '→';
-  arrowLeft2.textContent = directionCote === 'left' ? '←' : '→';
-  arrowRight1.textContent = directionCote === 'left' ? '←' : '→';
-  arrowRight2.textContent = directionCote === 'left' ? '←' : '→';
+  let directionCentre = Math.random() < 0.5 ? '←' : '→';
+  arrow.textContent = directionCentre;
+  arrowLeft1.textContent = directionCentre;
+  arrowLeft2.textContent = directionCentre;
+  arrowRight1.textContent = directionCentre;
+  arrowRight2.textContent = directionCentre;
 }
 
 function setArrow2() {  //fonction pour afficher les flèches non congruentes
@@ -51,12 +51,13 @@ function setArrow2() {  //fonction pour afficher les flèches non congruentes
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
   arrowRight2.style.top = arrow.style.top
-  directionCentre = Math.random() < 0.5 ? 'left' : 'right';
-  arrow.textContent = directionCentre === 'left' ? '←' : '→';
-  arrowLeft1.textContent = directionCote === 'right' ? '←' : '→';
-  arrowLeft2.textContent = directionCote === 'right' ? '←' : '→';
-  arrowRight1.textContent = directionCote === 'right' ? '←' : '→';
-  arrowRight2.textContent = directionCote === 'right' ? '←' : '→';
+  let directionCentre = Math.random() < 0.5 ? '←' : '→';
+  let directionCote = directionCentre === '←' ? '→' : '←';
+  arrow.textContent = directionCentre;
+  arrowLeft1.textContent = directionCote;
+  arrowLeft2.textContent = directionCote;
+  arrowRight1.textContent = directionCote;
+  arrowRight2.textContent = directionCote;
 }
 
 function showArrow() {
@@ -96,7 +97,7 @@ function hideIndicator() {
 }
 
 function showCross() {
-  cross.textContent = 'X'
+  cross.textContent = '+'
   cross.style.left = `${window.innerWidth / 2 - 15}px`;
   cross.style.top = `${window.innerHeight / 2}px`;
   cross.style.opacity = 1;
