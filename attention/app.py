@@ -6,6 +6,13 @@ app.secret_key = 'aiot'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///emails.db'
 db.init_app(app)
 
+with app.app_context():
+   db.create_all()
+# from app import app, db
+# app.app_context().push()
+# db.create_all()
+# exit()
+
 @app.route('/')
 def index():
     if 'email' in session:
@@ -24,7 +31,9 @@ def login():
 @app.route('/signup', methods=['POST'])
 def signup():
     email = request.form['email']
+    
     if not verify_email(email):
+        print("je suis entré")
         register_email(email)
         session['email'] = email
         return redirect(url_for('attention'))
@@ -61,6 +70,7 @@ def results():
 
 def verify_email(email):
     return Email.query.filter_by(email=email).first() is not None
+
 
 def register_email(email):
     email = Email(email=email)
