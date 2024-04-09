@@ -7,7 +7,7 @@ import telespoir from "./assets/images/telespoir.jpeg";
 import rezel from "./assets/images/rezel.jpg";
 import kft from "./assets/images/kft.png";
 import bds from "./assets/images/bds.png";
-import bar from "./assets/images/bar.png";
+import bar from "./assets/images/bar.png"; // Cards importation
 
 
 const cards = [

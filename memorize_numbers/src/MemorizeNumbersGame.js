@@ -61,6 +61,7 @@ function MemorizeNumbersGame() {
     setMessage("");
     generateSequence();
   }
+  
 
   return (
     <div className="game-container">
