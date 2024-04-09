@@ -13,10 +13,12 @@ let alert = new Audio('../assets/alert.mp3');
 let direction;
 let startTime;
 let reactionTime;
-let results = [];
+let reactionTimes = [];
+let timeCodes = [];
 let isRunning = false;
 let numArrows = 0;
 let coef;
+let initialTime;
 
 startButton.addEventListener('click', startTest);
 
@@ -91,13 +93,14 @@ function startTest() {
   setArrow()
   showCross()
   setTimeout(playAlert, Math.random() * 2500 + 500)
+  initialTime = new Date();
 }
 
 function endTest() {
   hideArrow();
   isRunning = false;
   numArrows++;
-  if (numArrows < 5) {
+  if (numArrows < 1) {
     startTest();
   } else {
     showResults();
@@ -111,7 +114,8 @@ function sendResults() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      results: results
+      reactionTimes: reactionTimes,
+      timeCodes: timeCodes
     })
   })
   .then(response => {
@@ -141,12 +145,13 @@ document.addEventListener("keydown", function(event) {
   if ((event.key === 'ArrowLeft') || (event.key === 'ArrowRight')) {
     if ((event.key === 'ArrowLeft' && direction === 'left') || (event.key === 'ArrowRight' && direction === 'right')) {
       reactionTime = new Date() - startTime;
-      results.push(reactionTime);
+      reactionTimes.push(reactionTime);
+      timeCodes.push(new Date() - initialTime)
       endTest()
     } 
     
     else {
-      results.push(-1)
+      reactionTimes.push(-1)
       endTest()
     }
   }
