@@ -6,25 +6,29 @@ const arrowRight2 = document.getElementById('arrow-right2');
 const indicator = document.getElementById('indicator');
 const cross = document.getElementById('cross');
 const resultsElement = document.getElementById('results');
-const startButton = document.getElementById('start');
+const startButton1 = document.getElementById('start1');
+const startButton2 = document.getElementById('start2');
 
 let alert = new Audio('alert.mp3');
 let direction;
-let startTestTime;
+let startTestTime1;
+let startTestTime2;
 let startTime;
 let reactionTime;
 let results = [];
 let isRunning = false;
-let numTests = 0;
+let numTests1 = 0;
+let numTests2 = 0;
 let coef;
 
-startButton.addEventListener('click', startTest);
+startButton1.addEventListener('click', startTest1);
+startButton2.addEventListener('click', startTest2);
 
 function negOrPos() {
   return Math.random() < 0.5 ? -1 : 1;
 }
 
-function setArrow() {
+function setArrow1() {   //fonction pour afficher les flèches congruentes
   coef = negOrPos();
   arrow.style.left = `${window.innerWidth / 2 - 25}px`;
   arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
@@ -32,13 +36,28 @@ function setArrow() {
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
   arrowRight2.style.top = arrow.style.top
-  direction = Math.random() < 0.5 ? 'left' : 'right';
-  arrow.textContent = direction === 'left' ? '←' : '→';
-  directionCote = Math.random() < 0.5 ? 'left' : 'right';
+  directionCentre = Math.random() < 0.5 ? 'left' : 'right';
+  arrow.textContent = directionCentre === 'left' ? '←' : '→';
   arrowLeft1.textContent = directionCote === 'left' ? '←' : '→';
   arrowLeft2.textContent = directionCote === 'left' ? '←' : '→';
   arrowRight1.textContent = directionCote === 'left' ? '←' : '→';
   arrowRight2.textContent = directionCote === 'left' ? '←' : '→';
+}
+
+function setArrow2() {  //fonction pour afficher les flèches non congruentes
+  coef = negOrPos();
+  arrow.style.left = `${window.innerWidth / 2 - 25}px`;
+  arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
+  arrowLeft1.style.top = arrow.style.top
+  arrowLeft2.style.top = arrow.style.top
+  arrowRight1.style.top = arrow.style.top
+  arrowRight2.style.top = arrow.style.top
+  directionCentre = Math.random() < 0.5 ? 'left' : 'right';
+  arrow.textContent = directionCentre === 'left' ? '←' : '→';
+  arrowLeft1.textContent = directionCote === 'right' ? '←' : '→';
+  arrowLeft2.textContent = directionCote === 'right' ? '←' : '→';
+  arrowRight1.textContent = directionCote === 'right' ? '←' : '→';
+  arrowRight2.textContent = directionCote === 'right' ? '←' : '→';
 }
 
 function showArrow() {
@@ -84,29 +103,53 @@ function showCross() {
   cross.style.opacity = 1;
 }
 
-function startTest() {
+function startTest1() {
   if (isRunning) {
     return;
   }
   isRunning = true;
-  if (numTests === 0) {
-    startTestTime = new Date();
+  if (numTests1 === 0) {
+    startTestTime1 = new Date();
   }
-  numTests++;
-  setArrow()
+  numTests1++;
+  setArrow1()
+  showCross()
+}
+
+function startTest2() {
+  if (isRunning) {
+    return;
+  }
+  isRunning = true;
+  if (numTests2 === 0) {
+    startTestTime2 = new Date();
+  }
+  numTests2++;
+  setArrow2()
   showCross()
   setTimeout(playAlert, Math.random() * 2500 + 500)
 }
 
 function endTest() {
+  let endTime = 0;
   hideArrow();
   isRunning = false;
-  //1er test dure 1min30
-  if (new Date() - startTestTime < 90000) {
-    startTest();
+  if (numTests1 > 0){ 
+    endTime = 90000; //1er test dure 1min30
+  } else { 
+    endTime = 180000; //2ème test dure 3min
+  }
+  if (new Date() - startTestTime < endTime) {
+    if (numTests1 > 0) {
+      startTest1();
+    } else {
+      startTest2();
+    }
   } else {
     showResults();
   }
+  numTests1 = 0;
+  numTests2 = 0;
 }
 
 function showResults() {
