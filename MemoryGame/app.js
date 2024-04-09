@@ -20,9 +20,9 @@ var images1 = [
     I + "gateauDamier.jpg",
     I + "livre.png",
     I + "myrtillier.jpg",
-    I + "oiseauxfleurs.jpg",
-    I + "paysagesFleurs.jpg",
-    I+ "poires.jpg",
+    I + "oiseaufleurs.jpg",
+    I + "paysageFleurs.jpg",
+    I+ "poire.jpg",
     I + "pommier.jpg",
     I + "tigre.jpg"
 ];
@@ -151,7 +151,7 @@ return 'end of Phase 1';
 }
 
  
-setTimeout("ChangerImage1()", 1000)
+setTimeout("ChangerImage1()", 2500)
 }
 
 function displayFirstImage(){
