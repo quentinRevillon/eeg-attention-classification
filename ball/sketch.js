@@ -2,7 +2,7 @@ let ballX = 0;
 let ballY = 0;
 let ballSpeedX = 0;
 let ballSpeedY = 0;
-let squareSize = 200;
+let squareSize = 400;
 let rebounds = 0;
 let gameStarted = false;
 let gameEnded = false;
@@ -12,38 +12,11 @@ function setup() {
   const container = document.querySelector('.sketch-container');
   const canvas = createCanvas(400, 400);
   canvas.parent(container);
-  textInput = createInput();
-  textInput.hide();
-  button = createButton("Commencer");
-  button.mousePressed(startGame);
 
   // Positionner la balle au centre du carré
   ballX = (width - squareSize) / 2 + squareSize / 2;
   ballY = (height - squareSize) / 2 + squareSize / 2;
 
-  // Générer une direction aléatoire pour la vitesse de départ
-  generateRandomSpeed();
-   // Masquer le bouton "Commencer" après avoir cliqué dessus
-  document.getElementById('start-button').addEventListener('click', () => {
-    document.getElementById('start-button').style.display = 'none';
-  });
-
-  document.getElementById('submit-button').addEventListener('click', () => {
-    const userInput = parseInt(document.getElementById('rebounds-input').value);
-    const resultMessage = document.querySelector('.result-message');
-
-    if (isNaN(userInput)) {
-      resultMessage.textContent = 'Veuillez entrer un nombre valide.';
-    } else if (userInput === rebounds) {
-      resultMessage.textContent = 'Bonne réponse !';
-      resultMessage.style.color = '#4caf50';
-    } else {
-      resultMessage.textContent = 'Mauvaise réponse !';
-      resultMessage.style.color = '#f44336';
-    }
-
-    document.querySelector('.result-container').style.display = 'block';
-  });
 }
 
 function draw() {
@@ -86,12 +59,8 @@ function draw() {
     }
   } else if (gameEnded) {
     // Afficher le message de fin et demander le nombre de rebonds
-    fill(0);
-    textSize(16);
-    text("Le jeu est terminé !", (width - 120) / 2, height / 2 - 30);
-    text("Combien de rebonds la balle a-t-elle effectués ?", (width - 240) / 2, height / 2);
-    textInput.show();
-    textInput.changed(checkAnswer);
+    document.querySelector(".result-container").style.display = "block";
+
   }
 }
 
@@ -104,6 +73,8 @@ function startGame() {
   ballX = (width - squareSize) / 2 + squareSize / 2;
   ballY = (height - squareSize) / 2 + squareSize / 2;
   generateRandomSpeed();
+  document.querySelector("#start-button").style.display = "none";
+
 }
 
 function checkAnswer() {

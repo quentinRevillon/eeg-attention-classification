@@ -76,15 +76,29 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-bottom: 1rem;
   }
   
   .submit-button:hover {
     background-color: #555;
   }
   
+  
   .result-text {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 1rem;
   }
+
+  .end-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .question-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  
   

@@ -13,11 +13,14 @@
     <h1>Bouncing Ball Game</h1>
     <p>Cliquez sur le bouton "Commencer" pour lancer la balle dans le carré. Comptez le nombre de rebonds pendant 10 secondes, puis entrez votre réponse.</p>
     <div class="sketch-container"></div>
-    <button class="start-button" onclick="startGame()">Commencer</button>
+    <button id="start-button" class="start-button" onclick="startGame()">Commencer</button>
     <div class="result-container">
       <p class="result-text"></p>
+      <p class="end-text">Le jeu est terminé !</p>
+      <p class="question-text">Combien de rebonds la balle a-t-elle effectués ?</p>
       <input type="number" class="input-field" placeholder="Entrez le nombre de rebonds">
-      <button class="submit-button" onclick="checkAnswer()">Soumettre</button>
+      <button id="submit-button" class="submit-button" onclick="checkAnswer()">Soumettre</button>
+      <p class="result-text"></p>
     </div>
   </div>
 </body>
