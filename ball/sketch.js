@@ -10,6 +10,11 @@ let timer = 10;
 let difficultMode = false;
 let additionalBalls = [];
 
+function getRandomNumberBetween(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+  
+
 function setup() {
   const container = document.querySelector('.sketch-container');
   const canvas = createCanvas(400, 400);
@@ -47,7 +52,7 @@ function draw() {
       (ballX - 10 < (width - squareSize) / 2 && ballSpeedX < 0) ||
       (ballX + 10 > (width + squareSize) / 2 && ballSpeedX > 0)
     ) {
-      ballSpeedX *= -1;
+      ballSpeedX *= -1*getRandomNumberBetween(0.85,1.15);
       rebounds++;
     }
 
@@ -55,7 +60,7 @@ function draw() {
       (ballY - 10 < (height - squareSize) / 2 && ballSpeedY < 0) ||
       (ballY + 10 > (height + squareSize) / 2 && ballSpeedY > 0)
     ) {
-      ballSpeedY *= -1;
+      ballSpeedY *= -1*getRandomNumberBetween(0.85,1.15);
       rebounds++;
     }
 
@@ -143,14 +148,14 @@ function toggleDifficultMode() {
         (ball.x - 10 < 0 && ball.speedX < 0) ||
         (ball.x + 10 > width && ball.speedX > 0)
       ) {
-        ball.speedX *= -1;
+        ball.speedX *= -1*getRandomNumberBetween(0.5,1.5);
       }
   
       if (
         (ball.y - 10 < 0 && ball.speedY < 0) ||
         (ball.y + 10 > height && ball.speedY > 0)
       ) {
-        ball.speedY *= -1;
+        ball.speedY *= -1*getRandomNumberBetween(0.5,1.5);
       }
     }
   }
