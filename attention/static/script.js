@@ -10,11 +10,12 @@ const startButton = document.getElementById('start');
 
 let alert = new Audio('alert.mp3');
 let direction;
+let startTestTime;
 let startTime;
 let reactionTime;
 let results = [];
 let isRunning = false;
-let numArrows = 0;
+let numTests = 0;
 let coef;
 
 startButton.addEventListener('click', startTest);
@@ -33,10 +34,11 @@ function setArrow() {
   arrowRight2.style.top = arrow.style.top
   direction = Math.random() < 0.5 ? 'left' : 'right';
   arrow.textContent = direction === 'left' ? '←' : '→';
-  arrowLeft1.textContent = Math.random() < 0.5 ? '←' : '→';
-  arrowLeft2.textContent = Math.random() < 0.5 ? '←' : '→';
-  arrowRight1.textContent = Math.random() < 0.5 ? '←' : '→';
-  arrowRight2.textContent = Math.random() < 0.5 ? '←' : '→';
+  directionCote = Math.random() < 0.5 ? 'left' : 'right';
+  arrowLeft1.textContent = directionCote === 'left' ? '←' : '→';
+  arrowLeft2.textContent = directionCote === 'left' ? '←' : '→';
+  arrowRight1.textContent = directionCote === 'left' ? '←' : '→';
+  arrowRight2.textContent = directionCote === 'left' ? '←' : '→';
 }
 
 function showArrow() {
@@ -87,6 +89,10 @@ function startTest() {
     return;
   }
   isRunning = true;
+  if (numTests === 0) {
+    startTestTime = new Date();
+  }
+  numTests++;
   setArrow()
   showCross()
   setTimeout(playAlert, Math.random() * 2500 + 500)
@@ -95,8 +101,8 @@ function startTest() {
 function endTest() {
   hideArrow();
   isRunning = false;
-  numArrows++;
-  if (numArrows < 5) {
+  //1er test dure 1min30
+  if (new Date() - startTestTime < 90000) {
     startTest();
   } else {
     showResults();
