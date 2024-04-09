@@ -11,8 +11,7 @@ const startButton2 = document.getElementById('start2');
 
 let alert = new Audio('alert.mp3');
 let direction;
-let startTestTime1;
-let startTestTime2;
+let startTestTime;
 let startTime;
 let reactionTime;
 let results = [];
@@ -109,7 +108,7 @@ function startTest1() {
   }
   isRunning = true;
   if (numTests1 === 0) {
-    startTestTime1 = new Date();
+    startTestTime = new Date();
   }
   numTests1++;
   setArrow1()
@@ -122,7 +121,7 @@ function startTest2() {
   }
   isRunning = true;
   if (numTests2 === 0) {
-    startTestTime2 = new Date();
+    startTestTime = new Date();
   }
   numTests2++;
   setArrow2()
@@ -142,14 +141,15 @@ function endTest() {
   if (new Date() - startTestTime < endTime) {
     if (numTests1 > 0) {
       startTest1();
-    } else {
+    } 
+    if (numTests2 > 0) {
       startTest2();
     }
   } else {
-    showResults();
+      numTests1 = 0;
+      numTests2 = 0;
+      showResults();
   }
-  numTests1 = 0;
-  numTests2 = 0;
 }
 
 function showResults() {
