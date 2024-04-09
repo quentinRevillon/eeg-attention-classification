@@ -6,7 +6,9 @@ let squareSize = 400;
 let rebounds = 0;
 let gameStarted = false;
 let gameEnded = false;
-let timer = 60;
+let timer = 10;
+let difficultMode = false;
+let additionalBalls = [];
 
 function setup() {
   const container = document.querySelector('.sketch-container');
@@ -34,6 +36,11 @@ function draw() {
     // Déplacer la balle
     ballX += ballSpeedX;
     ballY += ballSpeedY;
+
+    if (difficultMode) {
+        updateAdditionalBalls();
+        drawAdditionalBalls();
+      }
 
     // Vérifier les collisions avec les bords du carré
     if (
@@ -66,7 +73,7 @@ function draw() {
 
 function startGame() {
   gameStarted = true;
-  timer = 10;
+  timer = 60;
   rebounds = 0;
 
   // Réinitialiser la position de la balle et générer une nouvelle direction aléatoire
@@ -107,3 +114,50 @@ function generateRandomSpeed() {
   ballSpeedX = speed * cos(angle);
   ballSpeedY = speed * sin(angle);
 }
+function toggleDifficultMode() {
+    difficultMode = !difficultMode;
+    if (difficultMode) {
+      generateAdditionalBalls();
+    }
+  }
+  
+  function generateAdditionalBalls() {
+    for (let i = 0; i < 10; i++) {
+      const x = random(width);
+      const y = random(height);
+      const speedX = random(-5, 5);
+      const speedY = random(-5, 5);
+      const ballColor = color(random(255), random(255), random(255)); // Renommer la variable en ballColor
+      additionalBalls.push({ x, y, speedX, speedY, ballColor }); // Mettre à jour la propriété de l'objet en ballColor
+    }
+  }
+  
+  
+  function updateAdditionalBalls() {
+    for (let i = 0; i < additionalBalls.length; i++) {
+      const ball = additionalBalls[i];
+      ball.x += ball.speedX;
+      ball.y += ball.speedY;
+  
+      if (
+        (ball.x - 10 < 0 && ball.speedX < 0) ||
+        (ball.x + 10 > width && ball.speedX > 0)
+      ) {
+        ball.speedX *= -1;
+      }
+  
+      if (
+        (ball.y - 10 < 0 && ball.speedY < 0) ||
+        (ball.y + 10 > height && ball.speedY > 0)
+      ) {
+        ball.speedY *= -1;
+      }
+    }
+  }
+  
+  function drawAdditionalBalls() {
+    for (const ball of additionalBalls) {
+        fill(ball.ballColor); // Utiliser ball.ballColor au lieu de ball.color
+      ellipse(ball.x, ball.y, 20, 20);
+    }
+  }

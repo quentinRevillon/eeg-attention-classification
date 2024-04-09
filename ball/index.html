@@ -12,6 +12,10 @@
   <div class="container">
     <h1>Bouncing Ball Game</h1>
     <p>Cliquez sur le bouton "Commencer" pour lancer la balle dans le carré. Comptez le nombre de rebonds pendant 10 secondes, puis entrez votre réponse.</p>
+    <div class="difficulty-switch">
+        <input type="checkbox" id="difficult-switch" onclick="toggleDifficultMode()">
+        <label for="difficult-switch">Mode difficile</label>
+      </div>      
     <div class="sketch-container"></div>
     <button id="start-button" class="start-button" onclick="startGame()">Commencer</button>
     <div class="result-container">

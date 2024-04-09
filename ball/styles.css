@@ -101,4 +101,43 @@
     line-height: 1.5;
   }
   
+  .difficulty-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .difficulty-switch input[type="checkbox"] {
+    appearance: none;
+    width: 50px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+  }
+  
+  .difficulty-switch input[type="checkbox"]:before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+  }
+  
+  .difficulty-switch input[type="checkbox"]:checked {
+    background-color: #333;
+  }
+  
+  .difficulty-switch input[type="checkbox"]:checked:before {
+    transform: translateX(26px);
+  }
   
