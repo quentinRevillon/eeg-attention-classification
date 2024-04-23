@@ -7,6 +7,8 @@ const indicator = document.getElementById('indicator');
 const cross = document.getElementById('cross');
 const resultsElement = document.getElementById('results');
 const startButton = document.getElementById('start');
+const startButton1 = document.getElementById('start1');
+const startButton2 = document.getElementById('start2');
 
 let alert = new Audio('../assets/alert.mp3');
 
@@ -100,7 +102,6 @@ function hideIndicator() {
 
 function showCross() {
   cross.textContent = '+'
-  cross.textContent = '+'
   cross.style.left = `${window.innerWidth / 2 - 15}px`;
   cross.style.top = `${window.innerHeight / 2}px`;
   cross.style.opacity = 1;
@@ -138,9 +139,7 @@ function endTest() {
   let endTime = 0;
   hideArrow();
   isRunning = false;
-  numArrows++;
-  if (numArrows < 1) {
-    startTest();
+ 
   if (numTests1 > 0){ 
     endTime = 90000; //1er test dure 1min30
   } else { 
