@@ -29,8 +29,8 @@ function negOrPos() {
 
 function setArrow1() {   //fonction pour afficher les flèches congruentes
   coef = negOrPos();
-  arrow.style.left = `${window.innerWidth / 2 - 25}px`;
-  arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
+
+  arrow.style.top = `calc(50% + ${coef*35 - 30}px)`;
   arrowLeft1.style.top = arrow.style.top
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
@@ -48,7 +48,8 @@ function setArrow2() {  //fonction pour afficher les flèches non congruentes
   // arrow.style.left = `${window.innerWidth / 2 - 25}px`;
   // arrow.style.left = `${window.innerWidth / 2 - 25}px`;
   // arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
-  arrow.style.top = `calc(50% + ${coef*35}px)`;
+  arrow.style.top = `calc(50% + ${coef*35 - 30}px)`;
+
   arrowLeft1.style.top = arrow.style.top
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
