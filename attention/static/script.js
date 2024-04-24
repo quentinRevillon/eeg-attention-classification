@@ -87,7 +87,7 @@ function playAlert(){
 
 function showIndicator() {
   indicator.textContent = '*'
-  indicator.style.left = `${window.innerWidth / 2 - 10}px`;
+  // indicator.style.left = `${window.innerWidth / 2 - 10}px`;
   indicator.style.top = `${window.innerHeight / 2 + 10 + 35*coef}px`;
   indicator.style.opacity = 1;
   setTimeout(hideIndicator, 200)
@@ -101,8 +101,9 @@ function hideIndicator() {
 
 function showCross() {
   cross.textContent = '+'
-  cross.style.left = `${window.innerWidth / 2 - 15}px`;
-  cross.style.top = `${window.innerHeight / 2}px`;
+  // cross.style.left = `${window.innerWidth / 2 - 15}px`;
+  arrow.style.top = `calc(50% + ${coef*35 - 30}px)`;
+  // cross.style.top = `${window.innerHeight / 2}px`;
   cross.style.opacity = 1;
 }
 
