@@ -7,24 +7,31 @@ const indicator = document.getElementById('indicator');
 const cross = document.getElementById('cross');
 const resultsElement = document.getElementById('results');
 const startButton = document.getElementById('start');
+const startButton1 = document.getElementById('start1');
+const startButton2 = document.getElementById('start2');
 
 let alert = new Audio('../assets/alert.mp3');
 
 let direction;
+let startTestTime;
 let startTime;
 let reactionTime;
-let results = [];
+let reactionTimes = [];
+let timeCodes = [];
 let isRunning = false;
-let numArrows = 0;
+let numTests1 = 0;
+let numTests2 = 0;
 let coef;
+let initialTime;
 
-startButton.addEventListener('click', startTest);
+startButton1.addEventListener('click', startTest1);
+startButton2.addEventListener('click', startTest2);
 
 function negOrPos() {
   return Math.random() < 0.5 ? -1 : 1;
 }
 
-function setArrow() {
+function setArrow1() {   //fonction pour afficher les flèches congruentes
   coef = negOrPos();
   arrow.style.left = `${window.innerWidth / 2 - 25}px`;
   arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
@@ -32,12 +39,29 @@ function setArrow() {
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
   arrowRight2.style.top = arrow.style.top
-  direction = Math.random() < 0.5 ? 'left' : 'right';
-  arrow.textContent = direction === 'left' ? '←' : '→';
-  arrowLeft1.textContent = Math.random() < 0.5 ? '←' : '→';
-  arrowLeft2.textContent = Math.random() < 0.5 ? '←' : '→';
-  arrowRight1.textContent = Math.random() < 0.5 ? '←' : '→';
-  arrowRight2.textContent = Math.random() < 0.5 ? '←' : '→';
+  let directionCentre = Math.random() < 0.5 ? '←' : '→';
+  arrow.textContent = directionCentre;
+  arrowLeft1.textContent = directionCentre;
+  arrowLeft2.textContent = directionCentre;
+  arrowRight1.textContent = directionCentre;
+  arrowRight2.textContent = directionCentre;
+}
+
+function setArrow2() {  //fonction pour afficher les flèches non congruentes
+  coef = negOrPos();
+  arrow.style.left = `${window.innerWidth / 2 - 25}px`;
+  arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
+  arrowLeft1.style.top = arrow.style.top
+  arrowLeft2.style.top = arrow.style.top
+  arrowRight1.style.top = arrow.style.top
+  arrowRight2.style.top = arrow.style.top
+  let directionCentre = Math.random() < 0.5 ? '←' : '→';
+  let directionCote = directionCentre === '←' ? '→' : '←';
+  arrow.textContent = directionCentre;
+  arrowLeft1.textContent = directionCote;
+  arrowLeft2.textContent = directionCote;
+  arrowRight1.textContent = directionCote;
+  arrowRight2.textContent = directionCote;
 }
 
 function showArrow() {
@@ -77,30 +101,61 @@ function hideIndicator() {
 }
 
 function showCross() {
-  cross.textContent = 'X'
+  cross.textContent = '+'
   cross.style.left = `${window.innerWidth / 2 - 15}px`;
   cross.style.top = `${window.innerHeight / 2}px`;
   cross.style.opacity = 1;
 }
 
-function startTest() {
+function startTest1() {
   if (isRunning) {
     return;
   }
   isRunning = true;
-  setArrow()
+  if (numTests1 === 0) {
+    startTestTime = new Date();
+  }
+  numTests1++;
+  setArrow1()
+  showCross()
+}
+
+function startTest2() {
+  if (isRunning) {
+    return;
+  }
+  isRunning = true;
+  if (numTests2 === 0) {
+    startTestTime = new Date();
+  }
+  numTests2++;
+  setArrow2()
   showCross()
   setTimeout(playAlert, Math.random() * 2500 + 500)
+  initialTime = new Date();
 }
 
 function endTest() {
+  let endTime = 0;
   hideArrow();
   isRunning = false;
-  numArrows++;
-  if (numArrows < 5) {
-    startTest();
+ 
+  if (numTests1 > 0){ 
+    endTime = 90000; //1er test dure 1min30
+  } else { 
+    endTime = 180000; //2ème test dure 3min
+  }
+  if (new Date() - startTestTime < endTime) {
+    if (numTests1 > 0) {
+      startTest1();
+    } 
+    if (numTests2 > 0) {
+      startTest2();
+    }
   } else {
-    showResults();
+      numTests1 = 0;
+      numTests2 = 0;
+      showResults();
   }
 }
 
@@ -111,7 +166,8 @@ function sendResults() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      results: results
+      reactionTimes: reactionTimes,
+      timeCodes: timeCodes
     })
   })
   .then(response => {
@@ -141,12 +197,13 @@ document.addEventListener("keydown", function(event) {
   if ((event.key === 'ArrowLeft') || (event.key === 'ArrowRight')) {
     if ((event.key === 'ArrowLeft' && direction === 'left') || (event.key === 'ArrowRight' && direction === 'right')) {
       reactionTime = new Date() - startTime;
-      results.push(reactionTime);
+      reactionTimes.push(reactionTime);
+      timeCodes.push(new Date() - initialTime)
       endTest()
     } 
     
     else {
-      results.push(-1)
+      reactionTimes.push(-1)
       endTest()
     }
   }
