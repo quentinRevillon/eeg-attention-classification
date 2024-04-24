@@ -6,13 +6,13 @@
 </head>
 <body>
     <h1>Connexion</h1>
-    <form method="post" action="{{ url_for('login') }}">
+    <form method="post" action="/login">
         <label for="email">Email :</label>
         <input type="email" name="email" required>
         <button type="submit">Se connecter</button>
     </form>    
     <h1>Inscription</h1>
-    <form method="post" action="{{ url_for('signup') }}">
+    <form method="post" action="/signup">
         <label for="email">Email :</label>
         <input type="email" name="email" required>
         <br>

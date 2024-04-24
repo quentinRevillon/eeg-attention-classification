@@ -6,30 +6,40 @@ body {
 
 #arrow, #arrow-left1, #arrow-left2, #arrow-right1, #arrow-right2 {
   position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-size: 50px;
   opacity: 0;
+} 
+
+#arrow {
+  transform: translate(-50%, 0);
 }
 
 #arrow-left1 {
-  left: calc(50% - 125px);
+  transform: translate(-150%, 0);
 }
 
 #arrow-left2 {
-  left: calc(50% - 75px);
+  transform: translate(-250%, 0);
 }
 
 #arrow-right1 {
-  left: calc(50% + 25px);
+  transform: translate(+50%, 0);
 }
 
 #arrow-right2 {
-  left: calc(50% + 75px);
+  transform: translate(+150%, 0);
 }
 
 #cross {
   position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-size: 50px;
-  opacity: 0;
+  opacity: 1;
 }
 
 #indicator {

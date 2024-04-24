@@ -6,11 +6,9 @@ const arrowRight2 = document.getElementById('arrow-right2');
 const indicator = document.getElementById('indicator');
 const cross = document.getElementById('cross');
 const resultsElement = document.getElementById('results');
-const startButton = document.getElementById('start');
-const startButton1 = document.getElementById('start1');
-const startButton2 = document.getElementById('start2');
 
-let alert = new Audio('../assets/alert.mp3');
+
+// let alert = new Audio("{{url_for('static', filename='alert.mp3')}}");
 
 let direction;
 let startTestTime;
@@ -24,8 +22,6 @@ let numTests2 = 0;
 let coef;
 let initialTime;
 
-startButton1.addEventListener('click', startTest1);
-startButton2.addEventListener('click', startTest2);
 
 function negOrPos() {
   return Math.random() < 0.5 ? -1 : 1;
@@ -49,8 +45,10 @@ function setArrow1() {   //fonction pour afficher les flèches congruentes
 
 function setArrow2() {  //fonction pour afficher les flèches non congruentes
   coef = negOrPos();
-  arrow.style.left = `${window.innerWidth / 2 - 25}px`;
-  arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
+  // arrow.style.left = `${window.innerWidth / 2 - 25}px`;
+  // arrow.style.left = `${window.innerWidth / 2 - 25}px`;
+  // arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
+  arrow.style.top = `calc(50% + ${coef*35}px)`;
   arrowLeft1.style.top = arrow.style.top
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
@@ -83,7 +81,7 @@ function hideArrow() {
 
 function playAlert(){
   alert.play();
-  setTimeout(showIndicator, 500)
+  setTimeout(showIndicator, 1000)
 }
 
 function showIndicator() {
@@ -92,7 +90,7 @@ function showIndicator() {
   indicator.style.top = `${window.innerHeight / 2 + 10 + 35*coef}px`;
   indicator.style.opacity = 1;
   setTimeout(hideIndicator, 200)
-  setTimeout(hideIndicator, 200)
+ 
 }
 
 function hideIndicator() {
@@ -117,7 +115,8 @@ function startTest1() {
   }
   numTests1++;
   setArrow1()
-  showCross()
+  setTimeout(playAlert, Math.random() * 2500 + 1500)
+  initialTime = new Date();
 }
 
 function startTest2() {
@@ -130,9 +129,7 @@ function startTest2() {
   }
   numTests2++;
   setArrow2()
-  showCross()
-  setTimeout(playAlert, Math.random() * 2500 + 500)
-  initialTime = new Date();
+  setTimeout(showArrow, Math.random() * 2500 + 1500)
 }
 
 function endTest() {
@@ -182,6 +179,28 @@ function sendResults() {
   });
 }
 
+function sendResult(reactionTime, timeCode) {
+  fetch('/result', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      reactionTime: reactionTime,
+      timeCode: timeCode
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Results have been successfully saved.');
+    } else {
+      console.error('An error occurred while saving the results.');
+    }
+  })
+  .catch(error => {
+    console.error('An error occurred while saving the results.', error);
+  });
+}
 
 
 function showResults() {
@@ -199,6 +218,7 @@ document.addEventListener("keydown", function(event) {
       reactionTime = new Date() - startTime;
       reactionTimes.push(reactionTime);
       timeCodes.push(new Date() - initialTime)
+      sendResults()
       endTest()
     } 
     
