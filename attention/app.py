@@ -45,7 +45,7 @@ def congruentTest():
 @app.route('/nonCongruentTest')
 def nonCongruentTest():
     if 'email' in session:
-        return render_template('nonCongruenttest.html')
+        return render_template('nonCongruentTest.html')
     return render_template('login.html')
 
 
