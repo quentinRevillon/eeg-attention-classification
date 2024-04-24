@@ -48,6 +48,11 @@ def nonCongruentTest():
         return render_template('nonCongruentTest.html')
     return render_template('login.html')
 
+@app.route('/ballTest')
+def ballTest():
+    if 'email' in session:
+        return render_template('ballTest.html')
+    return render_template('login.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -66,7 +71,7 @@ def signup():
         print("je suis entré")
         register_email(email)
         session['email'] = email
-        return redirect(url_for('testSelectionPanel.html'))
+        return redirect(url_for('testSelectionPanel'))
     else:
         return 'Erreur : email déjà utilisé'
 
