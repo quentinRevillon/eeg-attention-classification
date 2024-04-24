@@ -40,7 +40,8 @@ Charles :
 Félicité :
 
 
-Prisha :
+Prisha : 
+Présentation du projet par l'encadrant, rencontre avec les doctorants travaillant déjà sur le projet. Séparation du projet par thème : mémoire et attention. Je me suis occuppée de faire des recherches sur la mémoire avec Manon. 
 
 
 Manon :
@@ -59,6 +60,7 @@ Félicité :
 
 
 Prisha :
+Recherches sur internet sur la mémoire, prises de notes sur un document. Recherches sur les différents types de mémoire, comment mesurer et améliorer la mémoire. Mise en place d'une liste d'idées de jeux de mémoire utiles pour mesurer la mémoire. 
 
 
 Manon :
@@ -75,7 +77,7 @@ Charles :
 Félicité :
 
 
-Prisha :
+Prisha : Présentation à l'encadrant de notre premier protocole, discussion sur les jeux à proposer aux personnes participants à l'expérience. 
 
 
 Manon :
@@ -92,7 +94,7 @@ Charles :
 Félicité :
 
 
-Prisha :
+Prisha : Recherches sur comment une page web en javascript. Découverte de la programmation en html/css/javascript. Début d'écriture du code pour la page web.
 
 
 Manon :
@@ -110,7 +112,7 @@ Charles :
 Félicité :
 
 
-Prisha :
+Prisha : 
 
 
 Manon :
