@@ -6,7 +6,8 @@ let squareSize = 400;
 let rebounds = 0;
 let gameStarted = false;
 let gameEnded = false;
-let timer = 10;
+let timer = 60; ///en seconde
+let totalTime = 0; ///en seconde
 let difficultMode = false;
 let additionalBalls = [];
 
@@ -65,6 +66,7 @@ function draw() {
     }
 
     // Compte à rebours
+    totalTime += deltaTime / 1000;
     timer -= deltaTime / 1000;
     if (timer <= 0) {
       gameEnded = true;
@@ -77,16 +79,25 @@ function draw() {
 }
 
 function startGame() {
-  gameStarted = true;
-  timer = 60;
-  rebounds = 0;
+  if (totalTime < 1*60) {
+    console.log("start game")
+    gameStarted = true;
+    timer = 10;
+    rebounds = 0;
 
-  // Réinitialiser la position de la balle et générer une nouvelle direction aléatoire
-  ballX = (width - squareSize) / 2 + squareSize / 2;
-  ballY = (height - squareSize) / 2 + squareSize / 2;
-  generateRandomSpeed();
-  document.querySelector("#start-button").style.display = "none";
-
+    // Réinitialiser la position de la balle et générer une nouvelle direction aléatoire
+    ballX = (width - squareSize) / 2 + squareSize / 2;
+    ballY = (height - squareSize) / 2 + squareSize / 2;
+    generateRandomSpeed();
+    document.querySelector("#start-button").style.display = "none";
+    gameEnded = false;
+    loop();
+  }
+  else {
+    console.log("end game")
+    document.querySelector(".result-text").textContent = "Temps écoulé ! Le jeu est terminé.";
+    document.querySelector(".result-container").style.display = "block";
+  }
 }
 
 function checkAnswer() {
@@ -106,6 +117,9 @@ function checkAnswer() {
   
     resultContainer.style.display = "block";
     noLoop();
+    console.log("pre start")
+    setTimeout(startGame, 1000);
+    console.log("post start")
   }
 
 function generateRandomSpeed() {
