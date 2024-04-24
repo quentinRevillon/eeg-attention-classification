@@ -10,16 +10,17 @@ db.init_app(app)
 
 
 
-class Email(db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
 
     def __repr__(self):
-        return f'<Email {self.email}>'
+        return f'<Email {self.email} >'
 
 class Result(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), db.ForeignKey('email.email'), nullable=False)
+    email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)
     session = db.Column(db.Integer, nullable=False)
     reactionTime = db.Column(db.Integer, nullable=False)
     #les timeCodes sont en milisecondes
