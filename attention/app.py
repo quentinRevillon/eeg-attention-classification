@@ -39,12 +39,18 @@ def testSelectionPanel():
 @app.route('/congruentTest')
 def congruentTest():
     if 'email' in session:
+        email = session['email']
+        session['congruentTestSessionId'] = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).filter(Result.testId == 1).scalar()
+        session['congruentTestSessionId'] = session['congruentTestSessionId'] + 1 if session['congruentTestSessionId'] is not None else 1
         return render_template('congruentTest.html')
     return render_template('login.html')
 
 @app.route('/nonCongruentTest')
 def nonCongruentTest():
     if 'email' in session:
+        email = session['email']
+        session['nonCongruentTestSessionId'] = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).filter(Result.testId == 2).scalar()
+        session['nonCongruentTestSessionId'] = session['nonCongruentTestSessionId'] + 1 if session['nonCongruentTestSessionId'] is not None else 1
         return render_template('nonCongruentTest.html')
     return render_template('login.html')
 
@@ -61,14 +67,16 @@ def login():
 @app.route('/signup', methods=['POST'])
 def signup():
     email = request.form['email']
-    
+    session['session_id'] = 0
     if not verify_email(email):
         print("je suis entré")
         register_email(email)
         session['email'] = email
-        return redirect(url_for('testSelectionPanel.html'))
+     
+        return redirect(url_for('testSelectionPanel'))
     else:
         return 'Erreur : email déjà utilisé'
+
 
 @app.route('/logout')
 def logout():
@@ -106,42 +114,40 @@ def results():
 
     for i in range(len(reactionTimes)):
 
-        db.session.add(Result(id=id, email= email, session=session_id, reactionTime=reactionTimes[i], timeCode=timeCodes[i]))
+        db.session.add(Result(id=id, email= email, sessionId=session_id, reactionTime=reactionTimes[i], timeCode=timeCodes[i]))
         id += 1
         db.session.commit()
 
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
 
+
 @app.route('/result', methods=['POST'])
 def result():
     data = request.get_json()
     email = session['email']
-    reactionTimes = data["reactionTime"]
-    timeCodes = data["timeCode"]
+    reactionTime = data["reactionTime"]
+    timeCode = data["timeCode"]
+    runningTest = data["runningTest"]
     
     
      # Récupérer l'ID maximal actuel de la colonne "session" dans la table "Result"
-    session_id = db.session.query(func.max(Result.session)).scalar()
+    if runningTest == 1:
+        sessionId = session['congruentTestSessionId']
+    elif runningTest == 2:
+        sessionId = session['nonCongruentTestSessionId']
+    
 
-    # Si aucun ID maximal n'est trouvé, définir le nouvel ID de session à 1
-    # Sinon, ajouter 1 à l'ID maximal actuel pour obtenir le nouvel ID de session
-    session_id = session_id if session_id is not None else 0
-    session_id += 1
 
     # Récupérer l'ID maximal actuel de la colonne "session" dans la table "Result"
     id = db.session.query(func.max(Result.id)).scalar()
 
     # Si aucun ID maximal n'est trouvé, définir le nouvel ID de session à 1
     # Sinon, ajouter 1 à l'ID maximal actuel pour obtenir le nouvel ID de session
-    id = id if id is not None else 0
-    id += 1
-
-    for i in range(len(reactionTimes)):
-
-        db.session.add(Result(id=id, email= email, session=session_id, reactionTime=reactionTimes[i], timeCode=timeCodes[i]))
-        id += 1
-        db.session.commit()
+    id = id + 1 if id is not None else 1
+    
+    db.session.add(Result(id=id, email= email, sessionId=sessionId, reactionTime=reactionTime, timeCode=timeCode, testId=runningTest))
+    db.session.commit()
 
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 

@@ -20,10 +20,12 @@ class Email(db.Model):
 class Result(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), db.ForeignKey('email.email'), nullable=False)
-    session = db.Column(db.Integer, nullable=False)
+    sessionId = db.Column(db.Integer, nullable=False)
     reactionTime = db.Column(db.Integer, nullable=False)
-    #les timeCodes sont en milisecondes
     timeCode = db.Column(db.Integer, nullable=False)
+    testId = db.Column(db.Integer, nullable=False)
+    #les timeCodes sont en milisecondes
+    
 
 with app.app_context():
     db.create_all()

@@ -9,7 +9,7 @@ const resultsElement = document.getElementById('results');
 
 
 // let alert = new Audio("{{url_for('static', filename='alert.mp3')}}");
-
+let runningTest;
 let direction;
 let startTestTime;
 let startTime;
@@ -35,7 +35,7 @@ function setArrow1() {   //fonction pour afficher les flèches congruentes
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
   arrowRight2.style.top = arrow.style.top
-  let directionCentre = Math.random() < 0.5 ? '←' : '→';
+  directionCentre = Math.random() < 0.5 ? '←' : '→';
   arrow.textContent = directionCentre;
   arrowLeft1.textContent = directionCentre;
   arrowLeft2.textContent = directionCentre;
@@ -54,7 +54,7 @@ function setArrow2() {  //fonction pour afficher les flèches non congruentes
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
   arrowRight2.style.top = arrow.style.top
-  let directionCentre = Math.random() < 0.5 ? '←' : '→';
+  directionCentre = Math.random() < 0.5 ? '←' : '→';
   let directionCote = directionCentre === '←' ? '→' : '←';
   arrow.textContent = directionCentre;
   arrowLeft1.textContent = directionCote;
@@ -112,6 +112,7 @@ function startTest1() {
     return;
   }
   isRunning = true;
+  runningTest = 1;
   if (numTests1 === 0) {
     startTestTime = new Date();
   }
@@ -129,6 +130,7 @@ function startTest2() {
   if (numTests2 === 0) {
     startTestTime = new Date();
   }
+  runningTest = 2;
   numTests2++;
   setArrow2()
   setTimeout(showArrow, Math.random() * 2500 + 1500)
@@ -166,7 +168,8 @@ function sendResults() {
     },
     body: JSON.stringify({
       reactionTimes: reactionTimes,
-      timeCodes: timeCodes
+      timeCodes: timeCodes,
+      runningTest: runningTest
     })
   })
   .then(response => {
@@ -181,7 +184,7 @@ function sendResults() {
   });
 }
 
-function sendResult(reactionTime, timeCode) {
+function sendResult(reactionTime, timeCode, runningTest) {
   fetch('/result', {
     method: 'POST',
     headers: {
@@ -189,7 +192,8 @@ function sendResult(reactionTime, timeCode) {
     },
     body: JSON.stringify({
       reactionTime: reactionTime,
-      timeCode: timeCode
+      timeCode: timeCode,
+      runningTest: runningTest
     })
   })
   .then(response => {
@@ -216,11 +220,13 @@ document.addEventListener("keydown", function(event) {
     return;
   }
   if ((event.key === 'ArrowLeft') || (event.key === 'ArrowRight')) {
-    if ((event.key === 'ArrowLeft' && direction === 'left') || (event.key === 'ArrowRight' && direction === 'right')) {
-      reactionTime = new Date() - startTime;
+    if ((event.key === 'ArrowLeft' && directionCentre === '←') || (event.key === 'ArrowRight' && directionCentre === '→')) {
+      let reactionTime = new Date() - startTime;
       reactionTimes.push(reactionTime);
-      timeCodes.push(new Date() - initialTime)
-      sendResults()
+      let timeCode = new Date() - initialTime;
+      timeCodes.push(timeCode);
+      console.log(reactionTime, timeCode, runningTest);
+      sendResult(reactionTime=reactionTime, timeCode=timeCode, runningTest=runningTest);
       endTest()
     } 
     
