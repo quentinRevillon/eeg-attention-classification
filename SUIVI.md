@@ -31,107 +31,107 @@ Les notes relatives à chaque section (date) se rapportent au travail fait duran
 
 Mercredi 14/02 :
 
-    Quentin :
+Quentin :
 
 
-    Charles :
+Charles :
 
 
-    Félicité :
+Félicité :
 
 
-    Prisha :
+Prisha :
 
 
-    Manon :
+Manon :
 Présentation du projet par l'encadrant, rencontre avec les personnes travaillant déjà sur le projet. Recherches internet sur la mémoire.
 
 
 Mercredi 28/02 :
 
-    Quentin :
+Quentin :
 
 
-    Charles :
+Charles :
 
 
-    Félicité :
+Félicité :
 
 
-    Prisha :
+Prisha :
 
 
-    Manon :
+Manon :
 Recherches internet sur la mémoire, sur les metrics relatifs à la mémoire
 
 Mercredi 13/03 :
 
-    Quentin :
+Quentin :
 
 
-    Charles :
+Charles :
 
 
-    Félicité :
+Félicité :
 
 
-    Prisha :
+Prisha :
 
 
-    Manon :
+Manon :
 Présentation à l'encadrant de notre premier protocole, discussion sur les jeux à proposer aux personnes qui serviront à créer la bdd.
 
 Mercredi 20/03 :
 
-    Quentin :
+Quentin :
 
 
-    Charles :
+Charles :
 
 
-    Félicité :
+Félicité :
 
 
-    Prisha :
+Prisha :
 
 
-    Manon :
+Manon :
 Recherches pour créer les jeux. J'ai décidé de créer une webapp avec react.
 
 
 Mardi 26/03 :
 
-    Quentin :
+Quentin :
 
 
-    Charles :
+Charles :
 
 
-    Félicité :
+Félicité :
 
 
-    Prisha :
+Prisha :
 
 
-    Manon :
+Manon :
 Coder, corriger le jeux de mémorisation des chiffres, tests et ajustements
 
 
 Mardi 02/04 :
 
-    Quentin :
+Quentin :
 
 
-    Charles :
+Charles :
 
 
-    Félicité :
+Félicité :
 
 
-    Prisha :
+Prisha :
 
 
-    Manon :
+Manon :
 Coder, corriger le jeux de mémorisation des chiffres, tests et ajustements. Coder, corriger le jeux de mémory, tests et ajustements. Présentation à l'encadrant d'une seconde version du protocole
 
 
@@ -139,35 +139,35 @@ Coder, corriger le jeux de mémorisation des chiffres, tests et ajustements. Cod
 
 Mardi 09/04 :
 
-    Quentin :
+Quentin :
 
 
-    Charles :
+Charles :
 
 
-    Félicité :
+Félicité :
 
 
-    Prisha :
+Prisha :
 
 
-    Manon :
+Manon :
 J'ai commencé à suivre le cours de TinyML de Harvard sur les conseils de l'encadrant. Prise en main du dispositif (casque) de mesure avec les doctorants (mais ça n'a pas pu aboutir à des mesures par manque de temps des docorants)
 
 Mercredi 24/04 :
 
-    Quentin :
+Quentin :
 
 
-    Charles :
+Charles :
 
 
-    Félicité :
+Félicité :
 
 
-    Prisha :
+Prisha :
 
 
-    Manon :
+Manon :
 Continuer à suivre le cours de TinyML, refonte du fichier SUIVI.MD. 
 
