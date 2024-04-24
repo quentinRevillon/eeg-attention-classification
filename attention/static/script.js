@@ -6,9 +6,7 @@ const arrowRight2 = document.getElementById('arrow-right2');
 const indicator = document.getElementById('indicator');
 const cross = document.getElementById('cross');
 const resultsElement = document.getElementById('results');
-const startButton = document.getElementById('start');
-const startButton1 = document.getElementById('start1');
-const startButton2 = document.getElementById('start2');
+
 
 let alert = new Audio('../assets/alert.mp3');
 
@@ -24,8 +22,6 @@ let numTests2 = 0;
 let coef;
 let initialTime;
 
-startButton1.addEventListener('click', startTest1);
-startButton2.addEventListener('click', startTest2);
 
 function negOrPos() {
   return Math.random() < 0.5 ? -1 : 1;
@@ -182,6 +178,28 @@ function sendResults() {
   });
 }
 
+function sendResult(reactionTime, timeCode) {
+  fetch('/result', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      reactionTime: reactionTime,
+      timeCode: timeCode
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Results have been successfully saved.');
+    } else {
+      console.error('An error occurred while saving the results.');
+    }
+  })
+  .catch(error => {
+    console.error('An error occurred while saving the results.', error);
+  });
+}
 
 
 function showResults() {
@@ -199,6 +217,7 @@ document.addEventListener("keydown", function(event) {
       reactionTime = new Date() - startTime;
       reactionTimes.push(reactionTime);
       timeCodes.push(new Date() - initialTime)
+      sendResults()
       endTest()
     } 
     

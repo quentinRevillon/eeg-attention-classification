@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test de temps de réaction</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="arrow"></div>
+  <div id="arrow-left1"></div>
+  <div id="arrow-left2"></div>
+  <div id="arrow-right1"></div>
+  <div id="arrow-right2"></div>
+  <div id="indicator"></div>
+  <div id="cross"></div>
+  <p id="results"></p>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    // Appeler la fonction startTest1() lorsque la page est chargée
+    document.addEventListener('DOMContentLoaded', function() {
+      startTest1();
+    });
+  </script>
+</body>
+</html>
