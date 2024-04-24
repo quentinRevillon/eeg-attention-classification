@@ -77,7 +77,7 @@ Charles :
 Félicité :
 
 
-Prisha : Présentation à l'encadrant de notre premier protocole, discussion sur les jeux à proposer aux personnes participants à l'expérience. 
+Prisha : Présentation à l'encadrant de notre premier protocole, discussion sur les jeux à proposer aux personnes participants à l'expérience. Recherches sur comment une page web en javascript. Découverte de la programmation en html/css/javascript. Début d'écriture du code pour la page web.
 
 
 Manon :
@@ -94,7 +94,7 @@ Charles :
 Félicité :
 
 
-Prisha : Recherches sur comment une page web en javascript. Découverte de la programmation en html/css/javascript. Début d'écriture du code pour la page web.
+Prisha : Code du premier jeu sur la mémoire fonctionnel. Début du code du deuxième jeu mais pas totalement opérationnel. 
 
 
 Manon :
@@ -112,7 +112,8 @@ Charles :
 Félicité :
 
 
-Prisha : 
+Prisha : Modification des jeux. Recherche d'images pour le premier jeu. Le deuxième jeu nous semblait trop proche d'un des jeux codés par Manon. Suppression du deuxième jeu.
+Nous avons assisté à une présentation du projet PRIM sur la partie IA du projet. 
 
 
 Manon :
@@ -130,7 +131,8 @@ Charles :
 Félicité :
 
 
-Prisha :
+Prisha : Coder, corriger les jeux de mémorisation des images, tests et ajustements. Vérifier que le temps laissés pour les images est le bon, que les participants avaient suffisament de temps pour entrer leurs réponses, etc...
+Présentation à l'encadrant d'une deuxième version du protocole. 
 
 
 Manon :
@@ -150,7 +152,8 @@ Charles :
 Félicité :
 
 
-Prisha :
+Prisha : Début du suivi des cours de TinyML de Harvard sur les conseils de l'encadrant. Prise en main du dispositif (casque) de mesure avec les doctorants (mais ça n'a pas pu aboutir à des mesures par manque de temps des docorants)
+Création d'un autre jeu pour remplacer celui effacé après réflexion avec l'encadrant. 
 
 
 Manon :
@@ -167,7 +170,7 @@ Charles :
 Félicité :
 
 
-Prisha :
+Prisha : Continuer à suivre les cours de TinyML, mise en place d'une base de données et d'un système de login sur nos pages web : nom d'utilisateur et mot de passe. 
 
 
 Manon :
