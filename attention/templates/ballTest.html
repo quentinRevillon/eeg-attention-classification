@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bouncing Ball Game</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='ball_style.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="{{ url_for('static', filename='sketch.js') }}"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Bouncing Ball Game</h1>
+    <p>Cliquez sur le bouton "Commencer" pour lancer la balle dans le carré. Comptez le nombre de rebonds pendant 10 secondes, puis entrez votre réponse.</p>
+    <div class="difficulty-switch">
+        <input type="checkbox" id="difficult-switch" onclick="toggleDifficultMode()">
+        <label for="difficult-switch">Mode difficile</label>
+      </div>      
+    <div class="sketch-container"></div>
+    <button id="start-button" class="start-button" onclick="startGame()">Commencer</button>
+    <div class="result-container">
+      <p class="result-text"></p>
+      <p class="end-text">Le jeu est terminé !</p>
+      <p class="question-text">Combien de rebonds la balle a-t-elle effectués ?</p>
+      <input type="number" class="input-field" placeholder="Entrez le nombre de rebonds">
+      <button id="submit-button" class="submit-button" onclick="checkAnswer()">Soumettre</button>
+      <p class="result-text"></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -54,6 +54,11 @@ def nonCongruentTest():
         return render_template('nonCongruentTest.html')
     return render_template('login.html')
 
+@app.route('/ballTest')
+def ballTest():
+    if 'email' in session:
+        return render_template('ballTest.html')
+    return render_template('login.html')
 
 @app.route('/login', methods=['POST'])
 def login():
