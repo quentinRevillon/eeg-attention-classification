@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
-from models import db, Email, Result
+from models import db, User, Result
 from sqlalchemy import func
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = 'aiot'
@@ -10,7 +11,7 @@ db.init_app(app)
 
 print(app.config['SQLALCHEMY_DATABASE_URI'])
 
-app.app_context().push()     
+app.app_context().push()
 db.create_all()
 # with app.app_context():
 #    db.create_all()
@@ -63,19 +64,27 @@ def ballTest():
 @app.route('/login', methods=['POST'])
 def login():
     email = request.form['email']
+    password = request.form['password']
+
     if verify_email(email):
-        session['email'] = email
-        return redirect(url_for('testSelectionPanel'))
+        user = get_user(email)
+        if user and check_password_hash(user['password'], password):
+            session['email'] = email
+            return redirect(url_for('testSelectionPanel'))
+        else:
+            return 'Erreur : mot de passe invalide'
     else:
         return 'Erreur : email invalide'
 
 @app.route('/signup', methods=['POST'])
 def signup():
     email = request.form['email']
-    session['session_id'] = 0
+    password = request.form['password']
+
     if not verify_email(email):
         print("je suis entré")
-        register_email(email)
+        hashed_password = generate_password_hash(password, method='sha256')
+        register_user(email, hashed_password)
         session['email'] = email
      
         return redirect(url_for('testSelectionPanel'))
@@ -100,7 +109,7 @@ def results():
     email = session['email']
     reactionTimes = data["reactionTimes"]
     timeCodes = data["timeCodes"]
-    
+
      # Récupérer l'ID maximal actuel de la colonne "session" dans la table "Result"
     session_id = db.session.query(func.max(Result.session)).scalar()
 
@@ -159,12 +168,15 @@ def result():
 
 def verify_email(email):
     print("________________________________________________________________________________________________________________")
-    return Email.query.filter_by(email=email).first() is not None
+    return User.query.filter_by(email=email).first() is not None
+
+def get_user(email):
+    return User.query.filter_by(email=email).first()
 
 
-def register_email(email):
-    email = Email(email=email)
-    db.session.add(email)
+def register_user(email, hashed_password):
+    new_user = User(email=email, password=hashed_password)
+    db.session.add(new_user)
     db.session.commit()
 
 if __name__ == '__main__':
