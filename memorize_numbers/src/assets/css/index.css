@@ -1,0 +1,145 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(217, 229, 240);
+  font-size: 30px;
+}
+
+.home-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: slateblue;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.game-container button {
+  background-color: slateblue;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 10px 20px; /* Add some padding */
+  font-size: 1em; /* Increase the font size */
+  border-radius: 5px; /* Add rounded corners */
+  margin: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  width: 90%; /* Increase the width to 90% of the container */
+  
+}
+
+.game-container button:hover {
+  background-color: #25063a;
+  transform: scale(1.05); /* Make the button slightly larger when hovered */
+
+}
+
+.memory-game {
+  width: 850px;
+  height: 640px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.memory-game button {
+  background-color: slateblue;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 10px 20px; /* Add some padding */
+  font-size: 1em; /* Increase the font size */
+  border-radius: 5px; /* Add rounded corners */
+  margin: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.memory-game button:hover {
+  background-color: #25063a;
+  transform: scale(1.05); /* Make the button slightly larger when hovered */
+}
+.game-container {
+  background-color: #f8f9fa;
+  color: #343a40;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'Oxygen', 'Roboto', 'Segoe UI', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-align: center;
+  width: 80%; /* Increase the width to 80% of the screen */
+  margin: 5% auto; /* Add vertical margin to center the box vertically */
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.game-container input, .game-container button {
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 30px;
+  width: 90%; /* Increase the width to 90% of the container */
+  box-sizing: border-box;
+}
+
+.game-container p {
+  font-size: 25px;
+  color: #6c757d;
+}
+
+.memory-game p {
+  font-size: 25px;
+  color: #6c757d;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+
+}
+
+
+.memory-card {
+  width: calc(20% - 10px);
+  height: calc(25% - 10px);
+  margin: 5px;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.3s;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.memory-card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+
+.front-face,
+.back-face {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  background: slateblue;
+  backface-visibility: hidden;
+}
+
+.front-face {
+  transform: rotateY(180deg);
+}
