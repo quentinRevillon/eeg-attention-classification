@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
 from models import db, User, Result
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -23,23 +23,43 @@ db.create_all()
 
 # exit()
 
+@app.route('/memoryManon')
+def memoryManon():
+    if 'email' in session and emailMatchPassword(session['email'], session['password']):
+        return send_from_directory('build', 'index.html')
+    return render_template('login.html')
+
+@app.route('/memoryManon/build/static/css/<path:path>')
+def serve_static_css(path):
+    print(path)
+    return send_from_directory('build/static/css/', path)
+
+@app.route('/memoryManon/build/static/js/<path:path>')
+def serve_static_js(path):
+    print(path)
+    return send_from_directory('build/static/js/', path)
+
+@app.route('/memoryManon/build/manifest.json')
+def serve_manifest():
+    return send_from_directory('build/', 'manifest.json')
+
 @app.route('/')
 def index():
     session.clear()
-    if 'email' in session:
+    if 'email' in session and emailMatchPassword(session['email'], session['password']):
         return redirect(url_for('testSelectionPanel.html'))
     return render_template('login.html')
 
 
 @app.route('/testSelectionPanel')
 def testSelectionPanel():
-    if 'email' in session:
+    if 'email' in session and emailMatchPassword(session['email'], session['password']):
         return render_template('testSelectionPanel.html')
     return render_template('login.html')
 
 @app.route('/congruentTest')
 def congruentTest():
-    if 'email' in session:
+    if 'email' in session and emailMatchPassword(session['email'], session['password']):
         email = session['email']
         session['congruentTestSessionId'] = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).filter(Result.testId == 1).scalar()
         session['congruentTestSessionId'] = session['congruentTestSessionId'] + 1 if session['congruentTestSessionId'] is not None else 1
@@ -48,7 +68,7 @@ def congruentTest():
 
 @app.route('/nonCongruentTest')
 def nonCongruentTest():
-    if 'email' in session:
+    if 'email' in session and emailMatchPassword(session['email'], session['password']):
         email = session['email']
         session['nonCongruentTestSessionId'] = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).filter(Result.testId == 2).scalar()
         session['nonCongruentTestSessionId'] = session['nonCongruentTestSessionId'] + 1 if session['nonCongruentTestSessionId'] is not None else 1
@@ -57,8 +77,10 @@ def nonCongruentTest():
 
 @app.route('/ballTest')
 def ballTest():
-    if 'email' in session:
+    if 'email' in session and emailMatchPassword(session['email'], session['password']):
+        
         return render_template('ballTest.html')
+        
     return render_template('login.html')
 
 @app.route('/login', methods=['POST'])
@@ -67,9 +89,9 @@ def login():
     password = request.form['password']
 
     if verify_email(email):
-        user = get_user(email)
-        if user and check_password_hash(user['password'], password):
+        if emailMatchPassword(email, password):
             session['email'] = email
+            session['password'] = password
             return redirect(url_for('testSelectionPanel'))
         else:
             return 'Erreur : mot de passe invalide'
@@ -83,9 +105,10 @@ def signup():
 
     if not verify_email(email):
         print("je suis entré")
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
         register_user(email, hashed_password)
         session['email'] = email
+        session['password'] = password
      
         return redirect(url_for('testSelectionPanel'))
     else:
@@ -97,11 +120,11 @@ def logout():
     session.pop('email', None)
     return redirect(url_for('index'))
 
-@app.route('/attention')
-def attention():
-    if 'email' not in session:
-        return redirect(url_for('index'))
-    return render_template('attention.html')
+# @app.route('/attention')
+# def attention():
+#     if 'email' not in session:
+#         return redirect(url_for('index'))
+#     return render_template('attention.html')
 
 @app.route('/results', methods=['POST'])
 def results():
@@ -166,12 +189,18 @@ def result():
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
 
+def emailMatchPassword(email, password):
+    user = User.query.filter_by(email=email).first()
+    if user and check_password_hash(user.password, password):
+        return True
+    return False
+
 def verify_email(email):
     print("________________________________________________________________________________________________________________")
     return User.query.filter_by(email=email).first() is not None
 
-def get_user(email):
-    return User.query.filter_by(email=email).first()
+# def get_user(email):
+#     return User.query.filter_by(email=email).first()
 
 
 def register_user(email, hashed_password):
