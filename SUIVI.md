@@ -32,6 +32,7 @@ Les notes relatives à chaque section (date) se rapportent au travail fait duran
 Mercredi 14/02 :
 
 Quentin :
+Finalisation du stockage des temps de réaction dans la base de données.
 
 
 Charles :
