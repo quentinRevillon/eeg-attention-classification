@@ -5,10 +5,15 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='testSelectionPanel.css') }}">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-
+<div id="attentionButtons">
 <button id="startButton1">Démarrer le jeu 1 : partie congruente</button>
 <button id="startButton2">Démarrer le jeu 1 : partie non congruente</button>
-<button id="startButton3">Démarrer le jeu 2</button>
+<button id="startButton3">Démarrer le jeu 2 : compter les rebonds</button>
+</div>
+<div id="memoryButtons">
+<button id="startButtonPrisha">Démarer le jeu de mémorisation de Prisha</button>
+<button id="startButtonManon">Démarer le jeu de mémorisation de Manon</button>
+</div>
 <script src="{{ url_for('static', filename='testSelectionPanel.js') }}"></script>
 </body>
 </html>

@@ -20,12 +20,26 @@ class User(db.Model):
 
 class Result(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), db.ForeignKey('email.email'), nullable=False)
+    email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)
     sessionId = db.Column(db.Integer, nullable=False)
     reactionTime = db.Column(db.Integer, nullable=False)
     timeCode = db.Column(db.Integer, nullable=False)
     testId = db.Column(db.Integer, nullable=False)
-    #les timeCodes sont en milisecondes
+
+class ResultPrisha(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)
+    gameId = db.Column(db.Integer, nullable=False)
+    sessionId = db.Column(db.Integer, nullable=False)
+    score = db.Column(db.Integer, nullable=False)
+
+class ResultManon(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)
+    gameId = db.Column(db.Integer, nullable=False)
+    sessionId = db.Column(db.Integer, nullable=False)
+    score = db.Column(db.Integer, nullable=False)
+
     
 
 with app.app_context():

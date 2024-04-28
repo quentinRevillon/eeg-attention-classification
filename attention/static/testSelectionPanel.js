@@ -14,6 +14,16 @@ function redirectGame3() {
     window.location.href = "/ballTest";
 }
 
+function redirectPrisha() {
+    window.location.href = "/memoryPrisha";
+}
+
+function redirectManon() {
+    window.location.href = "/memoryManon";
+}
+
 startButton1.addEventListener('click', redirectGame1);
 startButton2.addEventListener('click', redirectGame2);
 startButton3.addEventListener('click', redirectGame3);
+startButtonPrisha.addEventListener('click', redirectPrisha);
+startButtonManon.addEventListener('click', redirectManon);
