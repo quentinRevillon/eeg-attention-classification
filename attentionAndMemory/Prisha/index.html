@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Memory Game</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game1">
+        <h2>GAME 1</h2>
+        <div id="phase1">
+            <h2>Phase 1: Memorize the Image</h2>
+            <div class="image-container">
+            <!-- Images will be loaded here via JavaScript -->
+            <button onclick="ChangerImage1()">Start Phase 1</button>
+            <img id="monimage" src="./images/croix.webp" width="200" height="200"/>
+            </div>    
+        </div>
+        <div id="phase2" style="display:none;">
+        <button id="nextPhase" onclick="displayFirstImage()">Start Phase 2</button>
+            <!-- Images for phase 2 will be loaded here -->
+            <h2>Phase 2: Recall the Image</h2>
+            <div class="image-container">
+            <!-- Images will be loaded here via JavaScript -->
+            <img id="currentImage" src="./images/croix.webp" width="200" height="200"/>
+            <div class="buttons">
+                <button id="seen" onclick = "IncrementScoreSeen()">Seen</button>
+                <button id="unknown" onclick = "IncrementScoreUnknown()">Unknown</button>
+            </div>
+            </div> 
+        </div>
+    </div>
+
+    <div id="game2">
+        <h2>GAME 2</h2>
+        <label for="numWords">Number of words per sentence:</label>
+        <input type="number" id="numWords" min="1" value="5">
+        <p id="sentence">This is a test sentence</p>
+        <div id="submissionPhase" style="display:none;">
+        <form id="form">
+            <input type="text" id="input" />
+            <button type="submit">Submit</button>
+        </form>
+        </div>
+        <p id="result"></p>
+
+
+
+
+        <script src = "app.js"></script>
+
+</body>
+</html>
+
+
+

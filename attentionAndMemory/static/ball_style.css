@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    max-width: 800px;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+  
+  .sketch-container {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    background-color: white;
+    margin-bottom: 2rem;
+  }
+  
+  .start-button {
+    font-size: 1.1rem;
+    padding: 0.8rem 1.6rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .start-button:hover {
+    background-color: #555;
+  }
+  
+  .result-container {
+    display: none;
+  }
+  
+  .input-field {
+    font-size: 1.1rem;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 50%;
+    margin-right: 1rem;
+  }
+  
+  .submit-button {
+    font-size: 1.1rem;
+    padding: 0.8rem 1.6rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 1rem;
+  }
+  
+  .submit-button:hover {
+    background-color: #555;
+  }
+  
+  
+  .result-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .end-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .question-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  
+  .difficulty-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .difficulty-switch input[type="checkbox"] {
+    appearance: none;
+    width: 50px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+  }
+  
+  .difficulty-switch input[type="checkbox"]:before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+  }
+  
+  .difficulty-switch input[type="checkbox"]:checked {
+    background-color: #333;
+  }
+  
+  .difficulty-switch input[type="checkbox"]:checked:before {
+    transform: translateX(26px);
+  }
+  
