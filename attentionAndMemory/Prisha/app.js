@@ -174,14 +174,14 @@ function displayNextImage(){
 
 
     function IncrementScoreSeen(){
-        if (Answers[currentImageIndex] == 0){
+        if (Answers[currentImageIndex] == 1){
             score ++;
         }
         displayNextImage();
     }
 
     function IncrementScoreUnknown(){
-        if (Answers[currentImageIndex] == 1){
+        if (Answers[currentImageIndex] == 0){
             score++;
         }
         displayNextImage();
