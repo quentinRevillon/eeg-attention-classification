@@ -54,7 +54,7 @@ var images2 = [
     I + "lacMontagne.jpg",
     I + "layercake.webp",
     I + "legumes.jpg",
-    I + "lion.png",
+    I + "lion.jpg",
     I + "livre.png",
     I + "livrerouge.jpg",
     I + "loup.jpg",
