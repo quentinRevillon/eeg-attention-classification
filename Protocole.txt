@@ -19,3 +19,21 @@ Partie 2 : Entraînement :
 
 Partie 3 : Test final :
 - Effectuer la partie 1 à nouveau
+
+Après réflexion personnelle, nous sommes arrivées à la conclusion qu'il était mieux de modifier la partie entraînement. Utiliser la méthode du memory palace nécessite un temps important d'entraînement et ne peut être mise en place en une courte période de temps. Nous avons décidé de modifier les parties 2 et 3. 
+
+Protocole de test pour la mémoire version finale : 
+
+Accueil du participant :
+-Le faire s'assoir devant l'ordinateur
+- Lui expliquer les différents tests qu'il va passer.
+- Lui installer le casque
+
+Partie 1 : Test initial :
+-Lancer le jeu avec 5 chiffres à mémoriser.
+-Tant que le participant ne se trompe pas, augmenter le nombre de chiffre entre
+chaque partie. Noter le nombre de chiffre à la première erreur.
+- Lancer le jeu avec les images. Noter le score
+
+Partie 2 : 
+Partie 3 : 
