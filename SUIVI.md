@@ -32,7 +32,7 @@ Les notes relatives à chaque section (date) se rapportent au travail fait duran
 Mercredi 14/02 :
 
 Quentin :
-Finalisation du stockage des temps de réaction dans la base de données.
+
 
 
 Charles :
@@ -162,7 +162,7 @@ J'ai commencé à suivre le cours de TinyML de Harvard sur les conseils de l'enc
 
 Mercredi 24/04 :
 
-Quentin :
+Quentin : Finalisation du stockage des temps de réaction dans la base de données.
 
 
 Charles :

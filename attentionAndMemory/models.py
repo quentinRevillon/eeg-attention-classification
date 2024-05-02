@@ -26,12 +26,20 @@ class Result(db.Model):
     timeCode = db.Column(db.Integer, nullable=False)
     testId = db.Column(db.Integer, nullable=False)
 
-class ResultPrisha(db.Model):
+class ResultPrisha1(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)
-    gameId = db.Column(db.Integer, nullable=False)
+    # gameId = db.Column(db.Integer, nullable=False)
     sessionId = db.Column(db.Integer, nullable=False)
     score = db.Column(db.Integer, nullable=False)
+
+class ResultPrisha2(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)
+    # gameId = db.Column(db.Integer, nullable=False)
+    sessionId = db.Column(db.Integer, nullable=False)
+    score = db.Column(db.Integer, nullable=False)
+    nbMots = db.Column(db.Integer, nullable=False)
 
 class ResultManon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
