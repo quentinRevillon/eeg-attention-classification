@@ -177,3 +177,23 @@ Prisha : Continuer à suivre les cours de TinyML, mise en place d'une base de do
 Manon :
 Continuer à suivre le cours de TinyML, refonte du fichier SUIVI.MD. 
 
+
+
+Jeudi 02/05 :
+
+Quentin : 
+
+Charles :
+
+
+Félicité :
+
+
+Prisha : 
+
+Manon :
+Finir la présentation, discussion finale sur le protocole avec Prisha, avancée sur le cours TinyML (partie 2.1)
+
+
+
+
