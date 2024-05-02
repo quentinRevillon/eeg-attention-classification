@@ -36,6 +36,10 @@ Quentin :
 
 
 Charles :
+- Présentation du projet par l'encadrant, rencontre de l'équipe de doctorants
+- Séparation en deux groupes : attention & mémoire
+- Avec le groupe attention, lecture de la documentation scientifique sur le sujet
+- Etude des travaux de Jean-Philippe Lachaux (ATOLE)
 
 
 Félicité :
@@ -59,7 +63,10 @@ Quentin :
 
 
 Charles :
-
+- Intégration de Slack
+- Cours de GIT par les doctorants 
+- Elaboration d'une esquisse de protocole (inspirté des tests ANT, ANTI, ANTI-V)
+- Découverte de l'étude principale et des 3 types d'attention : The attention system of the human brain (20 years after)
 
 Félicité :
 Continuation des recherches et précision des protocoles.
@@ -80,7 +87,9 @@ Quentin :
 
 
 Charles :
-
+- Création d'un jeu pour tester le type de mémoire "orienting"
+- Elaboration d'un planning
+- Fin de séance : discussion avec l'encadrant mène à la décision de fusionner nos 3 jeux pour chaque type de l'attention en 1 seul jeu
 
 Félicité :
 Compte-rendu à l'encadrant de nos recherches, discussion sur l'élaboration du protocole.
@@ -101,7 +110,9 @@ Quentin :
 
 
 Charles :
-
+- Fusion du code des 3 jeux de la mémoire
+- Codage du jeu (ajout de durée de partie par utilisateur)
+- Elaboration d'un protocole plus détaillé pour ce jeu (temps de jeu, temps de repos, nombre d'itérations)
 
 Félicité :
 Ecriture du protocole.
@@ -121,7 +132,8 @@ Quentin :
 
 
 Charles :
-
+- Présention du projet PRIM (introduction à la partie IA du projet)
+- Implémentation d'un serveur Flask pour répondre aux besoins du protocole
 
 Félicité :
 Codage du jeu.
@@ -141,7 +153,8 @@ Quentin :
 
 
 Charles :
-
+- Affinement du protocole
+- Ajout d'une base de données pour stocker les résultats aux tests
 
 Félicité :
 Codage du jeu et modification protocole.
@@ -163,7 +176,8 @@ Quentin :
 
 
 Charles :
-
+- Modification du protocole impliquant la création d'un nouveau jeu
+- Création d'un nouveau jeu pour la partie attention : jeu de balles rebondissantes dont il faut compter le nombre de rebonds
 
 Félicité :
 Séparer 2 types de test : avec flèche congruentes et indicateur sonore ou sans aide. Correction du code existant.
@@ -183,7 +197,8 @@ Quentin : Finalisation du stockage des temps de réaction dans la base de donné
 
 
 Charles :
-
+- Codage du second jeu (ajout d'une durée de partie par utilisateur)
+- Intégration du second jeu avec le premier jeu sur le serveur Flask
 
 Félicité :
 Ajout d'un mot de passe lors de l'identification pour notre jeu.
@@ -202,6 +217,9 @@ Jeudi 02/05 :
 Quentin : 
 
 Charles :
+- Peaufinage du jeu (suppression du choix de la difficulté, suppression d'artefacts visuels)
+- Ajout du second jeu dans la BDD
+- Présentation de mi-parcours
 
 
 Félicité :
