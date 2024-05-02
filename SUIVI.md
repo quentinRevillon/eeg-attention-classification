@@ -62,6 +62,9 @@ Charles :
 
 
 Félicité :
+Continuation des recherches et précision des protocoles.
+Idée de protocole : afficher "left" ou "right" à gauche ou à droite de l'écran, regarder temps de réaction avant d'appuyer sur bonne flèche du clavier.
+Nouvel objectif : créer interface web pour exercice testant l'attention
 
 
 Prisha :
@@ -80,6 +83,10 @@ Charles :
 
 
 Félicité :
+Compte-rendu à l'encadrant de nos recherches, discussion sur l'élaboration du protocole.
+Modification du protocole : fusion des idées de jeu de Quentin, Charles et moi.
+Ecriture du planning détaillé.
+
 
 
 Prisha : Présentation à l'encadrant de notre premier protocole, discussion sur les jeux à proposer aux personnes participants à l'expérience. Recherches sur comment une page web en javascript. Découverte de la programmation en html/css/javascript. Début d'écriture du code pour la page web.
@@ -97,6 +104,8 @@ Charles :
 
 
 Félicité :
+Ecriture du protocole.
+Codage du jeu.
 
 
 Prisha : Code du premier jeu sur la mémoire fonctionnel. Début du code du deuxième jeu mais pas totalement opérationnel. 
@@ -115,6 +124,7 @@ Charles :
 
 
 Félicité :
+Codage du jeu.
 
 
 Prisha : Modification des jeux. Recherche d'images pour le premier jeu. Le deuxième jeu nous semblait trop proche d'un des jeux codés par Manon. Suppression du deuxième jeu.
@@ -134,6 +144,7 @@ Charles :
 
 
 Félicité :
+Codage du jeu et modification protocole.
 
 
 Prisha : Coder, corriger les jeux de mémorisation des images, tests et ajustements. Vérifier que le temps laissés pour les images est le bon, que les participants avaient suffisament de temps pour entrer leurs réponses, etc...
@@ -155,6 +166,8 @@ Charles :
 
 
 Félicité :
+Séparer 2 types de test : avec flèche congruentes et indicateur sonore ou sans aide. Correction du code existant.
+Début des cours de TinyML en ligne.
 
 
 Prisha : Début du suivi des cours de TinyML de Harvard sur les conseils de l'encadrant. Prise en main du dispositif (casque) de mesure avec les doctorants (mais ça n'a pas pu aboutir à des mesures par manque de temps des docorants)
@@ -173,6 +186,7 @@ Charles :
 
 
 Félicité :
+Ajout d'un mot de passe lors de l'identification pour notre jeu.
 
 
 Prisha : Continuer à suivre les cours de TinyML, mise en place d'une base de données et d'un système de login sur nos pages web : nom d'utilisateur et mot de passe. 
