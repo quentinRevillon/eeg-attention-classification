@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
-from models import db, User, Result, ResultPrisha
+from models import db, User, Result, ResultPrisha1, ResultPrisha2
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
