@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
-from models import db, User, Result, ResultPrisha
+from models import db, User, Result, BallResult, ResultPrisha
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
@@ -53,7 +53,6 @@ with app.app_context():
 @app.route('/Prisha/images/<path:filename>')
 @myLoginManager
 def serve_image(filename):
-    # Remplacez 'chemin/vers/votre/dossier/images' par le chemin d'accès à votre dossier d'images
     return send_from_directory('images', filename)
 
 @app.route('/memoryManon')
@@ -115,6 +114,18 @@ def sendScoreManon():
     db.session.commit()
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
+@app.route('/sendBallResult', methods=['POST'])
+@myLoginManager
+def sendBallResult():
+    data = request.get_json()
+    print(data)
+    score=data["score"]
+    email=session['email']
+    sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
+    sessionId = sessionId + 1 if sessionId is not None else 1
+    db.session.add(BallResult(email=email, sessionId=sessionId, score=score))
+    db.session.commit()
+    return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
 @app.route('/')
 @myLoginManager

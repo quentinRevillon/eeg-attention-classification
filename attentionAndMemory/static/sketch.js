@@ -8,7 +8,6 @@ let gameStarted = false;
 let gameEnded = false;
 let timer = 60; ///en seconde
 let totalTime = 0; ///en seconde
-let difficultMode = false;
 let additionalBalls = [];
 
 function getRandomNumberBetween(min, max) {
@@ -20,6 +19,7 @@ function setup() {
   const container = document.querySelector('.sketch-container');
   const canvas = createCanvas(400, 400);
   canvas.parent(container);
+  generateAdditionalBalls();
 
   // Positionner la balle au centre du carré
   ballX = (width - squareSize) / 2 + squareSize / 2;
@@ -31,6 +31,9 @@ function draw() {
   background(220);
 
   if (gameStarted && !gameEnded) {
+    //Masquer le message de fin
+    document.querySelector(".result-container").style.display = "none";
+
     // Dessiner le carré
     fill(0);
     rect((width - squareSize) / 2, (height - squareSize) / 2, squareSize, squareSize);
@@ -43,10 +46,8 @@ function draw() {
     ballX += ballSpeedX;
     ballY += ballSpeedY;
 
-    if (difficultMode) {
-        updateAdditionalBalls();
-        drawAdditionalBalls();
-      }
+    updateAdditionalBalls();
+    drawAdditionalBalls();
 
     // Vérifier les collisions avec les bords du carré
     if (
@@ -96,7 +97,7 @@ function startGame() {
   else {
     console.log("end game")
     document.querySelector(".result-text").textContent = "Temps écoulé ! Le jeu est terminé.";
-    document.querySelector(".result-container").style.display = "block";
+    document.querySelector(".result-container").style.display = "none";
   }
 }
 
@@ -114,7 +115,7 @@ function checkAnswer() {
       resultText.textContent = "Mauvaise réponse !";
       resultText.style.color = "#ff0000";
     }
-  
+    sendScore(Math.abs(rebounds-parseInt(userAnswer)));
     resultContainer.style.display = "block";
     noLoop();
     console.log("pre start")
@@ -133,15 +134,10 @@ function generateRandomSpeed() {
   ballSpeedX = speed * cos(angle);
   ballSpeedY = speed * sin(angle);
 }
-function toggleDifficultMode() {
-    difficultMode = !difficultMode;
-    if (difficultMode) {
-      generateAdditionalBalls();
-    }
-  }
+
   
   function generateAdditionalBalls() {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 14; i++) {
       const x = random(width);
       const y = random(height);
       const speedX = random(-5, 5);
@@ -180,3 +176,14 @@ function toggleDifficultMode() {
       ellipse(ball.x, ball.y, 20, 20);
     }
   }
+
+  function sendScore(score){
+    fetch('/sendBallResult', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({score: score}),
+    })
+
+}
