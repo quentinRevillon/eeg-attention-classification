@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
-from models import db, User, Result, ResultPrisha
+from models import db, User, Result, ResultPrisha1, ResultPrisha2
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
@@ -87,17 +87,32 @@ def memoryPrisha():
     return render_template('memoryPrisha.html')
     # return render_template('login.html')
 
-@app.route('/sendScorePrisha', methods=['POST'])
+@app.route('/sendScorePrisha1', methods=['POST'])
 @myLoginManager
-def sendScorePrisha():
+def sendScorePrisha1():
+    data = request.get_json()
+    print(data)
+    score=data["score"]
+    email=session['email']
+    # gameId=data["gameId"]
+    sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
+    sessionId = sessionId + 1 if sessionId is not None else 1
+    db.session.add(ResultPrisha(email=email, gameId=gameId, sessionId=sessionId, score=score))
+    db.session.commit()
+    return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
+
+@app.route('/sendScorePrisha2', methods=['POST'])
+@myLoginManager
+def sendScorePrisha2():
     data = request.get_json()
     print(data)
     score=data["score"]
     email=session['email']
     gameId=data["gameId"]
+    nbMots=data["nbMots"]
     sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
     sessionId = sessionId + 1 if sessionId is not None else 1
-    db.session.add(ResultPrisha(email=email, gameId=gameId, sessionId=sessionId, score=score))
+    db.session.add(ResultPrisha2(email=email, gameId=gameId, sessionId=sessionId, score=score, nbMots=nbMots))
     db.session.commit()
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
     

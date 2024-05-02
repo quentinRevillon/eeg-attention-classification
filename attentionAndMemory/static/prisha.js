@@ -131,6 +131,8 @@ var pointeur1 = 0;
 var currentImageIndex = -1;
 
 var score = 0;
+
+var nbMots = 0;
  
 function ChangerImage1(){
 document.getElementById("monimage").src = images1[pointeur1];
@@ -187,20 +189,31 @@ function displayNextImage(){
         displayNextImage();
     }
 
-function sendScore(score, gameId){
-    fetch('/sendScorePrisha', {
+function sendScore1(score){
+    fetch('/sendScorePrisha1', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({score: score, gameId: gameId}),
+        body: JSON.stringify({score: score}),
+    })
+
+}
+
+function sendScore2(score, nbMots){
+    fetch('/sendScorePrisha2', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({score: score, nbMots: nbMots}),
     })
 
 }
 
 function endGame(){
     alert("End of game! Your score is :" + score);
-    sendScore(score, 1);
+    sendScore(score);
 
 }
 
@@ -226,6 +239,7 @@ numWordsElement.addEventListener('change', () => {
 });
 
 function generateSentences(numSentences, words, wordsPerSentence) {
+    nbMots = wordsPerSentence;
     let sentences = [];
     for (let i = 0; i < numSentences; i++) {
         let sentenceWords = [];
@@ -272,6 +286,6 @@ formElement.addEventListener('submit', (event) => {
 
 function endGame2(){
     alert("End of game! Your score is :" + score2);
-    sendScore(score2, 2);
+    sendScore(score2, nbMots);
 }
 
