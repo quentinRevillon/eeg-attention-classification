@@ -39,6 +39,10 @@ Charles :
 
 
 Félicité :
+Présentation du projet par l'encadrant et répartition du groupe de travail entre mémoire et attention. 
+2 objectifs : recherches et établisement d'un protocole de mesure de l'attention
+Début des recherches sur la partie attention et compréhension de l'enjeu du projet. Distinction entre les 3 types d'attention.
+1ères idées de protocoles
 
 
 Prisha : 
