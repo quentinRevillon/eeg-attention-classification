@@ -1,7 +1,10 @@
 //<img src="./images/croix.webp" width="950" height="120" id="monimage" />
 var I = "./Prisha/images/";
 
-
+const backToMenuButton = document.getElementById('backToMenuButton');
+addEventListener('click', function() {
+  window.location.href = "/testSelectionPanel";
+});
 // Un tableau qui va contenir toutes tes images.
 var images1 = [
     I + "clown.jpeg",
@@ -286,6 +289,6 @@ formElement.addEventListener('submit', (event) => {
 
 function endGame2(){
     alert("End of game! Your score is :" + score2);
-    sendScore(score2, nbMots);
+    sendScore2(score2, nbMots);
 }
 

@@ -14,6 +14,10 @@ function getRandomNumberBetween(min, max) {
     return Math.random() * (max - min) + min;
   }
   
+const backToMenuButton = document.getElementById('backToMenuButton');
+addEventListener('click', function() {
+  window.location.href = "/testSelectionPanel";
+});
 
 function setup() {
   const container = document.querySelector('.sketch-container');

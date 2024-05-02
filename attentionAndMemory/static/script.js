@@ -7,6 +7,10 @@ const indicator = document.getElementById('indicator');
 const cross = document.getElementById('cross');
 const resultsElement = document.getElementById('results');
 
+const backToMenuButton = document.getElementById('backToMenuButton');
+addEventListener('click', function() {
+  window.location.href = "/testSelectionPanel";
+});
 
 // let alert = new Audio("{{url_for('static', filename='alert.mp3')}}");
 let runningTest;
