@@ -7,15 +7,28 @@ Accueil du participant :
 - Lui expliquer les différents tests qu'il va passer.
 - Lui installer le casque
 
-Partie 1 : Test initial :
--Lancer le jeu avec 5 chiffres à mémoriser.
--Tant que le participant ne se trompe pas, augmenter le nombre de chiffre entre
-chaque partie. Noter le nombre de chiffre à la première erreur.
-- Lancer le jeu avec les images. Noter le score
+Partie 1 : 
+a) Test mémoire à long terme :
+-Lancer l'aquisition dès le début
+-Lancer le jeu avec 20 images à retenir (3 secondes par image, soit 1 minute au total)
+-Deuxième phase où 40 images vont défiler, le participant doit dire s'il a déjà vu l'image ou pas
+-Terminer l'aquisition
+-Enregistrement du score dans la base de données
+
+b) Test mémoire à court terme :
+-Lancer le jeu avec 6 mots à mémoriser.
+-Si le participant a un score parfait, augmenter le nombre de mots jusqu'à ce qu'il se trompe et le faire jouer la partie avec ce nombre de mots.
+-Si cela est trop compliqué, diminuer de 1 le nombre de mots.
+-Enregistrer les scores dans la base de données associée au nombre de mots choisi
 
 Partie 2 : Entraînement :
-- Expliquer la méthode memory palace
-- Laisser les gens s'entraîner pendant 5 minutes avec le jeu avec les mots
+-Lancer le jeu avec 5 chiffres à mémoriser.
+-La méthode de mémorisation employée cette fois-ci sera plus active, il sera damndé au participant de choisir une méthode de mémorisation parmi les deux proposées : associer un chiffre à une couleur ou à un lieu
+-Tant que le participant ne se trompe pas, augmenter le nombre de chiffre entre
+chaque partie. 
+-Enregistrer le nombre de chiffre à la première erreur dans la base de données
 
-Partie 3 : Test final :
-- Effectuer la partie 1 à nouveau
+
+
+
+

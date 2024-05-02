@@ -54,7 +54,7 @@ var images2 = [
     I + "lacMontagne.jpg",
     I + "layercake.webp",
     I + "legumes.jpg",
-    I + "lion.png",
+    I + "lion.jpg",
     I + "livre.png",
     I + "livrerouge.jpg",
     I + "loup.jpg",
@@ -107,21 +107,21 @@ var Answers = [
     0,
     1,
     0,
-    1,
-    1,
     0,
     1,
     0,
-    0,
-    0,
-    0,
-    0,
+    1,
     0,
     0,
     0,
     1,
     0,
+    1,
     0,
+    0,
+    0,
+    1,
+    1,
     1,
     0
 ]; // 0 if the image is seen 1 if unknown
@@ -174,14 +174,14 @@ function displayNextImage(){
 
 
     function IncrementScoreSeen(){
-        if (Answers[currentImageIndex] == 0){
+        if (Answers[currentImageIndex] == 1){
             score ++;
         }
         displayNextImage();
     }
 
     function IncrementScoreUnknown(){
-        if (Answers[currentImageIndex] == 1){
+        if (Answers[currentImageIndex] == 0){
             score++;
         }
         displayNextImage();
