@@ -198,7 +198,9 @@ J'ai commencé à suivre le cours de TinyML de Harvard sur les conseils de l'enc
 
 Mercredi 24/04 :
 
-Quentin : Finalisation du stockage des temps de réaction dans la base de données.
+Quentin : 
+Finalisation du stockage des temps de réaction dans la base de données.
+Rajout de la mémorisation au serveur
 
 
 Charles :
@@ -220,8 +222,9 @@ Continuer à suivre le cours de TinyML, refonte du fichier SUIVI.MD.
 Jeudi 02/05 :
 
 Quentin :
-Rajout de bouttons de déconnexion
-Rajout de boutton menu
+Rajout de bouttons de déconnexion et de retour au menu
+Ajout d'une info pour le jeu 2 de Prisha dans la BDD
+Présentation mi parcours
 
 
 Charles :
