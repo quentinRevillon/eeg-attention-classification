@@ -25,7 +25,13 @@ class Result(db.Model):
     reactionTime = db.Column(db.Integer, nullable=False)
     timeCode = db.Column(db.Integer, nullable=False)
     testId = db.Column(db.Integer, nullable=False)
-
+    
+class BallResult(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)
+    sessionId = db.Column(db.Integer, nullable=False)
+    score = db.Column(db.Integer, nullable=False)
+    
 class ResultPrisha1(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)
