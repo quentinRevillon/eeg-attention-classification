@@ -96,7 +96,7 @@ def sendScorePrisha1():
     # gameId=data["gameId"]
     sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
     sessionId = sessionId + 1 if sessionId is not None else 1
-    db.session.add(ResultPrisha(email=email, gameId=gameId, sessionId=sessionId, score=score))
+    db.session.add(ResultPrisha1(email=email, sessionId=sessionId, score=score))
     db.session.commit()
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
@@ -107,11 +107,10 @@ def sendScorePrisha2():
     print(data)
     score=data["score"]
     email=session['email']
-    gameId=data["gameId"]
     nbMots=data["nbMots"]
     sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
     sessionId = sessionId + 1 if sessionId is not None else 1
-    db.session.add(ResultPrisha2(email=email, gameId=gameId, sessionId=sessionId, score=score, nbMots=nbMots))
+    db.session.add(ResultPrisha2(email=email, sessionId=sessionId, score=score, nbMots=nbMots))
     db.session.commit()
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
     

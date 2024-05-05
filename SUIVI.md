@@ -60,7 +60,8 @@ Présentation du projet par l'encadrant, rencontre avec les personnes travaillan
 Mercredi 28/02 :
 
 Quentin :
-
+Création du groupe Slack
+Lectures de différentes études sur les mécanismes d'attention. Focalisatin sur l'ANT test.
 
 Charles :
 - Intégration de Slack
@@ -84,7 +85,8 @@ Recherches internet sur la mémoire, sur les metrics relatifs à la mémoire
 Mercredi 13/03 :
 
 Quentin :
-
+Création d'un jeu pour tester le type d'attention "alerting"
+Choix des deadlines du projet et soumission à notre encadrant
 
 Charles :
 - Création d'un jeu pour tester le type de mémoire "orienting"
@@ -107,10 +109,11 @@ Présentation à l'encadrant de notre premier protocole, discussion sur les jeux
 Mercredi 20/03 :
 
 Quentin :
-
+Fusion des jeux sur l'attention
+Création des pages d'inscription et de connexion.
 
 Charles :
-- Fusion du code des 3 jeux de la mémoire
+- Fusion du code des 3 jeux de l'attention
 - Codage du jeu (ajout de durée de partie par utilisateur)
 - Elaboration d'un protocole plus détaillé pour ce jeu (temps de jeu, temps de repos, nombre d'itérations)
 
@@ -129,7 +132,8 @@ Recherches pour créer les jeux. J'ai décidé de créer une webapp avec react.
 Mardi 26/03 :
 
 Quentin :
-
+Création serveur Flask
+Amélioration de mise en page css
 
 Charles :
 - Présention du projet PRIM (introduction à la partie IA du projet)
@@ -150,6 +154,7 @@ Coder, corriger le jeux de mémorisation des chiffres, tests et ajustements
 Mardi 02/04 :
 
 Quentin :
+Amélioration de la mise en page des pages
 
 
 Charles :
@@ -173,7 +178,7 @@ Coder, corriger le jeux de mémorisation des chiffres, tests et ajustements. Cod
 Mardi 09/04 :
 
 Quentin :
-
+programmation des différentes routes sur le serveur pour envoyer les données
 
 Charles :
 - Modification du protocole impliquant la création d'un nouveau jeu
@@ -193,7 +198,9 @@ J'ai commencé à suivre le cours de TinyML de Harvard sur les conseils de l'enc
 
 Mercredi 24/04 :
 
-Quentin : Finalisation du stockage des temps de réaction dans la base de données.
+Quentin : 
+Finalisation du stockage des temps de réaction dans la base de données.
+Rajout de la mémorisation au serveur
 
 
 Charles :
@@ -214,7 +221,11 @@ Continuer à suivre le cours de TinyML, refonte du fichier SUIVI.MD.
 
 Jeudi 02/05 :
 
-Quentin : 
+Quentin :
+Rajout de bouttons de déconnexion et de retour au menu
+Ajout d'une info pour le jeu 2 de Prisha dans la BDD
+Présentation mi parcours
+
 
 Charles :
 - Peaufinage du jeu (suppression du choix de la difficulté, suppression d'artefacts visuels)
