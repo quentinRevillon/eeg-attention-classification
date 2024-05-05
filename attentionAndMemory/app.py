@@ -254,6 +254,10 @@ def results():
 
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
+@app.route('/leaderboard')
+def leaderboard():
+    results = Result.query.order_by(Result.reactionTime.asc()).all()
+    return render_template('leaderboard.html', results=results)
 
 
 @app.route('/result', methods=['POST'])
