@@ -25,6 +25,7 @@ let numTests1 = 0;
 let numTests2 = 0;
 let coef;
 let initialTime;
+let responseTimeout;
 
 
 function negOrPos() {
@@ -74,6 +75,11 @@ function showArrow() {
   arrowRight1.style.opacity = 1;
   arrowRight2.style.opacity = 1;
   startTime = new Date();
+// Ajouter un délai de 3 secondes pour vérifier si l'utilisateur n'a pas répondu
+  responseTimeout = setTimeout(function() {
+  reactionTimes.push(-1); // Ajouter -1 aux réponses de reactionTimes
+  endTest();
+}, 3000);
 }
 
 function hideArrow() {
@@ -82,6 +88,9 @@ function hideArrow() {
   arrowLeft2.style.opacity = 0;
   arrowRight1.style.opacity = 0;
   arrowRight2.style.opacity = 0;
+  // Annuler le délai de 3 secondes si l'utilisateur a déjà répondu
+  clearTimeout(responseTimeout);
+
 }
 
 function playAlert(){
@@ -238,5 +247,7 @@ document.addEventListener("keydown", function(event) {
       reactionTimes.push(-1)
       endTest()
     }
+    // Annuler le délai de 3 secondes si l'utilisateur a déjà répondu
+    clearTimeout(responseTimeout);
   }
 })
