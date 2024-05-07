@@ -237,10 +237,19 @@ Félicité :
 
 
 Prisha : 
+Avancée sur le cours de TinyML, Présentation de mi-parcours, test et familiarisation avec le casque
 
 Manon :
 Finir la présentation, discussion finale sur le protocole avec Prisha, avancée sur le cours TinyML (partie 2.1)
 
+Mardi 07/05 :
+
+
+Prisha : 
+Avancée sur le cours de TinyML, récolte de données avec le casque
+
+Manon: 
+Écriture du document sur les impacts sociétaux et environnementaux du projet, récolte de données avec le casque, cours Harvard
 
 
 
