@@ -246,6 +246,11 @@ Finir la présentation, discussion finale sur le protocole avec Prisha, avancée
 Mardi 07/05 : 
 Cours de Tiny ML en ligne. Test de récupération de données avec le casque.
 
+Charles :
+- Ajout d'un Leaderboard pour le jeu 1 de la mémoire
+- Ajout d'une limitation de temps pour le jeu 1 de la mémoire
+- Suivi de cours d'IA pour la suite du projet
+- Récolte de données avec le casque 
 
 Prisha : 
 Avancée sur le cours de TinyML, récolte de données avec le casque
