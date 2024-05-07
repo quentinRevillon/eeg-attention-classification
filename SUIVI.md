@@ -233,7 +233,8 @@ Charles :
 - Présentation de mi-parcours
 
 
-Félicité :
+Félicité : 
+Présentation du projet mi-parcours. Suivi du cours de Tiny ML en ligne.
 
 
 Prisha : 
@@ -242,7 +243,8 @@ Avancée sur le cours de TinyML, Présentation de mi-parcours, test et familiari
 Manon :
 Finir la présentation, discussion finale sur le protocole avec Prisha, avancée sur le cours TinyML (partie 2.1)
 
-Mardi 07/05 :
+Mardi 07/05 : 
+Cours de Tiny ML en ligne. Test de récupération de données avec le casque.
 
 
 Prisha : 
