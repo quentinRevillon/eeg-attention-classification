@@ -192,7 +192,8 @@ Séparer 2 types de test : avec flèche congruentes et indicateur sonore ou sans
 Début des cours de TinyML en ligne.
 
 
-### Prisha : Début du suivi des cours de TinyML de Harvard sur les conseils de l'encadrant. Prise en main du dispositif (casque) de mesure avec les doctorants (mais ça n'a pas pu aboutir à des mesures par manque de temps des docorants)
+### Prisha : 
+Début du suivi des cours de TinyML de Harvard sur les conseils de l'encadrant. Prise en main du dispositif (casque) de mesure avec les doctorants (mais ça n'a pas pu aboutir à des mesures par manque de temps des docorants)
 Création d'un autre jeu pour remplacer celui effacé après réflexion avec l'encadrant. 
 
 
@@ -214,7 +215,8 @@ Rajout de la mémorisation au serveur
 Ajout d'un mot de passe lors de l'identification pour notre jeu.
 
 
-### Prisha : Continuer à suivre les cours de TinyML, mise en place d'une base de données et d'un système de login sur nos pages web : nom d'utilisateur et mot de passe. 
+### Prisha : 
+Continuer à suivre les cours de TinyML, mise en place d'une base de données et d'un système de login sur nos pages web : nom d'utilisateur et mot de passe. 
 
 
 ### Manon :
