@@ -260,7 +260,7 @@ Cours de Tiny ML en ligne. Test de récupération de données avec le casque.
 - Récolte de données avec le casque 
 
 ### Prisha : 
-Avancée sur le cours de TinyML, récolte de données avec le casque, écriture du document sur les impacts environnementaux et sociétaux du projet, recherches sur les electrodes à prendre en considération pour les mesures
+Avancée sur le cours de TinyML, documentation sur la récolte de données avec le casque, écriture du document sur les impacts environnementaux et sociétaux du projet, recherches sur les electrodes à prendre en considération pour les mesures
 
 ### Manon: 
 Écriture du document sur les impacts sociétaux et environnementaux du projet, récolte de données avec le casque, cours Harvard
@@ -271,4 +271,9 @@ Avancée sur le cours de TinyML, récolte de données avec le casque, écriture 
 ### Félicité :
 Présentation des protocoles aux doctorants et discussion pour les améliorer.
 Cours de TinyML
+
+### Prisha :
+Présentation des protocoles aux doctorants et discussion pour les améliorer
+Cours de TinyML
+
 
