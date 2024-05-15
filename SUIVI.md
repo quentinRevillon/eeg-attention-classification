@@ -1,4 +1,4 @@
-Planning (Rappel) :
+# Planning (Rappel) :
 
 Phase 1 : Mesures et protocoles
 
@@ -26,244 +26,246 @@ Mesures désormais prises par ceux qui faisaient traitement données
 Ceux qui prenaient les mesures commencent à se documenter sur l'IA en parallèle
 24/06 -29/06 : IA traitement signal
 
-SUIVI :
+# SUIVI :
 Les notes relatives à chaque section (date) se rapportent au travail fait durant la séance et la semaine précédant la séance.
 
-Mercredi 14/02 :
+## Mercredi 14/02 :
 
-Quentin :
+### Quentin :
 
 
 
-Charles :
+### Charles :
 - Présentation du projet par l'encadrant, rencontre de l'équipe de doctorants
 - Séparation en deux groupes : attention & mémoire
 - Avec le groupe attention, lecture de la documentation scientifique sur le sujet
 - Etude des travaux de Jean-Philippe Lachaux (ATOLE)
 
 
-Félicité :
+### Félicité :
 Présentation du projet par l'encadrant et répartition du groupe de travail entre mémoire et attention. 
 2 objectifs : recherches et établisement d'un protocole de mesure de l'attention
 Début des recherches sur la partie attention et compréhension de l'enjeu du projet. Distinction entre les 3 types d'attention.
 1ères idées de protocoles
 
 
-Prisha : 
+### Prisha : 
 Présentation du projet par l'encadrant, rencontre avec les doctorants travaillant déjà sur le projet. Séparation du projet par thème : mémoire et attention. Je me suis occuppée de faire des recherches sur la mémoire avec Manon. 
 
 
-Manon :
+### Manon :
 Présentation du projet par l'encadrant, rencontre avec les personnes travaillant déjà sur le projet. Recherches internet sur la mémoire.
 
 
-Mercredi 28/02 :
+## Mercredi 28/02 :
 
-Quentin :
+### Quentin :
 Création du groupe Slack
 Lectures de différentes études sur les mécanismes d'attention. Focalisatin sur l'ANT test.
 
-Charles :
+### Charles :
 - Intégration de Slack
 - Cours de GIT par les doctorants 
 - Elaboration d'une esquisse de protocole (inspirté des tests ANT, ANTI, ANTI-V)
 - Découverte de l'étude principale et des 3 types d'attention : The attention system of the human brain (20 years after)
 
-Félicité :
+### Félicité :
 Continuation des recherches et précision des protocoles.
 Idée de protocole : afficher "left" ou "right" à gauche ou à droite de l'écran, regarder temps de réaction avant d'appuyer sur bonne flèche du clavier.
 Nouvel objectif : créer interface web pour exercice testant l'attention
 
 
-Prisha :
+### Prisha :
 Recherches sur internet sur la mémoire, prises de notes sur un document. Recherches sur les différents types de mémoire, comment mesurer et améliorer la mémoire. Mise en place d'une liste d'idées de jeux de mémoire utiles pour mesurer la mémoire. 
 
 
-Manon :
+### Manon :
 Recherches internet sur la mémoire, sur les metrics relatifs à la mémoire
 
-Mercredi 13/03 :
+## Mercredi 13/03 :
 
-Quentin :
+### Quentin :
 Création d'un jeu pour tester le type d'attention "alerting"
 Choix des deadlines du projet et soumission à notre encadrant
 
-Charles :
+### Charles :
 - Création d'un jeu pour tester le type de mémoire "orienting"
 - Elaboration d'un planning
 - Fin de séance : discussion avec l'encadrant mène à la décision de fusionner nos 3 jeux pour chaque type de l'attention en 1 seul jeu
 
-Félicité :
+### Félicité :
 Compte-rendu à l'encadrant de nos recherches, discussion sur l'élaboration du protocole.
 Modification du protocole : fusion des idées de jeu de Quentin, Charles et moi.
 Ecriture du planning détaillé.
 
 
+### Prisha : 
+Présentation à l'encadrant de notre premier protocole, discussion sur les jeux à proposer aux personnes participants à l'expérience. Recherches sur comment une page web en javascript. Découverte de la programmation en html/css/javascript. Début d'écriture du code pour la page web.
 
-Prisha : Présentation à l'encadrant de notre premier protocole, discussion sur les jeux à proposer aux personnes participants à l'expérience. Recherches sur comment une page web en javascript. Découverte de la programmation en html/css/javascript. Début d'écriture du code pour la page web.
 
-
-Manon :
+### Manon :
 Présentation à l'encadrant de notre premier protocole, discussion sur les jeux à proposer aux personnes qui serviront à créer la bdd.
 
-Mercredi 20/03 :
+## Mercredi 20/03 :
 
-Quentin :
+### Quentin :
 Fusion des jeux sur l'attention
 Création des pages d'inscription et de connexion.
 
-Charles :
+### Charles :
 - Fusion du code des 3 jeux de l'attention
 - Codage du jeu (ajout de durée de partie par utilisateur)
 - Elaboration d'un protocole plus détaillé pour ce jeu (temps de jeu, temps de repos, nombre d'itérations)
 
-Félicité :
+### Félicité :
 Ecriture du protocole.
 Codage du jeu.
 
 
-Prisha : Code du premier jeu sur la mémoire fonctionnel. Début du code du deuxième jeu mais pas totalement opérationnel. 
+### Prisha : 
+Code du premier jeu sur la mémoire fonctionnel. Début du code du deuxième jeu mais pas totalement opérationnel. 
 
 
-Manon :
+### Manon :
 Recherches pour créer les jeux. J'ai décidé de créer une webapp avec react.
 
 
-Mardi 26/03 :
+## Mardi 26/03 :
 
-Quentin :
+### Quentin :
 Création serveur Flask
 Amélioration de mise en page css
 
-Charles :
+### Charles :
 - Présention du projet PRIM (introduction à la partie IA du projet)
 - Implémentation d'un serveur Flask pour répondre aux besoins du protocole
 
-Félicité :
+### Félicité :
 Codage du jeu.
 
 
-Prisha : Modification des jeux. Recherche d'images pour le premier jeu. Le deuxième jeu nous semblait trop proche d'un des jeux codés par Manon. Suppression du deuxième jeu.
+### Prisha : Modification des jeux. Recherche d'images pour le premier jeu. Le deuxième jeu nous semblait trop proche d'un des jeux codés par Manon. Suppression du deuxième jeu.
 Nous avons assisté à une présentation du projet PRIM sur la partie IA du projet. 
 
 
-Manon :
+### Manon :
 Coder, corriger le jeux de mémorisation des chiffres, tests et ajustements
 
 
-Mardi 02/04 :
+## Mardi 02/04 :
 
-Quentin :
+### Quentin :
 Amélioration de la mise en page des pages
 
 
-Charles :
+### Charles :
 - Affinement du protocole
 - Ajout d'une base de données pour stocker les résultats aux tests
 
-Félicité :
+### Félicité :
 Codage du jeu et modification protocole.
 
 
-Prisha : Coder, corriger les jeux de mémorisation des images, tests et ajustements. Vérifier que le temps laissés pour les images est le bon, que les participants avaient suffisament de temps pour entrer leurs réponses, etc...
+### Prisha : 
+Coder, corriger les jeux de mémorisation des images, tests et ajustements. Vérifier que le temps laissés pour les images est le bon, que les participants avaient suffisament de temps pour entrer leurs réponses, etc...
 Présentation à l'encadrant d'une deuxième version du protocole. 
 
 
-Manon :
+### Manon :
 Coder, corriger le jeux de mémorisation des chiffres, tests et ajustements. Coder, corriger le jeux de mémory, tests et ajustements. Présentation à l'encadrant d'une seconde version du protocole
 
 
 
 
-Mardi 09/04 :
+## Mardi 09/04 :
 
-Quentin :
+### Quentin :
 programmation des différentes routes sur le serveur pour envoyer les données
 
-Charles :
+### Charles :
 - Modification du protocole impliquant la création d'un nouveau jeu
 - Création d'un nouveau jeu pour la partie attention : jeu de balles rebondissantes dont il faut compter le nombre de rebonds
 
-Félicité :
+### Félicité :
 Séparer 2 types de test : avec flèche congruentes et indicateur sonore ou sans aide. Correction du code existant.
 Début des cours de TinyML en ligne.
 
 
-Prisha : Début du suivi des cours de TinyML de Harvard sur les conseils de l'encadrant. Prise en main du dispositif (casque) de mesure avec les doctorants (mais ça n'a pas pu aboutir à des mesures par manque de temps des docorants)
+### Prisha : Début du suivi des cours de TinyML de Harvard sur les conseils de l'encadrant. Prise en main du dispositif (casque) de mesure avec les doctorants (mais ça n'a pas pu aboutir à des mesures par manque de temps des docorants)
 Création d'un autre jeu pour remplacer celui effacé après réflexion avec l'encadrant. 
 
 
-Manon :
+### Manon :
 J'ai commencé à suivre le cours de TinyML de Harvard sur les conseils de l'encadrant. Prise en main du dispositif (casque) de mesure avec les doctorants (mais ça n'a pas pu aboutir à des mesures par manque de temps des docorants)
 
-Mercredi 24/04 :
+## Mercredi 24/04 :
 
-Quentin : 
+### Quentin : 
 Finalisation du stockage des temps de réaction dans la base de données.
 Rajout de la mémorisation au serveur
 
 
-Charles :
+### Charles :
 - Codage du second jeu (ajout d'une durée de partie par utilisateur)
 - Intégration du second jeu avec le premier jeu sur le serveur Flask
 
-Félicité :
+### Félicité :
 Ajout d'un mot de passe lors de l'identification pour notre jeu.
 
 
-Prisha : Continuer à suivre les cours de TinyML, mise en place d'une base de données et d'un système de login sur nos pages web : nom d'utilisateur et mot de passe. 
+### Prisha : Continuer à suivre les cours de TinyML, mise en place d'une base de données et d'un système de login sur nos pages web : nom d'utilisateur et mot de passe. 
 
 
-Manon :
+### Manon :
 Continuer à suivre le cours de TinyML, refonte du fichier SUIVI.MD. 
 
 
 
-Jeudi 02/05 :
+## Jeudi 02/05 :
 
-Quentin :
+### Quentin :
 Rajout de bouttons de déconnexion et de retour au menu
 Ajout d'une info pour le jeu 2 de Prisha dans la BDD
 Présentation mi parcours
 
 
-Charles :
+### Charles :
 - Peaufinage du jeu (suppression du choix de la difficulté, suppression d'artefacts visuels)
 - Ajout du second jeu dans la BDD
 - Présentation de mi-parcours
 
 
-Félicité : 
+### Félicité : 
 Présentation du projet mi-parcours. Suivi du cours de Tiny ML en ligne.
 
 
-Prisha : 
+### Prisha : 
 Avancée sur le cours de TinyML, Présentation de mi-parcours, test et familiarisation avec le casque
 
-Manon :
+### Manon :
 Finir la présentation, discussion finale sur le protocole avec Prisha, avancée sur le cours TinyML (partie 2.1)
 
-Mardi 07/05 : 
+## Mardi 07/05 : 
 
-Félicité :
+### Félicité :
 Cours de Tiny ML en ligne. Test de récupération de données avec le casque.
 
-Charles :
+### Charles :
 - Ajout d'un Leaderboard pour le jeu 1 de la mémoire
 - Ajout d'une limitation de temps pour le jeu 1 de la mémoire
 - Suivi de cours d'IA pour la suite du projet
 - Récolte de données avec le casque 
 
-Prisha : 
+### Prisha : 
 Avancée sur le cours de TinyML, récolte de données avec le casque, écriture du document sur les impacts environnementaux et sociétaux du projet, recherches sur les electrodes à prendre en considération pour les mesures
 
-Manon: 
+### Manon: 
 Écriture du document sur les impacts sociétaux et environnementaux du projet, récolte de données avec le casque, cours Harvard
 
 
-Mercredi 15/05 :
+## Mercredi 15/05 :
 
-Félicité :
+### Félicité :
 Présentation des protocoles aux doctorants et discussion pour les améliorer.
 Cours de TinyML
 
