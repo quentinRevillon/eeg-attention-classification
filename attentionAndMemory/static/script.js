@@ -35,7 +35,7 @@ function negOrPos() {
 function setArrow1() {   //fonction pour afficher les flèches congruentes
   coef = negOrPos();
 
-  arrow.style.top = `calc(50% + ${coef*35 - 30}px)`;
+  arrow.style.top = `calc(50% + ${coef*90 - 30}px)`;
   arrowLeft1.style.top = arrow.style.top
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
@@ -53,7 +53,7 @@ function setArrow2() {  //fonction pour afficher les flèches non congruentes
   // arrow.style.left = `${window.innerWidth / 2 - 25}px`;
   // arrow.style.left = `${window.innerWidth / 2 - 25}px`;
   // arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
-  arrow.style.top = `calc(50% + ${coef*35 - 30}px)`;
+  arrow.style.top = `calc(50% + ${coef*90 - 30}px)`;
 
   arrowLeft1.style.top = arrow.style.top
   arrowLeft2.style.top = arrow.style.top
@@ -101,7 +101,7 @@ function playAlert(){
 function showIndicator() {
   indicator.textContent = '*'
   // indicator.style.left = `${window.innerWidth / 2 - 10}px`;
-  indicator.style.top = `${window.innerHeight / 2 + 10 + 35*coef}px`;
+  indicator.style.top = `${window.innerHeight / 2 + 10 + 90*coef}px`;
   indicator.style.opacity = 1;
   setTimeout(hideIndicator, 200)
  
@@ -145,6 +145,7 @@ function startTest2() {
   }
   runningTest = 2;
   numTests2++;
+  initialTime = new Date();
   setArrow2()
   setTimeout(showArrow, Math.random() * 2500 + 1500)
 }
@@ -155,11 +156,13 @@ function endTest() {
   isRunning = false;
  
   if (numTests1 > 0){ 
-    endTime = 90000; //1er test dure 1min30
+    nb_minutes = 0.2;
+    endTime = nb_minutes * 60 * 1000; //1er test dure 1min30
   } else { 
-    endTime = 180000; //2ème test dure 3min
+    endTime = 0.2 * 60 * 1000; //2ème test dure 3min
   }
   if (new Date() - startTestTime < endTime) {
+  
     if (numTests1 > 0) {
       startTest1();
     } 
@@ -170,6 +173,7 @@ function endTest() {
       numTests1 = 0;
       numTests2 = 0;
       showResults();
+      sendResults(reactionTimes, timeCodes, runningTest=runningTest)
   }
 }
 
@@ -233,18 +237,21 @@ document.addEventListener("keydown", function(event) {
     return;
   }
   if ((event.key === 'ArrowLeft') || (event.key === 'ArrowRight')) {
+    let timeCode = new Date() - startTestTime;
     if ((event.key === 'ArrowLeft' && directionCentre === '←') || (event.key === 'ArrowRight' && directionCentre === '→')) {
       let reactionTime = new Date() - startTime;
       reactionTimes.push(reactionTime);
-      let timeCode = new Date() - initialTime;
+      
       timeCodes.push(timeCode);
-      console.log(reactionTime, timeCode, runningTest);
-      sendResult(reactionTime=reactionTime, timeCode=timeCode, runningTest=runningTest);
+      //console.log(reactionTime, timeCode, runningTest);
+      //console.log("timeCodes", timeCodes);
+      //sendResult(reactionTime=reactionTime, timeCode=timeCode, runningTest=runningTest);
       endTest()
     } 
     
     else {
       reactionTimes.push(-1)
+      timeCodes.push(timeCode);
       endTest()
     }
     // Annuler le délai de 3 secondes si l'utilisateur a déjà répondu

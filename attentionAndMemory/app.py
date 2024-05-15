@@ -229,6 +229,25 @@ def results():
     email = session['email']
     reactionTimes = data["reactionTimes"]
     timeCodes = data["timeCodes"]
+    runningTest = data["runningTest"]
+    print(timeCodes)
+    print(reactionTimes)
+
+    if runningTest == 1:
+        sessionId = session['congruentTestSessionId']
+    elif runningTest == 2:
+        sessionId = session['nonCongruentTestSessionId']
+
+    for i in range(len(reactionTimes)):
+        db.session.add(Result(email=email, sessionId=sessionId, reactionTime=reactionTimes[i], timeCode=timeCodes[i], testId=runningTest))
+        db.session.commit()
+
+        # db.session.add(Result(id=id, email= email, sessionId=session_id, reactionTime=reactionTimes[i], timeCode=timeCodes[i]))
+        # id += 1
+        # db.session.commit()
+
+    return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
+
 
      # Récupérer l'ID maximal actuel de la colonne "session" dans la table "Result"
     session_id = db.session.query(func.max(Result.session)).scalar()
