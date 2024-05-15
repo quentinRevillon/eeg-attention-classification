@@ -144,7 +144,8 @@ Amélioration de mise en page css
 Codage du jeu.
 
 
-### Prisha : Modification des jeux. Recherche d'images pour le premier jeu. Le deuxième jeu nous semblait trop proche d'un des jeux codés par Manon. Suppression du deuxième jeu.
+### Prisha : 
+Modification des jeux. Recherche d'images pour le premier jeu. Le deuxième jeu nous semblait trop proche d'un des jeux codés par Manon. Suppression du deuxième jeu.
 Nous avons assisté à une présentation du projet PRIM sur la partie IA du projet. 
 
 
