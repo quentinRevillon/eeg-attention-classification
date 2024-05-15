@@ -256,8 +256,7 @@ Cours de Tiny ML en ligne. Test de récupération de données avec le casque.
 ### Charles :
 - Ajout d'un Leaderboard pour le jeu 1 de la mémoire
 - Ajout d'une limitation de temps pour le jeu 1 de la mémoire
-- Suivi de cours d'IA pour la suite du projet
-- Récolte de données avec le casque 
+- Etude des papiers scientifiques sur les zones du cerveau mobilisées par l'attention
 
 ### Prisha : 
 Avancée sur le cours de TinyML, documentation sur la récolte de données avec le casque, écriture du document sur les impacts environnementaux et sociétaux du projet, recherches sur les electrodes à prendre en considération pour les mesures
@@ -267,6 +266,11 @@ Avancée sur le cours de TinyML, documentation sur la récolte de données avec 
 
 
 ## Mercredi 15/05 :
+
+## Charles :
+- Présentation des protocoles aux doctorants et discussion pour les améliorer.
+- Application des conseils de modification du protocole
+- Première récolte de données avec le casque
 
 ### Félicité :
 Présentation des protocoles aux doctorants et discussion pour les améliorer.
