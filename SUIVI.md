@@ -276,4 +276,7 @@ Cours de TinyML
 Présentation des protocoles aux doctorants et discussion pour les améliorer
 Cours de TinyML
 
+### Manon: 
+Écriture du Compte Rendu de réunion, harmonisation des protocoles, cours Harvard (45%)
+
 
