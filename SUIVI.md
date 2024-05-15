@@ -244,6 +244,8 @@ Manon :
 Finir la présentation, discussion finale sur le protocole avec Prisha, avancée sur le cours TinyML (partie 2.1)
 
 Mardi 07/05 : 
+
+Félicité :
 Cours de Tiny ML en ligne. Test de récupération de données avec le casque.
 
 Charles :
@@ -259,4 +261,9 @@ Manon:
 Écriture du document sur les impacts sociétaux et environnementaux du projet, récolte de données avec le casque, cours Harvard
 
 
+Mercredi 15/05 :
+
+Félicité :
+Présentation des protocoles aux doctorants et discussion pour les améliorer.
+Cours de TinyML
 
