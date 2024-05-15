@@ -267,7 +267,7 @@ Avancée sur le cours de TinyML, documentation sur la récolte de données avec 
 
 ## Mercredi 15/05 :
 
-## Charles :
+### Charles :
 - Présentation des protocoles aux doctorants et discussion pour les améliorer.
 - Application des conseils de modification du protocole
 - Première récolte de données avec le casque
