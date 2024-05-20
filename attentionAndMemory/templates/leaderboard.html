@@ -9,12 +9,12 @@
     <table>
         <tr>
             <th>Email</th>
-            <th>Score</th>
+            <th>Average reaction time</th>
         </tr>
         {% for result in results %}
         <tr>
             <td>{{ result.email }}</td>
-            <td>{{ result.reactionTime }}</td>
+            <td>{{ '{:.2f}'.format(result.average_reaction_time) }}</td>
         </tr>
         {% endfor %}
     </table>

@@ -275,7 +275,7 @@ def results():
 
 @app.route('/leaderboard')
 def leaderboard():
-    results = Result.query.order_by(Result.reactionTime.asc()).all()
+    results = db.session.query(Result.email, Result.sessionId, func.avg(Result.reactionTime).label('average_reaction_time')).group_by(Result.email, Result.sessionId).order_by(func.avg(Result.reactionTime).asc()).limit(10).all()
     return render_template('leaderboard.html', results=results)
 
 
