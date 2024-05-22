@@ -3,7 +3,7 @@ from models import db, User, Result, BallResult, ResultPrisha1, ResultPrisha2
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
-import datetime
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'aiot'
