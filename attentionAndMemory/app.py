@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory, abort
 from models import db, User, Result, BallResult, ResultPrisha1, ResultPrisha2
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -281,50 +281,30 @@ def results():
 
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
-@app.route('/leaderboard')
-def leaderboard():
-    results = db.session.query(Result.email, Result.sessionId, func.avg(Result.reactionTime).label('average_reaction_time')).group_by(Result.email, Result.sessionId).order_by(func.avg(Result.reactionTime).asc()).limit(10).all()
-    # accuracy = db.session.query(Result.email, Result.sessionId, (func.sum(Result.isCorrect) / func.count(Result.id)).label('accuracy')).group_by(Result.email, Result.sessionId).all()
-    
-    
-    #  reaction_time_avg_subquery = select([
-    #     Result.email,
-    #     Result.sessionId,
-    #     func.avg(Result.reactionTime).label('average_reaction_time')
-    # ]).where(
-    #     Result.isCorrect == 1
-    # ).group_by(
-    #     Result.email,
-    #     Result.sessionId
-    # ).alias()
 
-    # # Sous-requête pour calculer l'exactitude (accuracy)
-    # accuracy_subquery = select([
-    #     Result.email,
-    #     Result.sessionId,
-    #     (func.sum(Result.isCorrect) / func.count(Result.id)).label('accuracy')
-    # ]).group_by(
-    #     Result.email,
-    #     Result.sessionId
-    # ).alias()
+@app.route('/leaderboard', defaults={'sort_by': 'average_reaction_time', 'sort_order': 'asc'})
+@app.route('/leaderboard/<sort_by>/<sort_order>')
+def leaderboard(sort_by, sort_order):
+    if sort_by not in ['average_reaction_time', 'accuracy']:
+        abort(404)
 
-    # # Jointure des sous-requêtes
-    # final_query = select([
-    #     reaction_time_avg_subquery.c.email,
-    #     reaction_time_avg_subquery.c.sessionId,
-    #     reaction_time_avg_subquery.c.average_reaction_time,
-    #     accuracy_subquery.c.accuracy
-    # ]).select_from(
-    #     reaction_time_avg_subquery.join(
-    #         accuracy_subquery,
-    #         (reaction_time_avg_subquery.c.email == accuracy_subquery.c.email) & 
-    #         (reaction_time_avg_subquery.c.sessionId == accuracy_subquery.c.sessionId)
-    #     )
-    # ).limit(10)
+    if sort_order not in ['asc', 'desc']:
+        abort(404)
 
-    # # Exécution de la requête
-    # results = db.session.execute(final_query).fetchall()
-    return render_template('leaderboard.html', results=results)
+    order_by = {
+        'average_reaction_time': func.avg(Result.reactionTime),
+        'accuracy': func.avg(Result.isCorrect)
+    }
+
+    results = db.session.query(Result.email, Result.sessionId, func.avg(Result.reactionTime).label('average_reaction_time'), (func.avg(Result.isCorrect) * 100).label('accuracy'))\
+        .filter(Result.isCorrect == 1)\
+        .group_by(Result.email, Result.sessionId)\
+        .order_by(order_by[sort_by].asc() if sort_order == 'asc' else order_by[sort_by].desc())\
+        .all()
+    return render_template('leaderboard.html', results=results, sort_by=sort_by, sort_order=sort_order)
+
+
+
 
 
 @app.route('/result', methods=['POST'])
