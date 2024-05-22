@@ -10,11 +10,13 @@
         <tr>
             <th>Email</th>
             <th>Average reaction time</th>
+            <th>Accuracy</th>
         </tr>
-        {% for result in results %}
+        {% for result, acc in zip(results, accuracy) %}
         <tr>
             <td>{{ result.email }}</td>
             <td>{{ '{:.2f}'.format(result.average_reaction_time) }}</td>
+            <td>{{ '{:.2f}'.format(acc.accuracy * 100) }}%</td>
         </tr>
         {% endfor %}
     </table>

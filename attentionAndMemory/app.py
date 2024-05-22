@@ -277,10 +277,16 @@ def results():
 
 @app.route('/leaderboard')
 def leaderboard():
-    results = db.session.query(Result.email, Result.sessionId, func.avg(Result.reactionTime).label('average_reaction_time')).group_by(Result.email, Result.sessionId).order_by(func.avg(Result.reactionTime).asc()).limit(10).all()
-    accuracy = db.session.query(Result.email, Result.sessionId, (func.sum(Result.isCorrect) / func.count(Result.id)).label('accuracy')).group_by(Result.email, Result.sessionId).all()
-    print(accuracy)
-    return render_template('leaderboard.html', results=results)
+    results = db.session.query(Result.email, Result.sessionId, func.avg(Result.reactionTime).label('average_reaction_time'))\
+        .filter(Result.isCorrect == 1)\
+        .group_by(Result.email, Result.sessionId)\
+        .order_by(func.avg(Result.reactionTime).asc())\
+        .limit(10)\
+        .all()
+    accuracy = db.session.query(Result.email, Result.sessionId, (func.sum(Result.isCorrect) / func.count(Result.id)).label('accuracy'))\
+        .group_by(Result.email, Result.sessionId)\
+        .all()
+    return render_template('leaderboard.html', results=results, accuracy=accuracy)
 
 
 @app.route('/result', methods=['POST'])
