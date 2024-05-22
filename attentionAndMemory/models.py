@@ -19,7 +19,7 @@ class User(db.Model):
         return f'<Email {self.email} >'
 
 class Result(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)    
     email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)
     sessionId = db.Column(db.Integer, nullable=False)
     reactionTime = db.Column(db.Integer, nullable=False)

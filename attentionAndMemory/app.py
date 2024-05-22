@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory, abort
 from models import db, User, Result, BallResult, ResultPrisha1, ResultPrisha2
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -275,18 +275,30 @@ def results():
 
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
-@app.route('/leaderboard')
-def leaderboard():
-    results = db.session.query(Result.email, Result.sessionId, func.avg(Result.reactionTime).label('average_reaction_time'))\
+
+@app.route('/leaderboard', defaults={'sort_by': 'average_reaction_time', 'sort_order': 'asc'})
+@app.route('/leaderboard/<sort_by>/<sort_order>')
+def leaderboard(sort_by, sort_order):
+    if sort_by not in ['average_reaction_time', 'accuracy']:
+        abort(404)
+
+    if sort_order not in ['asc', 'desc']:
+        abort(404)
+
+    order_by = {
+        'average_reaction_time': func.avg(Result.reactionTime),
+        'accuracy': func.avg(Result.isCorrect)
+    }
+
+    results = db.session.query(Result.email, Result.sessionId, func.avg(Result.reactionTime).label('average_reaction_time'), (func.avg(Result.isCorrect) * 100).label('accuracy'))\
         .filter(Result.isCorrect == 1)\
         .group_by(Result.email, Result.sessionId)\
-        .order_by(func.avg(Result.reactionTime).asc())\
-        .limit(10)\
+        .order_by(order_by[sort_by].asc() if sort_order == 'asc' else order_by[sort_by].desc())\
         .all()
-    accuracy = db.session.query(Result.email, Result.sessionId, (func.sum(Result.isCorrect) / func.count(Result.id)).label('accuracy'))\
-        .group_by(Result.email, Result.sessionId)\
-        .all()
-    return render_template('leaderboard.html', results=results, accuracy=accuracy)
+    return render_template('leaderboard.html', results=results, sort_by=sort_by, sort_order=sort_order)
+
+
+
 
 
 @app.route('/result', methods=['POST'])
