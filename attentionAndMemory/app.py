@@ -3,6 +3,7 @@ from models import db, User, Result, BallResult, ResultPrisha1, ResultPrisha2
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
+import datetime
 
 app = Flask(__name__)
 app.secret_key = 'aiot'
@@ -230,6 +231,13 @@ def results():
     reactionTimes = data["reactionTimes"]
     timeCodes = data["timeCodes"]
     runningTest = data["runningTest"]
+    isCorrect = data["isCorrect"]
+    # Obtenir la date actuelle
+    now = datetime.now()
+
+    # Formater la date sous la forme 'jour/mois/année'
+    date_str = now.strftime("%d/%m/%Y")
+    
     print(timeCodes)
     print(reactionTimes)
 
@@ -239,7 +247,7 @@ def results():
         sessionId = session['nonCongruentTestSessionId']
 
     for i in range(len(reactionTimes)):
-        db.session.add(Result(email=email, sessionId=sessionId, reactionTime=reactionTimes[i], timeCode=timeCodes[i], testId=runningTest))
+        db.session.add(Result(email=email, sessionId=sessionId, reactionTime=reactionTimes[i], timeCode=timeCodes[i], testId=runningTest[i], isCorrect=isCorrect[i], date=date_str))
         db.session.commit()
 
         # db.session.add(Result(id=id, email= email, sessionId=session_id, reactionTime=reactionTimes[i], timeCode=timeCodes[i]))
