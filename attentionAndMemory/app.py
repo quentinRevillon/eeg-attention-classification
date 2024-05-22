@@ -247,7 +247,7 @@ def results():
         sessionId = session['nonCongruentTestSessionId']
 
     for i in range(len(reactionTimes)):
-        db.session.add(Result(email=email, sessionId=sessionId, reactionTime=reactionTimes[i], timeCode=timeCodes[i], testId=runningTest[i], isCorrect=isCorrect[i], date=date_str))
+        db.session.add(Result(email=email, sessionId=sessionId, reactionTime=reactionTimes[i], timeCode=timeCodes[i], testId=runningTest, isCorrect=isCorrect[i], date=date_str))
         db.session.commit()
 
         # db.session.add(Result(id=id, email= email, sessionId=session_id, reactionTime=reactionTimes[i], timeCode=timeCodes[i]))
