@@ -287,3 +287,6 @@ Cours de TinyML
 
 ### Charles :
 - Perfection de la BDD de l'ANT (variable isCorrect, date)
+
+### Manon: 
+Formatage du protocole pour approbation par le Psychology Comitee, Recherche de sources pour backer le protocole memory (pour l'approbation), cours TinyML (70%). Mise à jour du code des jeux pour s'ajuster au protocole
