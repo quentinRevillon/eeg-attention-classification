@@ -25,6 +25,8 @@ class Result(db.Model):
     reactionTime = db.Column(db.Integer, nullable=False)
     timeCode = db.Column(db.Integer, nullable=False)
     testId = db.Column(db.Integer, nullable=False)
+    isCorrect = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.String(120), nullable=False)
     
 class BallResult(db.Model):
     id = db.Column(db.Integer, primary_key=True)
