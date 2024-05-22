@@ -270,7 +270,6 @@ Avancée sur le cours de TinyML, documentation sur la récolte de données avec 
 ### Charles :
 - Présentation des protocoles aux doctorants et discussion pour les améliorer.
 - Application des conseils de modification du protocole
-- Première récolte de données avec le casque
 
 ### Félicité :
 Présentation des protocoles aux doctorants et discussion pour les améliorer.
@@ -284,3 +283,7 @@ Cours de TinyML
 Écriture du Compte Rendu de réunion, harmonisation des protocoles, cours Harvard (45%)
 
 
+## Mercredi 22/05 :
+
+### Charles :
+- Perfection de la BDD de l'ANT (variable isCorrect, date)
