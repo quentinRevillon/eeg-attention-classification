@@ -3,6 +3,7 @@ from models import db, User, Result, BallResult, ResultPrisha1, ResultPrisha2
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
+from datetime import date
 
 app = Flask(__name__)
 app.secret_key = 'aiot'
@@ -230,6 +231,7 @@ def results():
     reactionTimes = data["reactionTimes"]
     timeCodes = data["timeCodes"]
     runningTest = data["runningTest"]
+    isCorrect = data["isCorrect"]
     print(timeCodes)
     print(reactionTimes)
 
@@ -239,7 +241,7 @@ def results():
         sessionId = session['nonCongruentTestSessionId']
 
     for i in range(len(reactionTimes)):
-        db.session.add(Result(email=email, sessionId=sessionId, reactionTime=reactionTimes[i], timeCode=timeCodes[i], testId=runningTest))
+        db.session.add(Result(email=email, sessionId=sessionId, reactionTime=reactionTimes[i], timeCode=timeCodes[i], testId=runningTest, isCorrect = isCorrect[i]))
         db.session.commit()
 
         # db.session.add(Result(id=id, email= email, sessionId=session_id, reactionTime=reactionTimes[i], timeCode=timeCodes[i]))
@@ -288,7 +290,10 @@ def result():
     email = session['email']
     reactionTime = data["reactionTime"]
     timeCode = data["timeCode"]
+    todayDate = date.today()
+    todayDateFormat = todayDate.strftime("%d/%m/%Y")
     runningTest = data["runningTest"]
+    isCorrect = data["isCorrect"]
     
     
      # Récupérer l'ID maximal actuel de la colonne "session" dans la table "Result"
@@ -306,7 +311,7 @@ def result():
     # # Sinon, ajouter 1 à l'ID maximal actuel pour obtenir le nouvel ID de session
     # id = id + 1 if id is not None else 1
     
-    db.session.add(Result(email= email, sessionId=sessionId, reactionTime=reactionTime, timeCode=timeCode, testId=runningTest))
+    db.session.add(Result(email= email, sessionId=sessionId, reactionTime=reactionTime, timeCode=timeCode, testId=runningTest, isCorrect = isCorrect,date=todayDateFormat))
     db.session.commit()
 
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})

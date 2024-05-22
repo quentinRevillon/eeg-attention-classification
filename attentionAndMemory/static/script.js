@@ -19,6 +19,7 @@ let startTestTime;
 let startTime;
 let reactionTime;
 let reactionTimes = [];
+let isCorrect = [];
 let timeCodes = [];
 let isRunning = false;
 let numTests1 = 0;
@@ -79,7 +80,8 @@ function showArrow() {
   startTime = new Date();
 // Ajouter un délai de 3 secondes pour vérifier si l'utilisateur n'a pas répondu
   responseTimeout = setTimeout(function() {
-  reactionTimes.push(-1); // Ajouter -1 aux réponses de reactionTimes
+  reactionTimes.push(3000); // Ajouter -1 aux réponses de reactionTimes
+  isCorrect.push(0);
   endTest();
 }, 1000);
 }
@@ -176,7 +178,7 @@ function endTest() {
       numTests1 = 0;
       numTests2 = 0;
       showResults();
-      sendResults(reactionTimes, timeCodes, runningTest=runningTest)
+      sendResults(reactionTimes, timeCodes, runningTest=runningTest, isCorrect=isCorrect);
   }
 }
 
@@ -189,7 +191,8 @@ function sendResults() {
     body: JSON.stringify({
       reactionTimes: reactionTimes,
       timeCodes: timeCodes,
-      runningTest: runningTest
+      runningTest: runningTest,
+      isCorrect: isCorrect
     })
   })
   .then(response => {
@@ -240,23 +243,24 @@ document.addEventListener("keydown", function(event) {
     return;
   }
   if ((event.key === 'ArrowLeft') || (event.key === 'ArrowRight')) {
-    
+    let timeCode = new Date() - startTestTime;
+    let reactionTime = new Date() - startTime;
+    reactionTimes.push(reactionTime);
+    timeCodes.push(timeCode);
     if ((event.key === 'ArrowLeft' && directionCentre === '←') || (event.key === 'ArrowRight' && directionCentre === '→')) {
-      let reactionTime = new Date() - startTime;
-      reactionTimes.push(reactionTime);
       
+      isCorrect.push(1);
+      timeCodes.push(timeCode);
       //console.log(reactionTime, timeCode, runningTest);
       //console.log("timeCodes", timeCodes);
       //sendResult(reactionTime=reactionTime, timeCode=timeCode, runningTest=runningTest);
-      endTest()
     } 
     
     else {
-      reactionTimes.push(-1)
-      timeCodes.push(timeCode);
-      endTest()
+      isCorrect.push(0);
     }
     // Annuler le délai de 3 secondes si l'utilisateur a déjà répondu
     clearTimeout(responseTimeout);
+    endTest();
   }
 })
