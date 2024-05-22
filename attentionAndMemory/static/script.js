@@ -36,7 +36,7 @@ function negOrPos() {
 function setArrow1() {   //fonction pour afficher les flèches congruentes
   coef = negOrPos();
 
-  arrow.style.top = `calc(50% + ${coef*90 - 30}px)`;
+  arrow.style.top = `calc(50% + ${coef*400 - 30}px)`;
   arrowLeft1.style.top = arrow.style.top
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
@@ -54,7 +54,7 @@ function setArrow2() {  //fonction pour afficher les flèches non congruentes
   // arrow.style.left = `${window.innerWidth / 2 - 25}px`;
   // arrow.style.left = `${window.innerWidth / 2 - 25}px`;
   // arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
-  arrow.style.top = `calc(50% + ${coef*90 - 30}px)`;
+  arrow.style.top = `calc(50% + ${coef*400 - 30}px)`;
 
   arrowLeft1.style.top = arrow.style.top
   arrowLeft2.style.top = arrow.style.top
@@ -106,7 +106,7 @@ function playAlert(){
 function showIndicator() {
   indicator.textContent = '*'
   // indicator.style.left = `${window.innerWidth / 2 - 10}px`;
-  indicator.style.top = `${window.innerHeight / 2 + 10 + 90*coef}px`;
+  indicator.style.top = `${window.innerHeight / 2 + 10 + 400*coef}px`;
   indicator.style.opacity = 1;
   setTimeout(hideIndicator, 100)
  
