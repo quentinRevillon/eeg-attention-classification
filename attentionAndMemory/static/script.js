@@ -70,6 +70,8 @@ function setArrow2() {  //fonction pour afficher les flèches non congruentes
 }
 
 function showArrow() {
+  let timeCode = new Date() - startTestTime;
+  timeCodes.push(timeCode);
   arrow.style.opacity = 1;
   arrowLeft1.style.opacity = 1;
   arrowLeft2.style.opacity = 1;
@@ -81,7 +83,7 @@ function showArrow() {
   reactionTimes.push(3000); // Ajouter -1 aux réponses de reactionTimes
   isCorrect.push(0);
   endTest();
-}, 3000);
+}, 1000);
 }
 
 function hideArrow() {
@@ -135,6 +137,7 @@ function startTest1() {
   setArrow1()
   setTimeout(playAlert, Math.random() * 2500 + 1500)
   initialTime = new Date();
+  console.log(reactionTimes);
 }
 
 function startTest2() {
@@ -231,7 +234,7 @@ function sendResult(reactionTime, timeCode, runningTest) {
 
 function showResults() {
   sendResults();
-  resultsElement.textContent = `Vos temps de réaction sont : ${results.join(', ')}`;
+  resultsElement.textContent = `Vos temps de réaction sont : ${reactionTimes.join(', ')}`;
 }
 
 document.addEventListener("keydown", function(event) {
