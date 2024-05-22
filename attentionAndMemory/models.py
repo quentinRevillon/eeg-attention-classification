@@ -28,6 +28,7 @@ class Result(db.Model):
     isCorrect = db.Column(db.Integer, nullable=False)
     date = db.Column(db.String(120), nullable=False)
     
+    
 class BallResult(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)
