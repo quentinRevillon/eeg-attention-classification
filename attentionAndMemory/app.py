@@ -243,7 +243,7 @@ def results():
 
     if runningTest == 1:
         sessionId = session['congruentTestSessionId']
-    elif runningTest == 2:
+    elif runningTest == 2:      
         sessionId = session['nonCongruentTestSessionId']
 
     for i in range(len(reactionTimes)):
