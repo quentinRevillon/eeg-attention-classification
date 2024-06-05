@@ -294,17 +294,17 @@ function generateSentences(numSentences, words, wordsPerSentence) {
 function displayNextSentence() {
     document.getElementById("submissionPhase").style.display = "none";
     if (currentSentenceIndex < sentence.length) {
-        submitButton.disabled = false;
-        sentenceElement.textContent = sentence[currentSentenceIndex];
+        submitButton2.disabled = false;
+        sentenceElement2.textContent = sentence[currentSentenceIndex];
         currentSentenceIndex++;
         setTimeout(submissionPhase, 5000); // display next sentence after 5 seconds
     } else {
-        sentenceElement.textContent = '';
+        sentenceElement2.textContent = '';
         endGame2();
     }
 }
 function submissionPhase(){
-    sentenceElement.textContent = '';
+    sentenceElement2.textContent = '';
     document.getElementById("submissionPhase").style.display = "block";
 setTimeout(displayNextSentence, 15000); // hide sentence after 5 seconds
 }
