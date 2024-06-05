@@ -200,7 +200,7 @@ const SubmitElement2 = document.getElementById('submitButton2');
 const inputElement2 = document.getElementById('input2');  
 const resultElement2 = document.getElementById('result2'); 
 //const submitButton = document.querySelector('#form button');
-//const numWordsElement = document.getElementById('numWords');
+const numWordsElement = document.getElementById('numWords');
 
 let words = ['the', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog', 'dog', 'cat', 'car', 'tree', 'book', 'phone', 'computer', 'city', 'bird', 'flower', 'river', 'mountain', 'cloud', 'ocean', 'star', 'forest', 'street', 'island', 'sun', 'moon', 'run', 'jump', 'swim', 'fly', 'read', 'write', 'think', 'dream', 'sing', 'dance', 'laugh', 'cry', 'see', 'hear', 'feel', 'smile', 'frown', 'speak', 'listen', 'walk'];
 let sentence;
