@@ -226,7 +226,7 @@ function displaySentencePhase1(){
     console.log('displaySentencePhase1 starts');    
     resultElement1.textContent = ' ';
     console.log("result empty");
-    document.getElementById("SubmissionPhase1").style.display = "none";
+    document.getElementById("submissionPhase1").style.display = "none";
     sentence = generateSentences(1,words,numWords);
     sentenceElement.textContent = sentence[0];
     setTimeout(submissionPhase1,5000);
