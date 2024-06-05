@@ -165,10 +165,10 @@ function endTest() {
  
   if (numTests1 > 0){ 
     nb_minutes_1 = 5;
-    endTime = nb_minutes_1 * 60 * 1000; //1er test dure 1min30
+    endTime = nb_minutes_1 * 60 * 1000; //1er test dure 5min
   } else { 
     nb_minutes_2 = 15;
-    endTime = nb_minutes_2 * 60 * 1000; //2ème test dure 3min
+    endTime = nb_minutes_2 * 60 * 1000; //2ème test dure 15min
   }
   if (new Date() - startTestTime < endTime) {
   
