@@ -35,19 +35,33 @@
 
     <div id="game2">
         <h2>GAME 2</h2>
-        <label for="numWords">Number of words per sentence:</label>
-        <input type="number" id="numWords" min="1" value="5">
+        <div id="phase3">
+        <h2>Phase 1: Mesure the number of Words for Phase 2</h2>
+        <button id="numWords" onclick="askNumWords()">Number of words per sentence:</button>
+        <button id="StartPhase1" onclick="displaySentencePhase1()">Start Phase 1</button>
         <p id="sentence">This is a test sentence</p>
-        <div id="submissionPhase" style="display:none;">
+        <div id="submissionPhase1" style="display:none;">
         <form id="form">
-            <input type="text" id="input" />
-            <button type="submit">Submit</button>
+            <input type="text" id="input1" />
+            <button type="submitButton1" type="submit">Submit</button>
         </form>
         </div>
-        <p id="result"></p>
+        <p id="result1"></p>
+        </div>
 
-
-
+        <div id = "phase4" style="display:none;">
+            <h2>Phase 2</h2>
+            <button id="Phase4" onclick="askNumWords()">Number of Words</button>
+            <button id="StartPhase2" onclick="startPhase2(event)">Start Game</button>
+            <p id="sentence2"> </p>
+            <div id="submissionPhase" style="display:none;">
+            <form id="form">
+                <input type="text" id="input2" />
+                <button id="submitButton2" type="button">Submit</button>
+            </form>
+            <p id="result2"></p>
+        </div>
+    </div>
 
         <script src = "app.js"></script>
 
