@@ -41,6 +41,7 @@ class ResultPrisha1(db.Model):
     # gameId = db.Column(db.Integer, nullable=False)
     sessionId = db.Column(db.Integer, nullable=False)
     score = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.String(120), nullable=False)
 
 class ResultPrisha2(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -49,6 +50,7 @@ class ResultPrisha2(db.Model):
     sessionId = db.Column(db.Integer, nullable=False)
     score = db.Column(db.Integer, nullable=False)
     nbMots = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.String(120), nullable=False)
 
 class ResultManon(db.Model):
     id = db.Column(db.Integer, primary_key=True)

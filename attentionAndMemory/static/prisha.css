@@ -1,3 +1,23 @@
+/*
+#game1 img {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border: 2px solid black;
+}
+
+#game1 div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+}
+*/
+
+/* Style the body */
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;

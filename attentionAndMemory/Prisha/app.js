@@ -168,6 +168,7 @@ function displayNextImage(){
     }
     else{
         endGame();
+        sendScore1(score);
     }
 
 }
@@ -212,6 +213,16 @@ function askNumWords(){
     numWords = prompt("Enter the number of words you want in the sequence :")
 }
 
+function sendScore1(score){
+    fetch('/sendScorePrisha1', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({score: score}),
+    })
+
+}
 /*
 numWordsElement.addEventListener('change', () => {
     sentence = generateSentences(5, words, Number(numWordsElement.value)); // generate 5 sentences from the words, each sentence is as long as the user wants theme to be
@@ -301,6 +312,7 @@ function displayNextSentence() {
     } else {
         sentenceElement2.textContent = '';
         endGame2();
+        sendScore2(score2, numWords);
     }
 }
 function submissionPhase(){

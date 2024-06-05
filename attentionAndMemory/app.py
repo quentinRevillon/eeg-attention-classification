@@ -94,10 +94,12 @@ def sendScorePrisha1():
     print(data)
     score=data["score"]
     email=session['email']
+    now = datetime.now()
+    date_str = now.strftime("%d/%m/%Y")
     # gameId=data["gameId"]
     sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
     sessionId = sessionId + 1 if sessionId is not None else 1
-    db.session.add(ResultPrisha1(email=email, sessionId=sessionId, score=score))
+    db.session.add(ResultPrisha1(email=email, sessionId=sessionId, score=score, date=date_str))
     db.session.commit()
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
@@ -109,25 +111,27 @@ def sendScorePrisha2():
     score=data["score"]
     email=session['email']
     nbMots=data["nbMots"]
+    now = datetime.now()
+    date_str = now.strftime("%d/%m/%Y")
     sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
     sessionId = sessionId + 1 if sessionId is not None else 1
-    db.session.add(ResultPrisha2(email=email, sessionId=sessionId, score=score, nbMots=nbMots))
+    db.session.add(ResultPrisha2(email=email, sessionId=sessionId, score=score, nbMots=nbMots, date=date_str))
     db.session.commit()
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
     
-@app.route('/sendScoreManon', methods=['POST'])
-@myLoginManager
-def sendScoreManon():
-    data = request.get_json()
-    print(data)
-    score=data["score"]
-    email=session['email']
-    gameId=data["gameId"]
-    sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
-    sessionId = sessionId + 1 if sessionId is not None else 1
-    db.session.add(ResultPrisha(email=email, gameId=gameId, sessionId=sessionId, score=score))
-    db.session.commit()
-    return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
+# @app.route('/sendScoreManon', methods=['POST'])
+# @myLoginManager
+# def sendScoreManon():
+#     data = request.get_json()
+#     print(data)
+#     score=data["score"]
+#     email=session['email']
+#     gameId=data["gameId"]
+#     sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
+#     sessionId = sessionId + 1 if sessionId is not None else 1
+#     db.session.add(Res(email=email, gameId=gameId, sessionId=sessionId, score=score))
+#     db.session.commit()
+#     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
 @app.route('/sendBallResult', methods=['POST'])
 @myLoginManager

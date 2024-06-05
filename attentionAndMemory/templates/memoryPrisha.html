@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Memory Game</title>
-    
-    <link rel="stylesheet" href="static/prisha.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='prisha.css') }}">
 </head>
 <body>
     <div id="game1">
@@ -15,7 +14,7 @@
             <div class="image-container">
             <!-- Images will be loaded here via JavaScript -->
             <button onclick="ChangerImage1()">Start Phase 1</button>
-            <img id="monimage" src="Prisha/images/croix.webp" width="200" height="200"/>
+            <img id="monimage" src="/Prisha/images/croix.webp" width="200" height="200"/>
             </div>    
         </div>
         <div id="phase2" style="display:none;">
@@ -24,7 +23,7 @@
             <h2>Phase 2: Recall the Image</h2>
             <div class="image-container">
             <!-- Images will be loaded here via JavaScript -->
-            <img id="currentImage" src="Prisha/images/croix.webp" width="200" height="200"/>
+            <img id="currentImage" src="/Prisha/images/croix.webp" width="200" height="200"/>
             <div class="buttons">
                 <button id="seen" onclick = "IncrementScoreSeen()">Seen</button>
                 <button id="unknown" onclick = "IncrementScoreUnknown()">Unknown</button>
@@ -35,22 +34,35 @@
 
     <div id="game2">
         <h2>GAME 2</h2>
-        <label for="numWords">Number of words per sentence:</label>
-        <input type="number" id="numWords" min="1" value="5">
-        <p id="sentence">This is a test sentence</p>
-        <div id="submissionPhase" style="display:none;">
+        <div id="phase3">
+        <h2>Phase 1: Mesure the number of Words for Phase 2</h2>
+        <button id="NumWords" onclick="askNumWords()">Number of words</button>
+        <button id="StartPhase1" onclick="displaySentencePhase1()">Start Phase 1</button>
+        <p id="sentence"></p>
+        <div id="submissionPhase1" style="display:none;">
         <form id="form">
-            <input type="text" id="input" />
-            <button type="submit">Submit</button>
+            <input type="text" id="input1" />
+            <button id="submitButton1" type="submit">Submit</button>
         </form>
+        <p id="result1"></p>
         </div>
-        <p id="result"></p>
+        </div>
 
+        <div id = "phase4" style="display:none;">
+            <h2>Phase 2</h2>
+            <button id="Phase4" onclick="askNumWords()">Number of Words</button>
+            <button id="StartPhase2" onclick="startPhase2(event)">Start Game</button>
+            <p id="sentence2"> </p>
+            <div id="submissionPhase" style="display:none;">
+            <form id="form">
+                <input type="text" id="input2" />
+                <button id="submitButton2" type="button">Submit</button>
+            </form>
+            <p id="result2"></p>
+        </div>
+    </div>
 
-
-
-        <script src = "static/prisha.js"></script>
-    <button id="backToMenu">Menu</button>
+        <script src = "{{ url_for('static', filename='prisha.js') }}"></script>
 </body>
 </html>
 
