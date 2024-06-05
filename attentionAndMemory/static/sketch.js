@@ -14,10 +14,9 @@ function getRandomNumberBetween(min, max) {
     return Math.random() * (max - min) + min;
   }
   
-const backToMenuButton = document.getElementById('backToMenuButton');
-addEventListener('click', function() {
+function backToMenu() {
   window.location.href = "/testSelectionPanel";
-});
+};
 
 function setup() {
   const container = document.querySelector('.sketch-container');
@@ -87,7 +86,7 @@ function startGame() {
   if (totalTime < 1*60) {
     console.log("start game")
     gameStarted = true;
-    timer = 10;
+    timer = 60;
     rebounds = 0;
 
     // Réinitialiser la position de la balle et générer une nouvelle direction aléatoire

@@ -17,16 +17,16 @@ a) Test mémoire à long terme :
 
 b) Test mémoire à court terme :
 -Lancer le jeu avec 6 mots à mémoriser.
--Si le participant a un score parfait, augmenter le nombre de mots jusqu'à ce qu'il se trompe et le faire jouer la partie avec ce nombre de mots.
--Si cela est trop compliqué, diminuer de 1 le nombre de mots.
+-Si le participant a un score parfait, augmenter le nombre de mots jusqu'à ce qu'il se trompe et le faire jouer 10 partie avec ce nombre de mots - 1.
 -Enregistrer les scores dans la base de données associée au nombre de mots choisi
 
 Partie 2 : Entraînement :
 -Lancer le jeu avec 5 chiffres à mémoriser.
 -La méthode de mémorisation employée cette fois-ci sera plus active, il sera damndé au participant de choisir une méthode de mémorisation parmi les deux proposées : associer un chiffre à une couleur ou à un lieu
 -Tant que le participant ne se trompe pas, augmenter le nombre de chiffre entre
-chaque partie. 
--Enregistrer le nombre de chiffre à la première erreur dans la base de données
+chaque partie.
+-Le faire jouer 10 partie avec le nombre de chiffres de la première erreur - 1.
+-Enregistrer les scores dans la base de données associée au nombre de chiffres de la séquence.
 
 
 

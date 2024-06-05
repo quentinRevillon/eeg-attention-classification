@@ -7,18 +7,19 @@ const indicator = document.getElementById('indicator');
 const cross = document.getElementById('cross');
 const resultsElement = document.getElementById('results');
 
-const backToMenuButton = document.getElementById('backToMenuButton');
-addEventListener('click', function() {
+document.getElementById('backToMenu').addEventListener('click', function() {
   window.location.href = "/testSelectionPanel";
 });
 
 // let alert = new Audio("{{url_for('static', filename='alert.mp3')}}");
+let d1;
 let runningTest;
 let direction;
 let startTestTime;
 let startTime;
 let reactionTime;
 let reactionTimes = [];
+let isCorrect = [];
 let timeCodes = [];
 let isRunning = false;
 let numTests1 = 0;
@@ -35,7 +36,7 @@ function negOrPos() {
 function setArrow1() {   //fonction pour afficher les flèches congruentes
   coef = negOrPos();
 
-  arrow.style.top = `calc(50% + ${coef*35 - 30}px)`;
+  arrow.style.top = `calc(50% + ${coef*400 - 30}px)`;
   arrowLeft1.style.top = arrow.style.top
   arrowLeft2.style.top = arrow.style.top
   arrowRight1.style.top = arrow.style.top
@@ -53,7 +54,7 @@ function setArrow2() {  //fonction pour afficher les flèches non congruentes
   // arrow.style.left = `${window.innerWidth / 2 - 25}px`;
   // arrow.style.left = `${window.innerWidth / 2 - 25}px`;
   // arrow.style.top = `${window.innerHeight / 2 - 5 + 35*coef}px`;
-  arrow.style.top = `calc(50% + ${coef*35 - 30}px)`;
+  arrow.style.top = `calc(50% + ${coef*400 - 30}px)`;
 
   arrowLeft1.style.top = arrow.style.top
   arrowLeft2.style.top = arrow.style.top
@@ -69,6 +70,8 @@ function setArrow2() {  //fonction pour afficher les flèches non congruentes
 }
 
 function showArrow() {
+  let timeCode = new Date() - startTestTime;
+  timeCodes.push(timeCode);
   arrow.style.opacity = 1;
   arrowLeft1.style.opacity = 1;
   arrowLeft2.style.opacity = 1;
@@ -77,9 +80,11 @@ function showArrow() {
   startTime = new Date();
 // Ajouter un délai de 3 secondes pour vérifier si l'utilisateur n'a pas répondu
   responseTimeout = setTimeout(function() {
-  reactionTimes.push(-1); // Ajouter -1 aux réponses de reactionTimes
+  reactionTime = 1700
+  reactionTimes.push(1700); // Ajouter -1 aux réponses de reactionTimes
+  isCorrect.push(0);
   endTest();
-}, 3000);
+}, 1700);
 }
 
 function hideArrow() {
@@ -95,21 +100,21 @@ function hideArrow() {
 
 function playAlert(){
   alert.play();
-  setTimeout(showIndicator, 1000)
+  setTimeout(showIndicator, Math.random() * 400 + 200)
 }
 
 function showIndicator() {
   indicator.textContent = '*'
   // indicator.style.left = `${window.innerWidth / 2 - 10}px`;
-  indicator.style.top = `${window.innerHeight / 2 + 10 + 35*coef}px`;
+  indicator.style.top = `${window.innerHeight / 2 + 10 + 400*coef}px`;
   indicator.style.opacity = 1;
-  setTimeout(hideIndicator, 200)
+  setTimeout(hideIndicator, 100)
  
 }
 
 function hideIndicator() {
   indicator.style.opacity = 0
-  showArrow()
+  setTimeout(showArrow, 400)
 }
 
 function showCross() {
@@ -131,8 +136,10 @@ function startTest1() {
   }
   numTests1++;
   setArrow1()
-  setTimeout(playAlert, Math.random() * 2500 + 1500)
+  d1 = Math.random() * 600 + 400;
+  setTimeout(playAlert, d1)
   initialTime = new Date();
+  console.log(reactionTimes);
 }
 
 function startTest2() {
@@ -145,8 +152,10 @@ function startTest2() {
   }
   runningTest = 2;
   numTests2++;
+  initialTime = new Date();
   setArrow2()
-  setTimeout(showArrow, Math.random() * 2500 + 1500)
+  d1 = Math.random() * 1200 + 900;
+  setTimeout(showArrow, d1)
 }
 
 function endTest() {
@@ -155,21 +164,25 @@ function endTest() {
   isRunning = false;
  
   if (numTests1 > 0){ 
-    endTime = 90000; //1er test dure 1min30
+    nb_minutes_1 = 5;
+    endTime = nb_minutes_1 * 60 * 1000; //1er test dure 1min30
   } else { 
-    endTime = 180000; //2ème test dure 3min
+    nb_minutes_2 = 15;
+    endTime = nb_minutes_2 * 60 * 1000; //2ème test dure 3min
   }
   if (new Date() - startTestTime < endTime) {
+  
     if (numTests1 > 0) {
-      startTest1();
+      setTimeout(startTest1, 3500-reactionTime);
     } 
     if (numTests2 > 0) {
-      startTest2();
+      setTimeout(startTest2, 3500-reactionTime);
     }
   } else {
       numTests1 = 0;
       numTests2 = 0;
       showResults();
+      sendResults(reactionTimes, timeCodes, runningTest=runningTest, isCorrect=isCorrect);
   }
 }
 
@@ -182,7 +195,8 @@ function sendResults() {
     body: JSON.stringify({
       reactionTimes: reactionTimes,
       timeCodes: timeCodes,
-      runningTest: runningTest
+      runningTest: runningTest,
+      isCorrect: isCorrect
     })
   })
   .then(response => {
@@ -224,7 +238,7 @@ function sendResult(reactionTime, timeCode, runningTest) {
 
 function showResults() {
   sendResults();
-  resultsElement.textContent = `Vos temps de réaction sont : ${results.join(', ')}`;
+  resultsElement.textContent = `Vos temps de réaction sont : ${reactionTimes.join(', ')}`;
 }
 
 document.addEventListener("keydown", function(event) {
@@ -233,21 +247,23 @@ document.addEventListener("keydown", function(event) {
     return;
   }
   if ((event.key === 'ArrowLeft') || (event.key === 'ArrowRight')) {
+    let timeCode = new Date() - startTestTime;
+    let reactionTime = new Date() - startTime;
+    reactionTimes.push(reactionTime);
+    timeCodes.push(timeCode);
     if ((event.key === 'ArrowLeft' && directionCentre === '←') || (event.key === 'ArrowRight' && directionCentre === '→')) {
-      let reactionTime = new Date() - startTime;
-      reactionTimes.push(reactionTime);
-      let timeCode = new Date() - initialTime;
-      timeCodes.push(timeCode);
-      console.log(reactionTime, timeCode, runningTest);
-      sendResult(reactionTime=reactionTime, timeCode=timeCode, runningTest=runningTest);
-      endTest()
+      
+      isCorrect.push(1);
+      //console.log(reactionTime, timeCode, runningTest);
+      //console.log("timeCodes", timeCodes);
+      //sendResult(reactionTime=reactionTime, timeCode=timeCode, runningTest=runningTest);
     } 
     
     else {
-      reactionTimes.push(-1)
-      endTest()
+      isCorrect.push(0);
     }
     // Annuler le délai de 3 secondes si l'utilisateur a déjà répondu
     clearTimeout(responseTimeout);
+    endTest();
   }
 })

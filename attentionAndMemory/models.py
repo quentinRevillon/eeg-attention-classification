@@ -19,12 +19,15 @@ class User(db.Model):
         return f'<Email {self.email} >'
 
 class Result(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)    
     email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)
     sessionId = db.Column(db.Integer, nullable=False)
     reactionTime = db.Column(db.Integer, nullable=False)
     timeCode = db.Column(db.Integer, nullable=False)
     testId = db.Column(db.Integer, nullable=False)
+    isCorrect = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.String(120), nullable=False)
+    
     
 class BallResult(db.Model):
     id = db.Column(db.Integer, primary_key=True)

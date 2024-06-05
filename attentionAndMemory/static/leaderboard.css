@@ -65,3 +65,23 @@ button:hover {
   left: 0;
   margin: 1rem;
 }
+
+th.sortable a {
+  display: block;
+  padding: 0.5em;
+  border: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+th {
+  padding: 0.5em;
+}
+
+th.sortable a.asc:after {
+  content: ' ↑';
+}
+
+th.sortable a.desc:after {
+  content: ' ↓';
+}
