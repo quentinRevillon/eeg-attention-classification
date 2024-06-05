@@ -235,7 +235,7 @@ function displaySentencePhase1(){
 function submissionPhase1(){
     console.log('submissionPhase1 starts'); 
     sentenceElement.textContent = '';
-    document.getElementById("SubmissionPhase1").style.display = "block";
+    document.getElementById("submissionPhase1").style.display = "block";
     //setTimeout(displaySentencePhase1,10000);
 }
 
