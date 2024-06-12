@@ -18,7 +18,7 @@
 - Charles KAYSSIEH
 - Felicité YVERT
 ### Team memory
-- Prisha CHADIRAMANI
+- Prisha CHANDIRAMANI
 - Manon STRASSER
 
 .
@@ -29,7 +29,7 @@ This project is about our profound desire to understand humans and the way they 
 
 This project is the result of a collaboration between doctorants and our team of first year engineer students.
 
-Our job was to develop web applications which will test the attention and memory of users. Then, while learning about tinyML, we gathered date during testing session with volontary people. Finally, we create a complete dataset of EEG files in order to train TinyML models.
+Our job was to develop web applications which will test the attention and memory of users. Then, while learning about tinyML, we gathered data during testing session with volontary people. Finally, we create a complete dataset of EEG files in order to train TinyML models.
 
 .
 ## Usage
@@ -52,12 +52,12 @@ To register for the database, just use your email adress and a password.
 - **Research about attention and memory** :
 We used the ressources given by the doctorants, in addition to personal reasearch approved by our supervisor.
 - **Web Applications** :
-Both team decided to implements games based on our research, using different languages (Java, React..). We also created a databas
+Both team decided to implements games based on our research, using different languages (Java, React..). We also created a database
 to gather the results (the eeg files and the scores of the games)
 - **Protocole** :
 After meetings with the doctorant team, we worked on the protocoles, in order to produce consistent data between tests. It also should conform to the requirements of the psychological comitee (for the legal aspect of the projects outside ou our realm)
 - **Gathering Data** :
-On multiple session, we install the headset that measures the eeg signals of mutliple points on the crane (about 50 electrodes), which lasts for an hour, then we proceed with the protole which lasts for about 40 minutes.
+On multiple session, we install the headset that measures the eeg signals of mutliple points on the head (about 50 electrodes), which lasts for one hour, then we proceed with the protole which lasts for about 40 minutes.
 
 .
 
