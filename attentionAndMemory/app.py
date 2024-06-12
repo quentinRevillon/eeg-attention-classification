@@ -229,6 +229,7 @@ def logout():
     return redirect(url_for('index'))
 
 @app.route('/results', methods=['POST'])
+@myLoginManager
 def results():
     data = request.get_json()
     email = session['email']
@@ -285,9 +286,8 @@ def results():
 
     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
 
-
+@myLoginManager
 @app.route('/leaderboard', defaults={'sort_by': 'average_reaction_time', 'sort_order': 'asc'})
-@app.route('/leaderboard/<sort_by>/<sort_order>')
 def leaderboard(sort_by, sort_order):
     if sort_by not in ['average_reaction_time', 'accuracy']:
         abort(404)
@@ -296,13 +296,12 @@ def leaderboard(sort_by, sort_order):
         abort(404)
 
     order_by = {
-        'average_reaction_time': func.avg(Result.reactionTime),
+        'average_reaction_time': func.avg(Result.reactionTime).filter(Result.isCorrect == 1),
         'accuracy': func.avg(Result.isCorrect)
     }
 
-    results = db.session.query(Result.email, Result.sessionId, func.avg(Result.reactionTime).label('average_reaction_time'), (func.avg(Result.isCorrect) * 100).label('accuracy'))\
-        .filter(Result.isCorrect == 1)\
-        .group_by(Result.email, Result.sessionId)\
+    results = db.session.query(Result.email, Result.sessionId, Result.testId.label("testId"), func.avg(Result.reactionTime).label('average_reaction_time'), (func.avg(Result.isCorrect) * 100).label('accuracy'))\
+        .group_by(Result.email, Result.sessionId, Result.testId)\
         .order_by(order_by[sort_by].asc() if sort_order == 'asc' else order_by[sort_by].desc())\
         .all()
     return render_template('leaderboard.html', results=results, sort_by=sort_by, sort_order=sort_order)
