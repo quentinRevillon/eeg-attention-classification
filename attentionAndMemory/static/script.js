@@ -27,6 +27,7 @@ let numTests2 = 0;
 let coef;
 let initialTime;
 let responseTimeout;
+let arrowDisplayed = false;
 
 
 function negOrPos() {
@@ -72,6 +73,7 @@ function setArrow2() {  //fonction pour afficher les flèches non congruentes
 function showArrow() {
   let timeCode = new Date() - startTestTime;
   timeCodes.push(timeCode);
+  arrowDisplayed = true;
   arrow.style.opacity = 1;
   arrowLeft1.style.opacity = 1;
   arrowLeft2.style.opacity = 1;
@@ -93,6 +95,7 @@ function hideArrow() {
   arrowLeft2.style.opacity = 0;
   arrowRight1.style.opacity = 0;
   arrowRight2.style.opacity = 0;
+  arrowDisplayed = false;
   // Annuler le délai de 3 secondes si l'utilisateur a déjà répondu
   clearTimeout(responseTimeout);
 
@@ -242,7 +245,9 @@ function showResults() {
 }
 
 document.addEventListener("keydown", function(event) {
-
+  if (!arrowDisplayed) {
+    return;
+  }
   if (!isRunning) {
     return;
   }
