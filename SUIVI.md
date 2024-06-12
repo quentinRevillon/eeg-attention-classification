@@ -294,10 +294,16 @@ Cours de TinyML
 ### Manon: 
 Formatage du protocole pour approbation par le Psychology Comitee, Recherche de sources pour backer le protocole memory (pour l'approbation), cours TinyML (70%). Mise à jour du code des jeux pour s'ajuster au protocole
 
+### Prisha:
+Écriture du protocole sur la partie mémoire pour le Psychology Commitee. Mise à jour du code des jeux pour une harmonisation entre les jeux de Manon et les miens. 
+
 ### Félicité :
 Cours de Tiny ML.
 
 ## Mercredi 29/05 :
+
+### Prisha :
+Séance d'audit
 
 ### Félicité :
 Familiarisation avec l'installation du casque. Cours de Tiny ML.
@@ -319,8 +325,13 @@ Familiarisation avec l'installation du casque. Cours de Tiny ML.
 - correction de l'intégration des résultats de mémorisation à la base de données.
 - Supervisation des test d'attention de Manon
 
+### Prisha :
+Vérification du bon fonctionnement des jeux de mémoire. Installation du casque sur Manon. Supervisation des tests d'attention. 
 
 ## Mercredi 12/06 :
 
 ## Manon :
 Installation du casque sur Charles, écriture du README et réflexion sur l'organisation du poster
+
+## Prisha:
+Installation du casque sur Charles. Cours de TinyML. 
