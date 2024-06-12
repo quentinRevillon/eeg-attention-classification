@@ -307,3 +307,13 @@ Familiarisation avec l'installation du casque. Cours de Tiny ML.
  
  ## Félicité :
  Installation du casque sur Manon. Cours de Tiny ML.
+
+ ## Manon :
+ Installation du casque et 3 sessions de 20 minutes de test
+
+
+
+## Mercredi 12/06 :
+
+## Manon :
+Installation du casque sur Charles, écriture du README et réflexion sur l'organisation du poster
