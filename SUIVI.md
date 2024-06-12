@@ -293,3 +293,13 @@ Cours de TinyML
 
 ### Manon: 
 Formatage du protocole pour approbation par le Psychology Comitee, Recherche de sources pour backer le protocole memory (pour l'approbation), cours TinyML (70%). Mise à jour du code des jeux pour s'ajuster au protocole
+
+## Mercredi 05/06 :
+
+### Charles :
+- Réalisation de mesures sur Manon (1h30 de mise en place pour le casque)
+- Suivi des tests sur la TH 2
+
+### Quentin :
+- correction de l'intégration des résultats de mémorisation à la base de données.
+- Supervisation des test d'attention de Manon
