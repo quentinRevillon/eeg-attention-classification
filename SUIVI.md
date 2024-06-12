@@ -298,7 +298,7 @@ Formatage du protocole pour approbation par le Psychology Comitee, Recherche de 
 Écriture du protocole sur la partie mémoire pour le Psychology Commitee. Mise à jour du code des jeux pour une harmonisation entre les jeux de Manon et les miens. 
 
 ### Félicité :
-Cours de Tiny ML.
+Familiarisation avec l'installation du casque. Cours de Tiny ML.
 
 ## Mercredi 29/05 :
 
@@ -306,7 +306,7 @@ Cours de Tiny ML.
 Séance d'audit
 
 ### Félicité :
-Familiarisation avec l'installation du casque. Cours de Tiny ML.
+Séance d'audit de projets.
 
 
 ## Mercredi 05/06 :
@@ -335,3 +335,6 @@ Installation du casque sur Charles, écriture du README et réflexion sur l'orga
 
 ## Prisha:
 Installation du casque sur Charles. Cours de TinyML. 
+
+## Félicité :
+Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
