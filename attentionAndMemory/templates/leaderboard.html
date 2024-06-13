@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='leaderboard.css') }}">
 <head>
-    <title>Leaderboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='leaderboard.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
     <script src="{{ url_for('static', filename='leaderboard.js') }}"></script>
+    <title>Leaderboard</title>
 </head>
 <body>
     <h1>Leaderboard</h1>
-    <table>
-        <tr>
-            <th>Email</th>
-            <th>Session ID</th>
-            <th>Test ID</th>
-            <th class="sortable"><a href="{{ url_for('leaderboard') }}?sort_by=average_reaction_time&amp;sort_order=asc"{% if sort_by == 'average_reaction_time' and sort_order == 'asc' %} class="active"{% endif %}>Average reaction time</a></th>
-            <th class="sortable"><a href="{{ url_for('leaderboard') }}?sort_by=accuracy&amp;sort_order=asc"{% if sort_by == 'accuracy' and sort_order == 'asc' %} class="active"{% endif %}>Accuracy</a></th>
-        </tr>
-        {% for result in results %}
-        <tr>
-            <td>{{ result.email }}</td>
-            <td>{{ result.sessionId }}</td>
-            <td>{{result.testId}}</td>
-            <td>{{ '{:.2f}'.format(result.average_reaction_time) }}</td>
-            <td>{{ result.accuracy|int }}%</td>
-        </tr>
-        {% endfor %}
+    <table id="leaderboard-table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Session ID</th>
+                <th>Test ID</th>
+                <th>Average Reaction Time (ms)</th>
+                <th>Accuracy</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{ result.email }}</td>
+                <td>{{ result.sessionId }}</td>
+                <td>{{result.testId}}</td>
+                <td>{{ '{:.2f}'.format(result.average_reaction_time) }}</td>
+                <td>{{ result.accuracy|int }}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </body>
 </html>
