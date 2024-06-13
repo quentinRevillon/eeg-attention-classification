@@ -25,7 +25,7 @@
 ## Project description
 .
 
-This project is about our profound desire to understand humans and the way they think. Using AI and ML, we aim at using the EEG signals of the brain to help users gain autonomy over their attention and memory capacities.
+We chose this project based on our profound desire to understand humans and the way they think. Using AI and ML, we aim at using the EEG signals of the brain to help users gain autonomy over their attention and memory capacities.
 
 This project is the result of a collaboration between doctorants and our team of first year engineer students.
 
@@ -50,13 +50,13 @@ To register for the database, just use your email adress and a password.
 ### Our part :
 
 - **Research about attention and memory** :
-We used the ressources given by the doctorants, in addition to personal reasearch approved by our supervisor.
+We used the ressources given by the doctorants, in addition to personal research approved by our supervisor.
 - **Web Applications** :
 Both team decided to implements games based on our research, using different languages (Java, React..). We also created a database to gather the results (the EEG files and the scores of the games).
 - **Protocole** :
-After meetings with the doctorant team, we worked on the protocoles, in order to produce consistent data between tests. It also should conform to the requirements of the psychological comitee (for the legal aspect of the projects outside of our realm).
+After meetings with the doctorant team, we worked on the protocoles, in order to produce consistent data between tests. It also should conform to the requirements of the psychological committee (for the legal aspect of the projects outside of our realm).
 - **Gathering Data** :
-On multiple session, we install the headset that measures the EEG signals of mutliple points on the head (about 84 electrodes), which lasts for one hour, then we proceed with the protole which lasts for about 40 minutes.
+On multiple sessions, we installed the helmet that measures the EEG signals of mutliple points on the head (about 84 electrodes). Each session lasts 1 hour 45 minutes. It takes one hour to set up the helmet and 40 minutes to complete the protocole.
 
 .
 
@@ -65,12 +65,13 @@ On multiple session, we install the headset that measures the EEG signals of mut
 
 - **Clean the data** :
 The doctorants worked on signal treatment (different types of transforms such as Fourrier Transform) in order for the models to learn things.
+EEG signals contain a lot of noise that needs to be removed before using them as a data set. 
 
 - **Choose a model to train** :
 The team looked at different types of model that would be adapted to our usage.
 
 - **Implementation** :
-_In fine_, the goal of the trained model is to be implemented in a small embedded device, wich should resemble earphones. It should display real time information about the attention and memory levels of the wearer.
+Ultimately, the goal of the trained model is to be implemented in a small embedded device, wich should resemble earphones. It should display real time information about the attention and memory levels of the wearer.
 
 .
 
@@ -79,6 +80,6 @@ _In fine_, the goal of the trained model is to be implemented in a small embedde
 
 We would like to thank our supervisor, **Van-Tam Nguyen**, which helped us navigate this complex project.
 
-Thanks also to the doctorant team, composed of : Nasim, Remi, Aël, YingHao, namely, who helped answer our questions and provided support during the whole time of the project.
+Thanks also to the doctorant team, composed of : Nasim Bagheri Shouraki, Remi Nahon, Aël Quélennec, YingHao Wang, who helped answer our questions and provided support during the whole time of the project.
 
 .
