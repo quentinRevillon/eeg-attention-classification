@@ -302,6 +302,9 @@ Familiarisation avec l'installation du casque. Cours de Tiny ML.
 
 ## Mercredi 29/05 :
 
+### Charles :
+Séance d'audit
+
 ### Prisha :
 Séance d'audit
 
@@ -330,6 +333,11 @@ Vérification du bon fonctionnement des jeux de mémoire. Installation du casque
 
 ## Mercredi 12/06 :
 
+### Charles :
+- Mesure sur moi même (1h de mise en place de casque)
+- Batterie de 3 séries de test jusqu'à fin cours
+- Nettoyage casque
+
 ## Manon :
 Installation du casque sur Charles, écriture du README et réflexion sur l'organisation du poster
 
@@ -338,3 +346,11 @@ Installation du casque sur Charles. Cours de TinyML.
 
 ## Félicité :
 Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
+
+## Jeudi 13/06 : (Hors cours)
+
+### Charles : (8h30-11h45)
+- Mesure sur Quentin (1h de mise en place de casque)
+- Suivi des tests
+- MAJ du Leaderboard
+- Nettoyage casque
