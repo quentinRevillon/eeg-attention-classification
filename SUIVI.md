@@ -338,6 +338,12 @@ Vérification du bon fonctionnement des jeux de mémoire. Installation du casque
 - Batterie de 3 séries de test jusqu'à fin cours
 - Nettoyage casque
 
+###Quentin :
+- Installation du casque sur Charles
+- Supervision de ses mesures
+- Discussion avec les doctorants à propos des techniques de machine learning à implémenter
+- Correction de la colonne accuracy du leaderboard
+
 ## Manon :
 Installation du casque sur Charles, écriture du README et réflexion sur l'organisation du poster
 
@@ -354,3 +360,9 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 - Suivi des tests
 - MAJ du Leaderboard
 - Nettoyage casque
+
+### Quentin :
+- 1 passage du test "congruent"
+- 3 passages du test "non-congruent"
+- nettoyage du casque
+- supervision des mesures de Félicité et installation de son casque 
