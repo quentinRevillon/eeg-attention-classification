@@ -366,3 +366,13 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 - 3 passages du test "non-congruent"
 - nettoyage du casque
 - supervision des mesures de Félicité et installation de son casque 
+
+### Prisha :
+-Mesure sur Quentin : installation du casque
+-Mesure sur Félicité : installation de son casque et supervision des mesures
+
+## Lundi 24/06 : 
+
+### Prisha : 
+
+- Lecture et compréhension du code des doctorants afin de l'adapter à notre modèle
