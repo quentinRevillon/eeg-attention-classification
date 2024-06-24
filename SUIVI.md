@@ -345,7 +345,7 @@ Vérification du bon fonctionnement des jeux de mémoire. Installation du casque
 - Correction de la colonne accuracy du leaderboard
 
 ## Manon :
-Installation du casque sur Charles, écriture du README et réflexion sur l'organisation du poster
+Installation du casque sur Charles, écriture du README et réflexion sur l'organisation du poster. Rédaction du poster
 
 ## Prisha:
 Installation du casque sur Charles. Cours de TinyML. 
@@ -371,8 +371,16 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 -Mesure sur Quentin : installation du casque
 -Mesure sur Félicité : installation de son casque et supervision des mesures
 
+### Manon :
+- Installation du casque sur Quentin
+- Rédaction du poster
+
 ## Lundi 24/06 : 
 
 ### Prisha : 
 
 - Lecture et compréhension du code des doctorants afin de l'adapter à notre modèle
+
+### Manon
+
+- Cours Kaggle sur RandomForest
