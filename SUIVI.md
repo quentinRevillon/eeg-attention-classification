@@ -314,10 +314,10 @@ Séance d'audit de projets.
 
 ## Mercredi 05/06 :
  
- ## Félicité :
+### Félicité :
  Installation du casque sur Manon. Cours de Tiny ML.
 
- ## Manon :
+### Manon :
  Installation du casque et 3 sessions de 20 minutes de test
 
 ### Charles :
@@ -338,20 +338,20 @@ Vérification du bon fonctionnement des jeux de mémoire. Installation du casque
 - Batterie de 3 séries de test jusqu'à fin cours
 - Nettoyage casque
 
-###Quentin :
+### Quentin :
 - Installation du casque sur Charles
 - Supervision de ses mesures
 - Discussion avec les doctorants à propos des techniques de machine learning à implémenter
 - Correction de la colonne accuracy du leaderboard
 
-## Manon :
+### Manon :
 Installation du casque sur Charles, écriture du README et réflexion sur l'organisation du poster. Rédaction du poster
 
-## Prisha:
+### Prisha:
 Installation du casque sur Charles. Cours de TinyML. 
 
-## Félicité :
-Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
+### Félicité :
+Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. Recherche sur random forests.
 
 ## Jeudi 13/06 : (Hors cours)
 
@@ -405,3 +405,4 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 ### Félicité :
 - Continuation de la lecture et correction du code.
 - Discussion et mise au point avec les doctorants, explications sur le code.
+- Introduction aux random forests
