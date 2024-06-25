@@ -368,12 +368,19 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 - supervision des mesures de Félicité et installation de son casque 
 
 ### Prisha :
--Mesure sur Quentin : installation du casque
--Mesure sur Félicité : installation de son casque et supervision des mesures
+- Mesure sur Quentin : installation du casque
+- Mesure sur Félicité : installation de son casque et supervision des mesures
 
 ### Manon :
 - Installation du casque sur Quentin
 - Rédaction du poster
+
+### Félicité :
+
+- Exécution du protocole et prise de mesures avec le casque.
+- 1 passage du test "congruent"
+- 3 passages du test "non-congruent"
+- nettoyage du casque
 
 ## Lundi 24/06 : 
 
@@ -388,3 +395,13 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 ### Charles
 
 - Lecture et début de compréhension du notebook utilisé par les doctorants sur le traitement des données
+
+### Félicité :
+
+- Lecture et compréhension du code Python des doctorants de traîtement des données avec un modèle de ML.
+
+## Mardi 25/06 :
+
+### Félicité :
+- Continuation de la lecture et correction du code.
+- Discussion et mise au point avec les doctorants, explications sur le code.
