@@ -27,7 +27,7 @@ def plot_reaction_time(db_path, email, sessionId, testId):
     plt.plot(timeCode, reactionTime, marker='o')
     plt.xlabel('Time Code')
     plt.ylabel('Reaction Time')
-    plt.title(f'Reaction Time vs Time Code for {email} (Session: {sessionId}, Test: {testId})')
+    plt.title(f'Evolution du temps de réaction de {email} (Session: {sessionId}, Test: {testId})')
     plt.grid(True)
     plt.show()
 
