@@ -315,10 +315,10 @@ Séance d'audit de projets.
 ## Mercredi 05/06 :
  
 ### Félicité :
- Installation du casque sur Manon. Cours de Tiny ML.
+Installation du casque sur Manon. Cours de Tiny ML.
 
 ### Manon :
- Installation du casque et 3 sessions de 20 minutes de test
+Installation du casque et 3 sessions de 20 minutes de test
 
 ### Charles :
 - Réalisation de mesures sur Manon (1h30 de mise en place pour le casque)
