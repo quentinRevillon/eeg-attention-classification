@@ -384,3 +384,7 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 ### Manon
 
 - Cours Kaggle sur RandomForest
+
+### Charles
+
+- Lecture et début de compréhension du notebook utilisé par les doctorants sur le traitement des données
