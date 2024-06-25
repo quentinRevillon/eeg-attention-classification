@@ -25,15 +25,15 @@ def plot_reaction_time_distribution(db_path, email, sessionId, testId):
     
     plt.figure(figsize=(10, 6))
     sns.histplot(reaction_times, kde=True, bins=30)
-    plt.xlabel('Reaction Time')
-    plt.ylabel('Count')
+    plt.xlabel('Temps de réaction (ms)')
+    plt.ylabel('Nombre')
     plt.title(f'Distribution du temps de réaction de {email} (Session: {sessionId}, Test: {testId})')
     plt.grid(True)
     plt.show()
 
 db_path = 'attentionAndMemory/instance/attention.db'
-email = 'strasser@example.com'
+email = 'kayssieh@example.com'
 sessionId = 1
-testId = 2
+testId = 1
 
 plot_reaction_time_distribution(db_path, email, sessionId, testId)
