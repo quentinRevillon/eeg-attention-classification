@@ -388,3 +388,13 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 ### Charles
 
 - Lecture et début de compréhension du notebook utilisé par les doctorants sur le traitement des données
+
+### Félicité :
+
+- Lecture et compréhension du code Python des doctorants de traîtement des données avec un modèle de ML.
+
+## Mardi 25/06 :
+
+### Félicité :
+- Continuation de la lecture et correction du code.
+- Discussion et mise au point avec les doctorants, explications sur le code.
