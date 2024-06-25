@@ -253,6 +253,7 @@ document.addEventListener("keydown", function(event) {
   }
   if ((event.key === 'ArrowLeft') || (event.key === 'ArrowRight')) {
     let timeCode = new Date() - startTestTime;
+    
     let reactionTime = new Date() - startTime;
     reactionTimes.push(reactionTime);
     timeCodes.push(timeCode);
