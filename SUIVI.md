@@ -368,12 +368,19 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 - supervision des mesures de Félicité et installation de son casque 
 
 ### Prisha :
--Mesure sur Quentin : installation du casque
--Mesure sur Félicité : installation de son casque et supervision des mesures
+- Mesure sur Quentin : installation du casque
+- Mesure sur Félicité : installation de son casque et supervision des mesures
 
 ### Manon :
 - Installation du casque sur Quentin
 - Rédaction du poster
+
+### Félicité :
+
+- Exécution du protocole et prise de mesures avec le casque.
+- 1 passage du test "congruent"
+- 3 passages du test "non-congruent"
+- nettoyage du casque
 
 ## Lundi 24/06 : 
 
