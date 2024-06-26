@@ -387,6 +387,7 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 ### Prisha : 
 
 - Lecture et compréhension du code des doctorants afin de l'adapter à notre modèle
+- Installation des bibliothèques nécessaires
 
 ### Manon
 
@@ -411,3 +412,15 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 
 ### Charles :
 - Labellisation des datas
+
+### Prisha :
+- Continuation de la lecture et compréhension du code des doctorants, modifications de quelques fonctions pour qu'elles fonctionnent sur nos ordinateurs
+- Rendez-vous avec les doctorants pour qu'ils nous expliquent plus en détails le code
+- Cours de Kaggle sur RandomForest
+
+
+## Mercredi 26/06 : 
+
+### Prisha
+- Cours youtube détaillé sur RandomForest
+- Mise du casque sur moi pour récolter plus de données
