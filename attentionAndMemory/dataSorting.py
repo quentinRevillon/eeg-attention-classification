@@ -4,25 +4,31 @@ import splitSignal as ss
 
 def classify_reaction_times(dbpath, email, sessionId, testId):
     reactionTimes, timeCodes = ss.getDataForSession(dbpath, email, sessionId, testId)
-    filtered_reactionTimes = [rt for rt in reactionTimes if rt != 1700]
+    filteredReactionTimes = [rt for rt in reactionTimes if rt != 1700]
+    sortedTimeCodes = sorted(timeCodes)
+    timeCodeRanks = {timeCode: rank for rank, timeCode in enumerate(sortedTimeCodes)}
     
-    mu = np.mean(filtered_reactionTimes)
-    sigma = np.std(filtered_reactionTimes)
+    mu = np.mean(filteredReactionTimes)
+    sigma = np.std(filteredReactionTimes)
     print(sigma)
     
     rt_1, rt_2, rt_3 = [], [], []
     tc_1, tc_2, tc_3 = [], [], []
+    tco_1, tco_2, tco_3 = [], [], []
 
     for rt, tc in zip(reactionTimes, timeCodes):
         if rt < mu - sigma:
             rt_1.append(rt)
             tc_1.append(tc)
+            tco_1.append(timeCodeRanks[tc])
         elif mu - sigma <= rt <= mu + sigma:
             rt_2.append(rt)
             tc_2.append(tc)
+            tco_2.append(timeCodeRanks[tc])
         else:
             rt_3.append(rt)
             tc_3.append(tc)
+            tco_3.append(timeCodeRanks[tc])
 
     print(len(rt_1), len(rt_2), len(rt_3))
     
@@ -39,7 +45,7 @@ def classify_reaction_times(dbpath, email, sessionId, testId):
     #plt.grid(True)
     #plt.show()
     
-    return [tc_1, tc_2, tc_3]
+    return [tco_1, tco_2, tco_3]
 
 
 def getAllData(db_path):
