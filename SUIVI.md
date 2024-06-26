@@ -395,6 +395,8 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 ### Charles
 
 - Lecture et début de compréhension du notebook utilisé par les doctorants sur le traitement des données
+- Meeting avec le doctorant pour détailler le code et répondre à nos questions
+- Création de code pour la visualisation des données de la BDD
 
 ### Félicité :
 
@@ -406,3 +408,6 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 - Continuation de la lecture et correction du code.
 - Discussion et mise au point avec les doctorants, explications sur le code.
 - Introduction aux random forests
+
+### Charles :
+- Labellisation des datas
