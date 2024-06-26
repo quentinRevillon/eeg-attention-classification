@@ -424,3 +424,4 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 ### Prisha
 - Cours youtube détaillé sur RandomForest
 - Mise du casque sur moi pour récolter plus de données
+- Ecriture d'un code implémentant Random Forest sur la base de donnés MNIST

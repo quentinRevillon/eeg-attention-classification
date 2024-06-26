@@ -30,7 +30,7 @@ def classify_reaction_times(dbpath, email, sessionId, testId):
             tc_3.append(tc)
             tco_3.append(timeCodeRanks[tc])
 
-    print(len(rt_1), len(rt_2), len(rt_3))
+    #print(len(rt_1), len(rt_2), len(rt_3))
     
     #bins = np.linspace(min(reactionTimes), max(reactionTimes), 30)
     #plt.figure(figsize=(10, 6))
@@ -63,5 +63,25 @@ def getAllData(db_path):
                 print(f"Results for {names[i]} (Session: {sessionId}, Test: {testId}) saved in {names[i]}-session{sessionId}-test{testId}.txt")
 
 
+def classify_reaction_times_module(dbpath, email, sessionId, testId):
+    reactionTimes, timeCodes = ss.getDataForSession(dbpath, email, sessionId, testId)
+    filteredReactionTimes = [rt for rt in reactionTimes if rt != 1700]
+    
+    mu = np.mean(filteredReactionTimes)
+    sigma = np.std(filteredReactionTimes)
+    print(sigma)
+    
+    result = np.zeros(len(reactionTimes))
+
+    for rt, tc in zip(reactionTimes, timeCodes):
+        if rt < mu - sigma:
+            result.append([0, 0, 1])
+        elif mu - sigma <= rt <= mu + sigma:
+            result.append([0, 1, 0])
+        else:
+            result.append([1, 0, 0])
+
+    return result
+    
+
 db_path = 'attentionAndMemory/instance/attention.db'
-getAllData(db_path)
