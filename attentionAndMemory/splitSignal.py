@@ -26,6 +26,8 @@ def getReactionTimesAndTimeCodesAndIsCorrect(db_path, email, sessionId, testId):
     isCorrect = [data[i][2] for i in range(len(data))]
     
     return reactionTime, timeCode, isCorrect
+
+
 def isNotCorrectTo1700(reactionTimes, timeCodes, isCorrect):
 
     for i in range(len(isCorrect)):
