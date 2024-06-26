@@ -142,7 +142,7 @@ function startTest1() {
   d1 = Math.random() * 600 + 400;
   setTimeout(playAlert, d1)
   initialTime = new Date();
-  console.log(reactionTimes);
+  // console.log(reactionTimes);
 }
 
 function startTest2() {
@@ -240,7 +240,7 @@ function sendResult(reactionTime, timeCode, runningTest) {
 
 
 function showResults() {
-  sendResults();
+  // sendResults();
   resultsElement.textContent = `Vos temps de réaction sont : ${reactionTimes.join(', ')}`;
 }
 
@@ -252,11 +252,12 @@ document.addEventListener("keydown", function(event) {
     return;
   }
   if ((event.key === 'ArrowLeft') || (event.key === 'ArrowRight')) {
-    let timeCode = new Date() - startTestTime;
-    
+    timeCode = new Date() - startTestTime;
+    timeCodes.push(timeCode);
+    console.log(timeCodes)
     let reactionTime = new Date() - startTime;
     reactionTimes.push(reactionTime);
-    timeCodes.push(timeCode);
+    
     if ((event.key === 'ArrowLeft' && directionCentre === '←') || (event.key === 'ArrowRight' && directionCentre === '→')) {
       
       isCorrect.push(1);

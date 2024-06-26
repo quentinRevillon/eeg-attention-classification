@@ -314,11 +314,11 @@ Séance d'audit de projets.
 
 ## Mercredi 05/06 :
  
- ## Félicité :
- Installation du casque sur Manon. Cours de Tiny ML.
+### Félicité :
+Installation du casque sur Manon. Cours de Tiny ML.
 
- ## Manon :
- Installation du casque et 3 sessions de 20 minutes de test
+### Manon :
+Installation du casque et 3 sessions de 20 minutes de test
 
 ### Charles :
 - Réalisation de mesures sur Manon (1h30 de mise en place pour le casque)
@@ -338,20 +338,20 @@ Vérification du bon fonctionnement des jeux de mémoire. Installation du casque
 - Batterie de 3 séries de test jusqu'à fin cours
 - Nettoyage casque
 
-###Quentin :
+### Quentin :
 - Installation du casque sur Charles
 - Supervision de ses mesures
 - Discussion avec les doctorants à propos des techniques de machine learning à implémenter
 - Correction de la colonne accuracy du leaderboard
 
-## Manon :
+### Manon :
 Installation du casque sur Charles, écriture du README et réflexion sur l'organisation du poster. Rédaction du poster
 
-## Prisha:
+### Prisha:
 Installation du casque sur Charles. Cours de TinyML. 
 
-## Félicité :
-Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
+### Félicité :
+Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. Recherche sur random forests.
 
 ## Jeudi 13/06 : (Hors cours)
 
@@ -387,6 +387,7 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 ### Prisha : 
 
 - Lecture et compréhension du code des doctorants afin de l'adapter à notre modèle
+- Installation des bibliothèques nécessaires
 
 ### Manon
 
@@ -395,6 +396,8 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 ### Charles
 
 - Lecture et début de compréhension du notebook utilisé par les doctorants sur le traitement des données
+- Meeting avec le doctorant pour détailler le code et répondre à nos questions
+- Création de code pour la visualisation des données de la BDD
 
 ### Félicité :
 
@@ -405,3 +408,19 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML.
 ### Félicité :
 - Continuation de la lecture et correction du code.
 - Discussion et mise au point avec les doctorants, explications sur le code.
+- Introduction aux random forests
+
+### Charles :
+- Labellisation des datas
+
+### Prisha :
+- Continuation de la lecture et compréhension du code des doctorants, modifications de quelques fonctions pour qu'elles fonctionnent sur nos ordinateurs
+- Rendez-vous avec les doctorants pour qu'ils nous expliquent plus en détails le code
+- Cours de Kaggle sur RandomForest
+
+
+## Mercredi 26/06 : 
+
+### Prisha
+- Cours youtube détaillé sur RandomForest
+- Mise du casque sur moi pour récolter plus de données
