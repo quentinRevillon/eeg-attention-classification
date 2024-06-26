@@ -33,7 +33,7 @@ def isNotCorrectTo1700(reactionTimes, timeCodes, isCorrect):
     for i in range(len(isCorrect)):
         if isCorrect[i] == 0:
             reactionTimes[i] = 1700
-    return reactionTimes, timeCodes
+    return reactionTimes, timeCodes, isCorrect
 
 
 def plot_reaction_time(db_path, email, sessionId, testId):
@@ -78,6 +78,7 @@ def get_files_in_folder(folder_path):
             if os.path.isfile(os.path.join(folder_path, file)):
                 files.append(file)
         return files
+
 def parseFileName(file):
     s = file.split('_')
     return s[0], s[1], s[2], s[3]
@@ -103,12 +104,40 @@ def getAllData(db_path):
         data[file] = fileData
     return data
 
-def getRidDoublons(reactionTimes, timeCodes):
+def getRidDoublons(reactionTimes, timeCodes, isCorrect):
     
     reactionTimes = [reactionTimes[i*2] for i in range(len(reactionTimes)//2)]
     timeCodes = [timeCodes[i*2] for i in range(len(timeCodes)//2)]
-    
-    return reactionTimes, timeCodes
+    isCorrect = [isCorrect[i*2] for i in range(len(isCorrect)//2)]
+    return reactionTimes, timeCodes, isCorrect
+
+def separateApparitionXClickTimeCodes(reactionTimes, timeCodes, isCorrect):
+    """On suppose que les doublons dus au double envoie des données ont été supprimé. La fonction renvoie la liste des time codes au moment de l'apparition des flèches ainsi qu'au moment du clique. La fonction renvoie écalement les reaction times des timescodes où il y a eu un clique, ie. enlève le dernier sinon."""
+    appartionTC = []
+    clickTC = []
+    new_reactionTimes = []
+    new_isCorrect = []
+    j=0
+    for i in range(len(reactionTimes)):
+        if (j+1 < len(timeCodes)):
+            new_reactionTimes.append(reactionTimes[i])
+            new_isCorrect.append(isCorrect[i])
+            if reactionTimes[i] != 1700:
+
+                appartionTC.append(timeCodes[j])           
+                clickTC.append(timeCodes[j+1])
+                j+=2
+            
+            else:
+                appartionTC.append(timeCodes[j])
+                clickTC.append(timeCodes[j]+1700)
+                j+=1
+        else:
+            break
+        
+            
+
+    return new_reactionTimes, clickTC, isCorrect
 
 def getTimeCodesOnClick(reactionTimes, timeCodes):
     
@@ -120,18 +149,23 @@ def getTimeCodesOnClick(reactionTimes, timeCodes):
 
 def getDataForSession(db_path, email, sessionId, testId):
     reactionTimes, timeCodes, isCorrect = getReactionTimesAndTimeCodesAndIsCorrect(db_path, email, sessionId, testId)
-    reactionTimes, timeCodes = isNotCorrectTo1700(reactionTimes, timeCodes, isCorrect)
-    reactionTimes, timeCodes = getRidDoublons(reactionTimes, timeCodes)
-    reactionTimes, timeCodes = getTimeCodesOnClick(reactionTimes, timeCodes)
+    reactionTimes, timeCodes, isCorrect = getRidDoublons(reactionTimes, timeCodes, isCorrect)
+    reactionTimes, clickTimeCodes, isCorrect = separateApparitionXClickTimeCodes(reactionTimes, timeCodes, isCorrect)
+    reactionTimes, timeCodes = isNotCorrectTo1700(reactionTimes, clickTimeCodes, isCorrect)
     return reactionTimes, timeCodes
 
 # files = get_files_in_folder(folder_path)
 # print(files)
 if __name__ == '__main__':
-    db_path = './instance/attention.db'
-    # data = getDataFileNamesXReactionTimesXTimesCodes(db_path)
-    getDataForSession(db_path, "revillon@example.com", 1, 2)
-    data = getAllData(db_path)
-    print(data)
+    apparition, click = separateApparitionXClickTimeCodes(reactionTimes=[5,1700,1700,8], timeCodes=[1,6,7,10,7,9])
+    print(len(apparition))
+    print(len(click))
+
+
+    # db_path = './instance/attention.db'
+    # # data = getDataFileNamesXReactionTimesXTimesCodes(db_path)
+    # getDataForSession(db_path, "revillon@example.com", 1, 2)
+    # data = getAllData(db_path)
+    # print(data)
 
 

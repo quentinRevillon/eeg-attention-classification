@@ -129,6 +129,7 @@ function showCross() {
 }
 
 function startTest1() {
+  // Une itération du test dure au maximum 5600ms, 1000 + 600 + 100 + 400 + 3500
   if (isRunning) {
     return;
   }
@@ -146,6 +147,7 @@ function startTest1() {
 }
 
 function startTest2() {
+  //Une itération du test dure au maximum 5600ms, 1200 + 900 + 3500
   if (isRunning) {
     return;
   }
