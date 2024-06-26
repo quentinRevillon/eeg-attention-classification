@@ -69,29 +69,33 @@ def fileTochunks(fileName, data):
     return eegchunks, timechunks
 
 def padchunks(chunks):
-    padded_chunks = np.array([])
+    padded_chunks = []
     for chunk in chunks:
         if chunk.shape[0] < int(5600/4):
             chunk = np.pad(chunk, ((0, 1400-chunk.shape[0]), (0, 0)), 'constant')
-        if padded_chunks.size == 0:
-            padded_chunks = chunk
-        else:
-            padded_chunks = np.vstack((padded_chunks, chunk))
+        
+        padded_chunks.append(chunk)
     return padded_chunks
 
 if __name__ == "__main__":
+    print()
+
     data = ss.getAllData("./instance/attention.db")
     # file_name = "Revillon_Quentin_NonCongruent_1.xdf"
     file_names = ss.get_files_in_folder('./signaux EEG')
  
     for file_name in file_names[:]:
         eegchunks, timechunks = fileTochunks(file_name, data)
-        # pad = padchunks(eegchunks)
-        # print(pad.shape)
+        print(eegchunks[0].shape, timechunks[0].shape)
+
+
+        pad = padchunks(eegchunks)
+        # print(pad[0])
+        print(pad[0].shape)
         # print(pad[0])
         # print(timechunks[0])
-        maxi = getMaxTimechunk(timechunks)
-        print(maxi)
+        # maxi = getMaxTimechunk(timechunks)
+        # print(maxi)
 
     # print(eegchunks[0].shape, timechunks[0].shape)
     

@@ -134,10 +134,10 @@ def separateApparitionXClickTimeCodes(reactionTimes, timeCodes, isCorrect):
                 j+=1
         else:
             break
-        
+    
             
 
-    return new_reactionTimes, clickTC, isCorrect
+    return new_reactionTimes, clickTC, new_isCorrect
 
 def getTimeCodesOnClick(reactionTimes, timeCodes):
     
@@ -149,22 +149,26 @@ def getTimeCodesOnClick(reactionTimes, timeCodes):
 
 def getDataForSession(db_path, email, sessionId, testId):
     reactionTimes, timeCodes, isCorrect = getReactionTimesAndTimeCodesAndIsCorrect(db_path, email, sessionId, testId)
+    # print(len(reactionTimes), len(timeCodes), len(isCorrect))
     reactionTimes, timeCodes, isCorrect = getRidDoublons(reactionTimes, timeCodes, isCorrect)
+    # print(len(reactionTimes), len(timeCodes), len(isCorrect))
     reactionTimes, clickTimeCodes, isCorrect = separateApparitionXClickTimeCodes(reactionTimes, timeCodes, isCorrect)
-    reactionTimes, timeCodes = isNotCorrectTo1700(reactionTimes, clickTimeCodes, isCorrect)
+    # print(len(reactionTimes), len(clickTimeCodes), len(isCorrect))
+    reactionTimes, timeCodes, isCorrect = isNotCorrectTo1700(reactionTimes, clickTimeCodes, isCorrect)
+    # print(len(reactionTimes), len(timeCodes), len(isCorrect))
     return reactionTimes, timeCodes
 
 # files = get_files_in_folder(folder_path)
 # print(files)
 if __name__ == '__main__':
-    apparition, click = separateApparitionXClickTimeCodes(reactionTimes=[5,1700,1700,8], timeCodes=[1,6,7,10,7,9])
-    print(len(apparition))
-    print(len(click))
+    # apparition, click = separateApparitionXClickTimeCodes(reactionTimes=[5,1700,1700,8], timeCodes=[1,6,7,10,7,9])
+    # print(len(apparition))
+    # print(len(click))
 
 
-    # db_path = './instance/attention.db'
-    # # data = getDataFileNamesXReactionTimesXTimesCodes(db_path)
-    # getDataForSession(db_path, "revillon@example.com", 1, 2)
+    db_path = './instance/attention.db'
+    # data = getDataFileNamesXReactionTimesXTimesCodes(db_path)
+    getDataForSession(db_path, "revillon@example.com", 1, 2)
     # data = getAllData(db_path)
     # print(data)
 
