@@ -73,8 +73,8 @@ def plot_reaction_time_moving_average(db_path, email, sessionId, testId, window_
     plt.show()
 
 db_path = 'attentionAndMemory/instance/attention.db'
-email = 'revillon@example.com'
+email = 'strasser@example.com'
 sessionId = 1
-testId = 2
+testId = 1
 
 plot_reaction_time_moving_average(db_path, email, sessionId, testId, window_size=10)  # Increase window_size for more smoothing
