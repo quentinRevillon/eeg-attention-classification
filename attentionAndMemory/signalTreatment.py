@@ -75,23 +75,98 @@ def padchunks(chunks):
             chunk = np.pad(chunk, ((0, 1400-chunk.shape[0]), (0, 0)), 'constant')
         
         padded_chunks.append(chunk)
-    return padded_chunks
+    return np.array(padded_chunks)
+
+def perform_fft(chunk):
+    fs = 256
+    fmax = 18
+    fmin = 0.5
+    nb_freq = 36
+    fft_chunk = []
+    
+    
+    for i_elec in range(chunk.shape[1]):
+        
+        chunk = chunk[:, i_elec]
+        fft_elec = np.fft.fft(chunk, n=1536)
+        
+        if i_elec == 0:
+            fft_chunk = np.array(fft_elec)
+        else:
+            fft_chunk = np.vstack((fft_chunk, fft_elec))
+
+def number_fft(window_size):
+    power = 0
+    window_tmp = window_size - 1
+    while(window_tmp != 1):
+        power = power + 1
+        window_tmp = int(window_tmp / 2)
+    return pow(2,power +1)
+
+def perform_ffts(chunks):
+    fs = 256
+    f_max_tf = int(256/2)
+    fmax = 18
+    fmin = 0.5
+    nb_freq = 36
+    fft_chunk = []
+
+    def square(x): return (np.abs(x))**2
+    def decibels(x): return 10*np.log10(x)
+    
+    nfft = number_fft(chunks.shape[1])
+
+    fft_chunks = np.fft.rfft(chunks, n=nfft, axis=1)
+    fft_chunks = fft_chunks[:,:-1,:]
+    #nfft/2 est la plage de fréquence, (/2) car on fait rfft, et on découpe en intervalles de 0.5Hz car on fait 256 segments dans un signal qui contient au plus 128Hz
+    fft_chunks = fft_chunks.reshape(fft_chunks.shape[0], f_max_tf * 2, int((nfft/2)/fs), fft_chunks.shape[2])
+
+    #we only keep frequencies between 0.5 and 18 Hz
+    fft_chunks = fft_chunks[:,:36,:,:]
+    fft_chunks = fft_chunks.mean(axis=2)
+    fft_chunks = np.apply_along_axis(square, axis=1, arr=fft_chunks)
+    fft_chunks = np.apply_along_axis(decibels, axis=1, arr=fft_chunks)
+
+    # fft_chunks = np.apply_along_axis(square, 2, fft_chunks)
+    # fft_chunks = np.apply_along_axis(decibels, 2, fft_chunks)
+
+    return fft_chunks
+
+    # for i_elec in range(chunk.shape[1]):
+        
+    #     # chunk = chunk[:, i_elec]
+    #     # fft_elec = np.fft.fft(chunk, n=1536)
+        
+    #     if i_elec == 0:
+    #         fft_chunk = np.array(fft_elec)
+    #     else:
+    #         fft_chunk = np.vstack((fft_chunk, fft_elec))
+
+
+    # fft_chunks.append(fft_chunk)
+    # return np.array(fft_chunks)
 
 if __name__ == "__main__":
-    print()
 
+    # print(number_fft(1400))
+    # exit()
     data = ss.getAllData("./instance/attention.db")
     # file_name = "Revillon_Quentin_NonCongruent_1.xdf"
     file_names = ss.get_files_in_folder('./signaux EEG')
  
     for file_name in file_names[:]:
         eegchunks, timechunks = fileTochunks(file_name, data)
-        print(eegchunks[0].shape, timechunks[0].shape)
+        # print(eegchunks[0].shape, timechunks[0].shape)
 
 
         pad = padchunks(eegchunks)
         # print(pad[0])
-        print(pad[0].shape)
+        # print(pad.shape)
+        fft_chunks = perform_ffts(pad)
+        print(fft_chunks.shape)
+        input()
+
+        
         # print(pad[0])
         # print(timechunks[0])
         # maxi = getMaxTimechunk(timechunks)

@@ -158,17 +158,32 @@ def getDataForSession(db_path, email, sessionId, testId):
     # print(len(reactionTimes), len(timeCodes), len(isCorrect))
     return reactionTimes, timeCodes
 
+def getDataForPrishaSession(db_path, email, sessionId, testId):
+    reactionTimes, timeCodes, isCorrect = getReactionTimesAndTimeCodesAndIsCorrect(db_path, email, sessionId, testId)
+    # print(len(reactionTimes), len(timeCodes), len(isCorrect))
+    # reactionTimes, timeCodes, isCorrect = getRidDoublons(reactionTimes, timeCodes, isCorrect)
+    # print(len(reactionTimes), len(timeCodes), len(isCorrect))
+    # reactionTimes, clickTimeCodes, isCorrect = separateApparitionXClickTimeCodes(reactionTimes, timeCodes, isCorrect)
+    # print(len(reactionTimes), len(clickTimeCodes), len(isCorrect))
+    reactionTimes, timeCodes, isCorrect = isNotCorrectTo1700(reactionTimes, timeCodes, isCorrect)
+    # print(len(reactionTimes), len(timeCodes), len(isCorrect))
+    return reactionTimes, timeCodes
+
+
 # files = get_files_in_folder(folder_path)
 # print(files)
 if __name__ == '__main__':
     # apparition, click = separateApparitionXClickTimeCodes(reactionTimes=[5,1700,1700,8], timeCodes=[1,6,7,10,7,9])
     # print(len(apparition))
     # print(len(click))
+    import numpy as np
 
-
-    db_path = './instance/attention.db'
+    db_path = './instance Prisha/attention.db'
     # data = getDataFileNamesXReactionTimesXTimesCodes(db_path)
-    getDataForSession(db_path, "revillon@example.com", 1, 2)
+    rT, tC = getDataForPrishaSession(db_path, "chandiramani@example.com", 1, 2)
+
+    
+    
     # data = getAllData(db_path)
     # print(data)
 
