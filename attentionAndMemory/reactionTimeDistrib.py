@@ -32,8 +32,8 @@ def plot_reaction_time_distribution(db_path, email, sessionId, testId):
     plt.show()
 
 db_path = 'attentionAndMemory/instance/attention.db'
-email = 'kayssieh@example.com'
+email = 'revillon@example.com'
 sessionId = 1
-testId = 1
+testId = 2
 
 plot_reaction_time_distribution(db_path, email, sessionId, testId)
