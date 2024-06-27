@@ -30,7 +30,7 @@ def plot_reaction_time_moving_average(db_path, email, sessionId, testId, window_
     error_dict = defaultdict(list)
     for t, r, c in zip(timeCode, reactionTime, isCorrect):
         time_dict[t].append(r)
-        
+        print(time_dict[t])
         error_dict[t].append(1 - c)  # 1 - c to get the error (1 if incorrect, 0 if correct)
     
     unique_timeCode = np.array(list(time_dict.keys()))
