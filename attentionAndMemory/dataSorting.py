@@ -145,7 +145,7 @@ def getDataAndLabels(fileName):
     reactionTimes, timeCodes = reactionTimesAndTimeCodesFromFileName(fileName)
     
 
-    labels = classify_reaction_times_module(reactionTimes, timeCodes, nb_splits=5)
+    labels = classify_reaction_times_module(reactionTimes, timeCodes, nb_splits=3)
     data = st.fftChunksFromFile(filePath, timeCodes)
     
     return data, labels
