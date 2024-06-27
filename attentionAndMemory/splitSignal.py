@@ -79,30 +79,30 @@ def get_files_in_folder(folder_path):
                 files.append(file)
         return files
 
-def parseFileName(file):
-    s = file.split('_')
-    return s[0], s[1], s[2], s[3]
+# def parseFileName(file):
+#     s = file.split('_')
+#     return s[0], s[1], s[2], s[3]
 
-def getAllData(db_path):
-    data = {}
+# def getAllData(db_path):
+#     data = {}
 
-    files = get_files_in_folder('./signaux EEG')
-    # print(files)
-    filenames_emails = {"Kayssieh":"kayssieh@example.com", "Revillon":"revillon@example.com", "Yvert":"yvert@example.com", "Strasser":"strasser@example.com"}
-    for file in files:
-        name, _, gameType, sessionId = parseFileName(file)
-        email = filenames_emails[name]
-        if gameType == "Congruent":
-            testId = 1
-        else:
-            testId = 2
-        sessionId = int(sessionId.split('.')[0])
+#     files = get_files_in_folder('./signaux EEG')
+#     # print(files)
+#     filenames_emails = {"Kayssieh":"kayssieh@example.com", "Revillon":"revillon@example.com", "Yvert":"yvert@example.com", "Strasser":"strasser@example.com"}
+#     for file in files:
+#         name, _, gameType, sessionId = parseFileName(file)
+#         email = filenames_emails[name]
+#         if gameType == "Congruent":
+#             testId = 1
+#         else:
+#             testId = 2
+#         sessionId = int(sessionId.split('.')[0])
 
-        reactionTimes, timeCodes = getDataForSession(db_path, email, sessionId, testId)
+#         reactionTimes, timeCodes = getDataForSession(db_path, email, sessionId, testId)
         
-        fileData = reactionTimes, timeCodes
-        data[file] = fileData
-    return data
+#         fileData = reactionTimes, timeCodes
+#         data[file] = fileData
+#     return data
 
 def getRidDoublons(reactionTimes, timeCodes, isCorrect):
     

@@ -68,11 +68,13 @@ def fileTochunks(fileName, data):
     eegchunks, timechunks = makechunks(eeg_data, timestamps, timeCodes)
     return eegchunks, timechunks
 
-def padchunks(chunks):
+def padchunks(chunks, pad_size=1400):
     padded_chunks = []
     for chunk in chunks:
-        if chunk.shape[0] < int(5600/4):
-            chunk = np.pad(chunk, ((0, 1400-chunk.shape[0]), (0, 0)), 'constant')
+        
+        if chunk.shape[0] < int(pad_size):
+            chunk = np.pad(chunk, ((0, pad_size-chunk.shape[0]), (0, 0)), 'constant')
+       
         
         padded_chunks.append(chunk)
     return np.array(padded_chunks)
@@ -114,7 +116,7 @@ def perform_ffts(chunks):
     def square(x): return (np.abs(x))**2
     def decibels(x): return 10*np.log10(x)
     
-    nfft = number_fft(chunks.shape[1])
+    nfft = number_fft(1400)
 
     fft_chunks = np.fft.rfft(chunks, n=nfft, axis=1)
     fft_chunks = fft_chunks[:,:-1,:]
@@ -145,26 +147,33 @@ def perform_ffts(chunks):
 
     # fft_chunks.append(fft_chunk)
     # return np.array(fft_chunks)
+def fftChunksFromFile(file_path, timeCodes):
+    eeg_data, timestamps = read_xdf_file(file_path)
+    eegchunks, timechunks = makechunks(eeg_data, timestamps, timeCodes)
+    pad = padchunks(eegchunks, 2000)
+    fft_chunks = perform_ffts(pad)
+    return fft_chunks
 
 if __name__ == "__main__":
+    0
 
-    # print(number_fft(1400))
-    # exit()
-    data = ss.getAllData("./instance/attention.db")
-    # file_name = "Revillon_Quentin_NonCongruent_1.xdf"
-    file_names = ss.get_files_in_folder('./signaux EEG')
+    # # print(number_fft(1400))
+    # # exit()
+    # data = ss.getAllData("./instance/attention.db")
+    # # file_name = "Revillon_Quentin_NonCongruent_1.xdf"
+    # file_names = ss.get_files_in_folder('./signaux EEG')
  
-    for file_name in file_names[:]:
-        eegchunks, timechunks = fileTochunks(file_name, data)
-        # print(eegchunks[0].shape, timechunks[0].shape)
+    # for file_name in file_names[:]:
+    #     eegchunks, timechunks = fileTochunks(file_name, data)
+    #     # print(eegchunks[0].shape, timechunks[0].shape)
 
 
-        pad = padchunks(eegchunks)
-        # print(pad[0])
-        # print(pad.shape)
-        fft_chunks = perform_ffts(pad)
-        print(fft_chunks.shape)
-        input()
+    #     pad = padchunks(eegchunks)
+    #     # print(pad[0])
+    #     # print(pad.shape)
+    #     fft_chunks = perform_ffts(pad)
+    #     print(fft_chunks.shape)
+    #     input()
 
         
         # print(pad[0])

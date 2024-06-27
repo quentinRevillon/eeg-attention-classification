@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import splitSignal as ss
+import signalTreatment as st
 
 def classify_reaction_times(dbpath, email, sessionId, testId):
     reactionTimes, timeCodes = ss.getDataForSession(dbpath, email, sessionId, testId)
@@ -63,15 +64,19 @@ def getAllData(db_path):
                 print(f"Results for {names[i]} (Session: {sessionId}, Test: {testId}) saved in {names[i]}-session{sessionId}-test{testId}.txt")
 
 
-def classify_reaction_times_module(dbpath, email, sessionId, testId):
-    reactionTimes, timeCodes = ss.getDataForSession(dbpath, email, sessionId, testId)
+def classify_reaction_times_module(reactionTimes, timeCodes):
+    # if email == "chandiramani@example.com":
+    #     reactionTimes, timeCodes = ss.getDataForPrishaSession(dbpath, email, sessionId, testId)
+    # else:
+    #     reactionTimes, timeCodes = ss.getDataForSession(dbpath, email, sessionId, testId)
+
     filteredReactionTimes = [rt for rt in reactionTimes if rt != 1700]
     
     mu = np.mean(filteredReactionTimes)
     sigma = np.std(filteredReactionTimes)
-    print(sigma)
+    # print(sigma)
     
-    result = np.zeros(len(reactionTimes))
+    result = []
 
     for rt, tc in zip(reactionTimes, timeCodes):
         if rt < mu - sigma:
@@ -81,7 +86,58 @@ def classify_reaction_times_module(dbpath, email, sessionId, testId):
         else:
             result.append([1, 0, 0])
 
-    return result
+    return np.array(result)
+
+def parseFileName(fileName):
+    s = fileName.split('_')
+    name, _, gameType, sessionId = s[0], s[1], s[2], s[3]
+    filenames_emails = {"Kayssieh":"kayssieh@example.com", "Revillon":"revillon@example.com", "Yvert":"yvert@example.com", "Strasser":"strasser@example.com", "Chandiramani":"chandiramani@example.com"}
+    email = filenames_emails[name]
+    if gameType == "Congruent":
+        testId = 1
+    else:
+        testId = 2
+    sessionId = int(sessionId.split('.')[0]) 
+
+    return name, email, sessionId, testId
+
+def get_files_in_folder(folder_path):
+        import os
+        files = []
+        for file in os.listdir(folder_path):
+            if os.path.isfile(os.path.join(folder_path, file)):
+                files.append(file)
+        return files
+
+def filePathFromFileName(fileName):
+    name, email, sessionId, testId = parseFileName(fileName)
+    if name == "Chandiramani":
+        file_path = 'C:/Users/quent/Télécom/Cours/Proj/Proj104/aiot/attentionAndMemory/signaux EEG Prisha/' + fileName
+    else: 
+        file_path = 'C:/Users/quent/Télécom/Cours/Proj/Proj104/aiot/attentionAndMemory/signaux EEG/' + fileName
+    return file_path
+
+def reactionTimesAndTimeCodesFromFileName(fileName):
+    name, email, sessionId, testId = parseFileName(fileName)
+    if name == "Chandiramani":
+        dbpath = 'C:/Users/quent/Télécom/Cours/Proj/Proj104/aiot/attentionAndMemory/instance Prisha/attention.db'
+        reactionTimes, timeCodes = ss.getDataForPrishaSession(dbpath, email, sessionId, testId)
+    else:
+        dbpath = 'C:/Users/quent/Télécom/Cours/Proj/Proj104/aiot/attentionAndMemory/instance/attention.db'
+        reactionTimes, timeCodes = ss.getDataForSession(dbpath, email, sessionId, testId)
+    return reactionTimes, timeCodes
+        
+
+def getDataAndLabels(fileName):
+    filePath = filePathFromFileName(fileName)
+    reactionTimes, timeCodes = reactionTimesAndTimeCodesFromFileName(fileName)
     
 
-db_path = 'attentionAndMemory/instance/attention.db'
+    labels = classify_reaction_times_module(reactionTimes, timeCodes)
+    data = st.fftChunksFromFile(filePath, timeCodes)
+    
+    return data, labels
+
+    
+if __name__ == "__main__":
+    getDataAndLabels("Revillon_Quentin_NonCongruent_1.xdf")
