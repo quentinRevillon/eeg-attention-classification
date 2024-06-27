@@ -437,3 +437,8 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 - nettoyage des données dédoublées dans la base de données
 - découpage des signaux en chunks
 - preprocessing, tf + padding
+
+### Félicité
+- Cours théorique détaillé sur les decision trees et random forests
+- Tests pratiques d'application avec un dataset présent sur le site de cours
+- Plus de détails sur la formation suivie dans la branche Félicité/Cours_suivis.md
