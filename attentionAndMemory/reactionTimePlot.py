@@ -30,6 +30,7 @@ def plot_reaction_time_moving_average(db_path, email, sessionId, testId, window_
     error_dict = defaultdict(list)
     for t, r, c in zip(timeCode, reactionTime, isCorrect):
         time_dict[t].append(r)
+        
         error_dict[t].append(1 - c)  # 1 - c to get the error (1 if incorrect, 0 if correct)
     
     unique_timeCode = np.array(list(time_dict.keys()))
@@ -72,9 +73,12 @@ def plot_reaction_time_moving_average(db_path, email, sessionId, testId, window_
     plt.grid(True)
     plt.show()
 
-db_path = 'attentionAndMemory/instance/attention.db'
-email = 'strasser@example.com'
-sessionId = 1
-testId = 1
+if __name__ == "__main__":
+    db_path = "C:/Users/quent/Télécom/Cours/Proj/Proj104/aiot/attentionAndMemory/instance/attention.db"
+    email = 'strasser@example.com'
+    sessionId = 1
+    testId = 1
 
-plot_reaction_time_moving_average(db_path, email, sessionId, testId, window_size=10)  # Increase window_size for more smoothing
+    plot_reaction_time_moving_average(db_path, email, sessionId, testId, window_size=10)  # Increase window_size for more smoothing
+
+
