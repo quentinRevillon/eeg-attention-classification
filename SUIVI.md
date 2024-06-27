@@ -429,7 +429,8 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 ## Mercredi 26/06 : 
 
 ### Charles
-- Fin de Labellisation et du tri des données + adaptation pour utlisation sur chunks
+- Fin de Labellisation et du tri des données
+- Adaptation du code pour utlisation sur chunks
 
 ### Prisha
 - Cours youtube détaillé sur RandomForest
