@@ -415,7 +415,7 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 - Introduction aux random forests
 
 ### Charles :
-- Labellisation des datas
+- Labellisation + Tri des datas
 
 ### Prisha :
 - Continuation de la lecture et compréhension du code des doctorants, modifications de quelques fonctions pour qu'elles fonctionnent sur nos ordinateurs
@@ -427,6 +427,9 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 - correction des time stamps
 
 ## Mercredi 26/06 : 
+
+### Charles
+- Fin de Labellisation et du tri des données + adaptation pour utlisation sur chunks
 
 ### Prisha
 - Cours youtube détaillé sur RandomForest
