@@ -445,3 +445,9 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 - Cours théorique détaillé sur les decision trees et random forests
 - Tests pratiques d'application avec un dataset présent sur le site de cours
 - Plus de détails sur la formation suivie dans la branche Félicité/Cours_suivis.md
+
+## Jeudi 27/06 :
+
+### Prisha
+- test des codes doctorants avec notre dataset
+- modification des paramètres pour voir s'il était possible d'améliorer les performances du modèle
