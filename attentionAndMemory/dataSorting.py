@@ -64,7 +64,7 @@ def getAllData(db_path):
                 print(f"Results for {names[i]} (Session: {sessionId}, Test: {testId}) saved in {names[i]}-session{sessionId}-test{testId}.txt")
 
 
-def classify_reaction_times_module(reactionTimes, timeCodes):
+def classify_reaction_times_module(reactionTimes, timeCodes, nb_splits=3):
     # if email == "chandiramani@example.com":
     #     reactionTimes, timeCodes = ss.getDataForPrishaSession(dbpath, email, sessionId, testId)
     # else:
@@ -77,14 +77,26 @@ def classify_reaction_times_module(reactionTimes, timeCodes):
     # print(sigma)
     
     result = []
-
-    for rt, tc in zip(reactionTimes, timeCodes):
-        if rt < mu - sigma:
-            result.append([0, 0, 1])
-        elif mu - sigma <= rt <= mu + sigma:
-            result.append([0, 1, 0])
-        else:
-            result.append([1, 0, 0])
+    if nb_splits == 3:
+        for rt, tc in zip(reactionTimes, timeCodes):
+            if rt < mu - sigma:
+                result.append([0, 0, 1])
+            elif mu - sigma <= rt <= mu + sigma:
+                result.append([0, 1, 0])
+            else:
+                result.append([1, 0, 0])
+    if nb_splits == 5:
+        for rt, tc in zip(reactionTimes, timeCodes):
+            if rt <= mu - sigma:
+                result.append([0, 0, 0, 0, 1])
+            elif mu - sigma < rt <= mu - sigma/2:
+                result.append([0, 0, 0, 1, 0])
+            elif mu - sigma/2 < rt < mu + sigma/2:
+                result.append([0, 0, 1, 0, 0])
+            elif mu + sigma/2 < rt <= mu + sigma:
+                result.append([0, 1, 0, 0, 0])
+            elif mu + sigma:
+                result.append([1, 0, 0, 0, 0])
 
     return np.array(result)
 
@@ -133,11 +145,14 @@ def getDataAndLabels(fileName):
     reactionTimes, timeCodes = reactionTimesAndTimeCodesFromFileName(fileName)
     
 
-    labels = classify_reaction_times_module(reactionTimes, timeCodes)
+    labels = classify_reaction_times_module(reactionTimes, timeCodes, nb_splits=5)
     data = st.fftChunksFromFile(filePath, timeCodes)
     
     return data, labels
 
     
 if __name__ == "__main__":
-    getDataAndLabels("Revillon_Quentin_NonCongruent_1.xdf")
+    # x, y = getDataAndLabels("Kayssieh_Charles_NonCongruent_2.xdf")
+    # print(len(x), len(y))
+    x, y = getDataAndLabels("Revillon_Quentin_NonCongruent_1.xdf")
+    print(len(x), len(y))

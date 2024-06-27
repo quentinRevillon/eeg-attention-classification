@@ -403,6 +403,10 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 
 - Lecture et compréhension du code Python des doctorants de traîtement des données avec un modèle de ML.
 
+### Quentin :
+- Lecture du code de ML des doctorants appliqué à des eeg. 
+- Session de questions avec l'auteur doctorant
+
 ## Mardi 25/06 :
 
 ### Félicité :
@@ -418,6 +422,9 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 - Rendez-vous avec les doctorants pour qu'ils nous expliquent plus en détails le code
 - Cours de Kaggle sur RandomForest
 
+### Quentin
+- nettoyage des données dédoublées dans la base de données
+- correction des time stamps
 
 ## Mercredi 26/06 : 
 
@@ -425,3 +432,8 @@ Installation du casque sur Charles. Réflexion sur le poster. Cours de Tiny ML. 
 - Cours youtube détaillé sur RandomForest
 - Mise du casque sur moi pour récolter plus de données
 - Ecriture d'un code implémentant Random Forest sur la base de donnés MNIST
+
+### Quentin
+- nettoyage des données dédoublées dans la base de données
+- découpage des signaux en chunks
+- preprocessing, tf + padding
