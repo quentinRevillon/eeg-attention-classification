@@ -1,347 +1,223 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_from_directory, abort
-from models import db, User, Result, BallResult, ResultPrisha1, ResultPrisha2
-from sqlalchemy import func
-from werkzeug.security import generate_password_hash, check_password_hash
-from functools import wraps
+"""Flask web app running the attention and memory tests and storing the results.
+
+    cd webapp
+    python app.py            # then open http://127.0.0.1:5000
+
+Results are written to webapp/instance/attention.db (created on first run).
+Set the SECRET_KEY environment variable outside local testing.
+"""
+import os
 from datetime import datetime
+from functools import wraps
+
+from flask import Flask, jsonify, redirect, render_template, request, send_from_directory, session, url_for
+from sqlalchemy import func
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from models import BallResult, Result, ResultPrisha1, ResultPrisha2, User, db
 
 app = Flask(__name__)
-app.secret_key = 'aiot'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///attention.db'
+app.secret_key = os.environ.get("SECRET_KEY", "dev")
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///attention.db"
 db.init_app(app)
+with app.app_context():
+    db.create_all()
 
-def myLoginManager(funcToProtect):
-    @wraps(funcToProtect)
-    def funcProtected(*args, **kwargs):
-        print("hello")
-        if 'email' in session and emailMatchPassword(session['email'], session['password']):
-            
-            return funcToProtect(*args, **kwargs)
-        return render_template('login.html')
-    return funcProtected
-def emailMatchPassword(email, password):
-    # print(user.email)
+SAVED = {"message": "Les résultats ont été enregistrés avec succès."}
+
+
+def login_required(view):
+    """Render the login page instead of ``view`` when no user is logged in."""
+
+    @wraps(view)
+    def protected(*args, **kwargs):
+        if "email" not in session:
+            return render_template("login.html")
+        return view(*args, **kwargs)
+
+    return protected
+
+
+def check_password(email, password):
+    """Return True if ``email`` exists and ``password`` matches its hash."""
     user = User.query.filter_by(email=email).first()
-    if user and check_password_hash(user.password, password):
-        return True
-    return False
+    return user is not None and check_password_hash(user.password, password)
 
 
-def verify_email(email):
-    print("________________________________________________________________________________________________________________")
+def email_exists(email):
+    """Return True if an account uses ``email``."""
     return User.query.filter_by(email=email).first() is not None
 
 
-def register_user(email, hashed_password):
-    new_user = User(email=email, password=hashed_password)
-    db.session.add(new_user)
+def next_session_id(model, email, **filters):
+    """Return 1 + the largest sessionId of ``email`` in ``model`` (1 for a first session)."""
+    last = db.session.query(func.max(model.sessionId)).filter_by(email=email, **filters).scalar()
+    return 1 if last is None else last + 1
+
+
+def today():
+    """Return today's date as dd/mm/yyyy."""
+    return datetime.now().strftime("%d/%m/%Y")
+
+
+def save(row):
+    """Insert ``row`` and commit."""
+    db.session.add(row)
     db.session.commit()
 
 
-print(app.config['SQLALCHEMY_DATABASE_URI'])
-
-app.app_context().push()
-db.create_all()
-with app.app_context():
-   db.create_all()
-
-
-# from app import app, db
-# app.app_context().push()
-# db.drop_all()
-
-# exit()
-@app.route('/Prisha/images/<path:filename>')
-@myLoginManager
-def serve_image(filename):
-    return send_from_directory('images', filename)
-
-@app.route('/memoryManon')
-@myLoginManager
-def memoryManon():
-    # if 'email' in session and emailMatchPassword(session['email'], session['password']):
-    return send_from_directory('Manon', 'index.html')
-    # return render_template('login.html')
-
-@app.route('/memoryManon/Manon/static/css/<path:path>')
-@myLoginManager
-def serve_static_css(path):
-    print(path)
-    return send_from_directory('Manon/static/css/', path)
-
-@app.route('/memoryManon/Manon/static/js/<path:path>')
-@myLoginManager
-def serve_static_js(path):
-    print(path)
-    return send_from_directory('Manon/static/js/', path)
-
-@app.route('/memoryManon/Manon/manifest.json')
-@myLoginManager
-def serve_manifest():
-    return send_from_directory('Manon/', 'manifest.json')
-
-@app.route('/memoryPrisha')
-@myLoginManager
-def memoryPrisha():
-    # if 'email' in session and emailMatchPassword(session['email'], session['password']):
-    return render_template('memoryPrisha.html')
-    # return render_template('login.html')
-
-@app.route('/sendScorePrisha1', methods=['POST'])
-@myLoginManager
-def sendScorePrisha1():
-    data = request.get_json()
-    print(data)
-    score=data["score"]
-    email=session['email']
-    now = datetime.now()
-    date_str = now.strftime("%d/%m/%Y")
-    # gameId=data["gameId"]
-    sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
-    sessionId = sessionId + 1 if sessionId is not None else 1
-    db.session.add(ResultPrisha1(email=email, sessionId=sessionId, score=score, date=date_str))
-    db.session.commit()
-    return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
-
-@app.route('/sendScorePrisha2', methods=['POST'])
-@myLoginManager
-def sendScorePrisha2():
-    data = request.get_json()
-    print(data)
-    score=data["score"]
-    email=session['email']
-    nbMots=data["nbMots"]
-    now = datetime.now()
-    date_str = now.strftime("%d/%m/%Y")
-    sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
-    sessionId = sessionId + 1 if sessionId is not None else 1
-    db.session.add(ResultPrisha2(email=email, sessionId=sessionId, score=score, nbMots=nbMots, date=date_str))
-    db.session.commit()
-    return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
-    
-# @app.route('/sendScoreManon', methods=['POST'])
-# @myLoginManager
-# def sendScoreManon():
-#     data = request.get_json()
-#     print(data)
-#     score=data["score"]
-#     email=session['email']
-#     gameId=data["gameId"]
-#     sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
-#     sessionId = sessionId + 1 if sessionId is not None else 1
-#     db.session.add(Res(email=email, gameId=gameId, sessionId=sessionId, score=score))
-#     db.session.commit()
-#     return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
-
-@app.route('/sendBallResult', methods=['POST'])
-@myLoginManager
-def sendBallResult():
-    data = request.get_json()
-    print(data)
-    score=data["score"]
-    email=session['email']
-    sessionId = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).scalar()
-    sessionId = sessionId + 1 if sessionId is not None else 1
-    db.session.add(BallResult(email=email, sessionId=sessionId, score=score))
-    db.session.commit()
-    return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
-
-@app.route('/')
-@myLoginManager
-def index():
-    # session.clear()
-    # if 'email' in session and emailMatchPassword(session['email'], session['password']):
-    return redirect(url_for('testSelectionPanel'))
-    # return render_template('login.html')
-
-
-@app.route('/testSelectionPanel')
-@myLoginManager
-def testSelectionPanel():
-    # if 'email' in session and emailMatchPassword(session['email'], session['password']):
-    return render_template('testSelectionPanel.html')
-    # return render_template('login.html')
-
-@app.route('/congruentTest')
-@myLoginManager
-def congruentTest():
-    # if 'email' in session and emailMatchPassword(session['email'], session['password']):
-    email = session['email']
-    session['congruentTestSessionId'] = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).filter(Result.testId == 1).scalar()
-    session['congruentTestSessionId'] = session['congruentTestSessionId'] + 1 if session['congruentTestSessionId'] is not None else 1
-    return render_template('congruentTest.html')
-    # return render_template('login.html')
-
-@app.route('/nonCongruentTest')
-@myLoginManager
-def nonCongruentTest():
-    # if 'email' in session and emailMatchPassword(session['email'], session['password']):
-    email = session['email']
-    session['nonCongruentTestSessionId'] = db.session.query(func.max(Result.sessionId)).filter(Result.email == email).filter(Result.testId == 2).scalar()
-    session['nonCongruentTestSessionId'] = session['nonCongruentTestSessionId'] + 1 if session['nonCongruentTestSessionId'] is not None else 1
-    return render_template('nonCongruentTest.html')
-    # return render_template('login.html')
-
-@app.route('/ballTest')
-@myLoginManager
-def ballTest():
-    # if 'email' in session and emailMatchPassword(session['email'], session['password']):
-        
-    return render_template('ballTest.html')
-        
-    # return render_template('login.html')
-
-@app.route('/login', methods=['POST'])
-def login():
-    email = request.form['email']
-    password = request.form['password']
-
-    if verify_email(email):
-        if emailMatchPassword(email, password):
-            session['email'] = email
-            session['password'] = password
-            return redirect(url_for('testSelectionPanel'))
-        else:
-            return 'Erreur : mot de passe invalide'
-    else:
-        return 'Erreur : email invalide'
-
-@app.route('/signup', methods=['POST'])
+@app.route("/signup", methods=["POST"])
 def signup():
-    email = request.form['email']
-    password = request.form['password']
-
-    if not verify_email(email):
-        print("je suis entré")
-        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
-        register_user(email, hashed_password)
-        session['email'] = email
-        session['password'] = password
-     
-        return redirect(url_for('testSelectionPanel'))
-    else:
-        return 'Erreur : email déjà utilisé'
+    """Create an account and log it in."""
+    email, password = request.form["email"], request.form["password"]
+    if email_exists(email):
+        return "Erreur : email déjà utilisé"
+    save(User(email=email, password=generate_password_hash(password, method="pbkdf2:sha256")))
+    session["email"] = email
+    return redirect(url_for("testSelectionPanel"))
 
 
-@app.route('/logout')
+@app.route("/login", methods=["POST"])
+def login():
+    """Log a user in."""
+    email, password = request.form["email"], request.form["password"]
+    if not email_exists(email):
+        return "Erreur : email invalide"
+    if not check_password(email, password):
+        return "Erreur : mot de passe invalide"
+    session["email"] = email
+    return redirect(url_for("testSelectionPanel"))
+
+
+@app.route("/logout")
 def logout():
-    session.pop('email', None)
-    return redirect(url_for('index'))
+    """Log the user out."""
+    session.pop("email", None)
+    return redirect(url_for("index"))
 
-@app.route('/results', methods=['POST'])
-@myLoginManager
+
+@app.route("/")
+@login_required
+def index():
+    """Redirect to the test selection panel."""
+    return redirect(url_for("testSelectionPanel"))
+
+
+@app.route("/testSelectionPanel")
+@login_required
+def testSelectionPanel():
+    """Show the menu of tests."""
+    return render_template("testSelectionPanel.html")
+
+
+@app.route("/congruentTest")
+@login_required
+def congruentTest():
+    """Start a congruent-arrows session (testId 1)."""
+    session["congruentTestSessionId"] = next_session_id(Result, session["email"], testId=1)
+    return render_template("congruentTest.html")
+
+
+@app.route("/nonCongruentTest")
+@login_required
+def nonCongruentTest():
+    """Start a non-congruent-arrows session (testId 2)."""
+    session["nonCongruentTestSessionId"] = next_session_id(Result, session["email"], testId=2)
+    return render_template("nonCongruentTest.html")
+
+
+@app.route("/results", methods=["POST"])
+@login_required
 def results():
+    """Store all trials of an arrow test sent by static/script.js."""
     data = request.get_json()
-    email = session['email']
-    reactionTimes = data["reactionTimes"]
-    timeCodes = data["timeCodes"]
-    runningTest = data["runningTest"]
-    isCorrect = data["isCorrect"]
-    # Obtenir la date actuelle
-    now = datetime.now()
-
-    # Formater la date sous la forme 'jour/mois/année'
-    date_str = now.strftime("%d/%m/%Y")
-    
-    print(timeCodes)
-    print(reactionTimes)
-
-    if runningTest == 1:
-        sessionId = session['congruentTestSessionId']
-    elif runningTest == 2:      
-        sessionId = session['nonCongruentTestSessionId']
-
-    for i in range(len(reactionTimes)):
-        db.session.add(Result(email=email, sessionId=sessionId, reactionTime=reactionTimes[i], timeCode=timeCodes[i], testId=runningTest, isCorrect=isCorrect[i], date=date_str))
-        db.session.commit()
-
-        # db.session.add(Result(id=id, email= email, sessionId=session_id, reactionTime=reactionTimes[i], timeCode=timeCodes[i]))
-        # id += 1
-        # db.session.commit()
-
-    return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
-
-
-     # Récupérer l'ID maximal actuel de la colonne "session" dans la table "Result"
-    session_id = db.session.query(func.max(Result.session)).scalar()
-
-    # Si aucun ID maximal n'est trouvé, définir le nouvel ID de session à 1
-    # Sinon, ajouter 1 à l'ID maximal actuel pour obtenir le nouvel ID de session
-    session_id = session_id if session_id is not None else 0
-    session_id += 1
-
-    # Récupérer l'ID maximal actuel de la colonne "session" dans la table "Result"
-    id = db.session.query(func.max(Result.id)).scalar()
-
-    # Si aucun ID maximal n'est trouvé, définir le nouvel ID de session à 1
-    # Sinon, ajouter 1 à l'ID maximal actuel pour obtenir le nouvel ID de session
-    id = id if id is not None else 0
-    id += 1
-
-    for i in range(len(reactionTimes)):
-
-        db.session.add(Result(id=id, email= email, sessionId=session_id, reactionTime=reactionTimes[i], timeCode=timeCodes[i]))
-        id += 1
-        db.session.commit()
-
-    return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
-
-@myLoginManager
-@app.route('/leaderboard', defaults={'sort_by': 'average_reaction_time', 'sort_order': 'asc'})
-def leaderboard(sort_by, sort_order):
-    if sort_by not in ['average_reaction_time', 'accuracy']:
-        abort(404)
-
-    if sort_order not in ['asc', 'desc']:
-        abort(404)
-
-    order_by = {
-        'average_reaction_time': func.avg(Result.reactionTime).filter(Result.isCorrect == 1),
-        'accuracy': func.avg(Result.isCorrect)
-    }
-
-    results = db.session.query(Result.email, Result.sessionId, Result.testId.label("testId"), func.avg(Result.reactionTime).label('average_reaction_time'), (func.avg(Result.isCorrect) * 100).label('accuracy'))\
-        .group_by(Result.email, Result.sessionId, Result.testId)\
-        .order_by(order_by[sort_by].asc() if sort_order == 'asc' else order_by[sort_by].desc())\
-        .all()
-    return render_template('leaderboard.html', results=results, sort_by=sort_by, sort_order=sort_order)
-
-
-
-
-
-@app.route('/result', methods=['POST'])
-@myLoginManager
-def result():
-    data = request.get_json()
-    email = session['email']
-    reactionTime = data["reactionTime"]
-    timeCode = data["timeCode"]
-    runningTest = data["runningTest"]
-    
-    
-     # Récupérer l'ID maximal actuel de la colonne "session" dans la table "Result"
-    if runningTest == 1:
-        sessionId = session['congruentTestSessionId']
-    elif runningTest == 2:
-        sessionId = session['nonCongruentTestSessionId']
-    
-
-
-    # # Récupérer l'ID maximal actuel de la colonne "session" dans la table "Result"
-    # id = db.session.query(func.max(Result.id)).scalar()
-
-    # # Si aucun ID maximal n'est trouvé, définir le nouvel ID de session à 1
-    # # Sinon, ajouter 1 à l'ID maximal actuel pour obtenir le nouvel ID de session
-    # id = id + 1 if id is not None else 1
-    
-    db.session.add(Result(email= email, sessionId=sessionId, reactionTime=reactionTime, timeCode=timeCode, testId=runningTest))
+    test_id = data["runningTest"]
+    session_key = {1: "congruentTestSessionId", 2: "nonCongruentTestSessionId"}[test_id]
+    for reaction_time, time_code, correct in zip(data["reactionTimes"], data["timeCodes"], data["isCorrect"]):
+        db.session.add(Result(email=session["email"], sessionId=session[session_key], reactionTime=reaction_time,
+                              timeCode=time_code, testId=test_id, isCorrect=correct, date=today()))
     db.session.commit()
-
-    return jsonify({"message": "Les résultats ont été enregistrés avec succès."})
-
+    return jsonify(SAVED)
 
 
+@app.route("/leaderboard")
+@login_required
+def leaderboard():
+    """Show mean reaction time and accuracy per user, session and test."""
+    rows = (
+        db.session.query(Result.email, Result.sessionId, Result.testId,
+                         func.avg(Result.reactionTime).label("average_reaction_time"),
+                         (func.avg(Result.isCorrect) * 100).label("accuracy"))
+        .group_by(Result.email, Result.sessionId, Result.testId)
+        .order_by(func.avg(Result.reactionTime).filter(Result.isCorrect == 1))
+        .all()
+    )
+    return render_template("leaderboard.html", results=rows)
 
-if __name__ == '__main__':
+
+@app.route("/ballTest")
+@login_required
+def ballTest():
+    """Show the ball-tracking game."""
+    return render_template("ballTest.html")
+
+
+@app.route("/sendBallResult", methods=["POST"])
+@login_required
+def sendBallResult():
+    """Store the score of the ball-tracking game."""
+    email = session["email"]
+    save(BallResult(email=email, sessionId=next_session_id(BallResult, email), score=request.get_json()["score"]))
+    return jsonify(SAVED)
+
+
+@app.route("/memoryPrisha")
+@login_required
+def memoryPrisha():
+    """Show the image-recall and word-sequence memory games."""
+    return render_template("memoryPrisha.html")
+
+
+@app.route("/Prisha/images/<path:filename>")
+@login_required
+def serve_image(filename):
+    """Serve the images of the image-recall game."""
+    return send_from_directory("images", filename)
+
+
+@app.route("/sendScorePrisha1", methods=["POST"])
+@login_required
+def sendScorePrisha1():
+    """Store the score of the image-recall game."""
+    email = session["email"]
+    save(ResultPrisha1(email=email, sessionId=next_session_id(ResultPrisha1, email),
+                       score=request.get_json()["score"], date=today()))
+    return jsonify(SAVED)
+
+
+@app.route("/sendScorePrisha2", methods=["POST"])
+@login_required
+def sendScorePrisha2():
+    """Store the score of the word-sequence game."""
+    email, data = session["email"], request.get_json()
+    save(ResultPrisha2(email=email, sessionId=next_session_id(ResultPrisha2, email),
+                       score=data["score"], nbMots=data["nbMots"], date=today()))
+    return jsonify(SAVED)
+
+
+@app.route("/memoryManon")
+@login_required
+def memoryManon():
+    """Serve the number-sequence memory game (React build in Manon/)."""
+    return send_from_directory("Manon", "index.html")
+
+
+@app.route("/memoryManon/Manon/<path:path>")
+@login_required
+def serve_manon_build(path):
+    """Serve the static files of the React build."""
+    return send_from_directory("Manon", path)
+
+
+if __name__ == "__main__":
     app.run(debug=True)
