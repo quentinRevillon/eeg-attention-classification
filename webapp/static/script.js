@@ -80,10 +80,10 @@ function showArrow() {
   arrowRight1.style.opacity = 1;
   arrowRight2.style.opacity = 1;
   startTime = new Date();
-// Ajouter un délai de 3 secondes pour vérifier si l'utilisateur n'a pas répondu
+// Sans réponse après 1700 ms, l'essai est compté comme manqué
   responseTimeout = setTimeout(function() {
   reactionTime = 1700
-  reactionTimes.push(1700); // Ajouter -1 aux réponses de reactionTimes
+  reactionTimes.push(1700); // temps de réaction d'un essai manqué
   isCorrect.push(0);
   endTest();
 }, 1700);
@@ -96,7 +96,7 @@ function hideArrow() {
   arrowRight1.style.opacity = 0;
   arrowRight2.style.opacity = 0;
   arrowDisplayed = false;
-  // Annuler le délai de 3 secondes si l'utilisateur a déjà répondu
+  // Annuler le délai de 1700 ms si l'utilisateur a déjà répondu
   clearTimeout(responseTimeout);
 
 }
@@ -216,31 +216,6 @@ function sendResults() {
   });
 }
 
-function sendResult(reactionTime, timeCode, runningTest) {
-  fetch('/result', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      reactionTime: reactionTime,
-      timeCode: timeCode,
-      runningTest: runningTest
-    })
-  })
-  .then(response => {
-    if (response.ok) {
-      console.log('Results have been successfully saved.');
-    } else {
-      console.error('An error occurred while saving the results.');
-    }
-  })
-  .catch(error => {
-    console.error('An error occurred while saving the results.', error);
-  });
-}
-
-
 function showResults() {
   // sendResults();
   resultsElement.textContent = `Vos temps de réaction sont : ${reactionTimes.join(', ')}`;
@@ -263,15 +238,12 @@ document.addEventListener("keydown", function(event) {
     if ((event.key === 'ArrowLeft' && directionCentre === '←') || (event.key === 'ArrowRight' && directionCentre === '→')) {
       
       isCorrect.push(1);
-      //console.log(reactionTime, timeCode, runningTest);
-      //console.log("timeCodes", timeCodes);
-      //sendResult(reactionTime=reactionTime, timeCode=timeCode, runningTest=runningTest);
     } 
     
     else {
       isCorrect.push(0);
     }
-    // Annuler le délai de 3 secondes si l'utilisateur a déjà répondu
+    // Annuler le délai de 1700 ms si l'utilisateur a déjà répondu
     clearTimeout(responseTimeout);
     endTest();
   }
