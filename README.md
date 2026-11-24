@@ -55,9 +55,9 @@ python -m classifier.train --manifest data/recordings.csv --subjects S1 S2 S3 S4
 python -m classifier.train --manifest data/recordings.csv --subjects S1 S2 S3 --test-subject S4
 ```
 
-The first command uses a random 70/30 split, the second holds out one subject. Both print the confusion matrix,
-per-class precision and recall, and the majority-class baseline. On the original recordings the second command
-gives the same confusion matrix as the notebook.
+The first command uses a random 70/30 split (`--seed`, default 0); the second trains on `--subjects` and tests on
+`--test-subject`. Both print the confusion matrix, per-class precision and recall, and the majority-class baseline.
+On the original recordings the second command gives the same confusion matrix as the notebook.
 
 Plot the reaction times of one session:
 
@@ -112,6 +112,7 @@ Manon Strasser (memory tests).
 
 - Quentin Revillon: Flask back end and database, EEG/web-app synchronisation, signal processing, Random Forest classifier.
 - Charles Kayssieh: arrow tests and leaderboard, reaction-time analysis and labelling.
+- Félicité Yvert: attention-test protocol, non-congruent arrow test, password login, EEG recording sessions.
 - Prisha Chandiramani: image-recall and word-sequence memory games, protocol for the ethics committee.
 - Manon Strasser: number-sequence memory game.
 
