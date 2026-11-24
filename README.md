@@ -1,85 +1,119 @@
-# AIoT : Artifical Intelligence of Things.
-#### EEG signals for attention and memory
-.
+# eeg-attention-classification — attention tests synchronised with EEG and a Random Forest attention classifier
 
-## Summary
-.
-- Our Team
-- Project description
-- Usage
-- Roadmap
-- Credits
+**eeg-attention-classification** contains a Flask web app that runs attention and memory tests while a
+64-channel EEG cap records the participant, and a pipeline that turns the EEG between two answers into
+band-power features and classifies the trial as a slow, typical or fast reaction with a Random Forest.
 
-.
-## Our Team
+<img height="400" src="figures/confusion_matrix_random_split.png" />
 
-### Team attention
-- Quentin REVILLION
-- Charles KAYSSIEH
-- Felicité YVERT
-### Team memory
-- Prisha CHANDIRAMANI
-- Manon STRASSER
+*Test confusion matrix of the pooled random split (rows: predicted, columns: true; 0 slow, 1 typical, 2 fast).*
 
-.
-## Project description
-.
+## Overview
 
-We chose this project based on our profound desire to understand humans and the way they think. Using AI and ML, we aim at using the EEG signals of the brain to help users gain autonomy over their attention and memory capacities.
+- **Problem**: decode the attention level of a person from EEG, as a first step towards a wearable neurofeedback device.
+- **Approach**: the web app logs every arrow trial (reaction time, correctness, time code in ms); the time codes cut
+  the EEG recording into one window per trial; reaction times relative to the session mean give the labels.
+- **Context**: Télécom Paris first-year team project (PROJ104 "AIoT"), February to June 2024, five students supervised
+  by Van-Tam Nguyen, with the PhD students of the lab. Recordings were made on the team members.
 
-This project is the result of a collaboration between doctorants and our team of first year engineer students.
+## Results
 
-Our job was to develop web applications which will test the attention and memory of users. Then, while learning about TinyML, we gathered data during testing sessions with volontary people. Finally, we created a complete dataset of EEG files in order to train TinyML models.
+Random Forest (100 trees) on 36 bands x 64 channels, from `notebooks/01_random_forest_eeg.ipynb`.
+The baseline always predicts the most frequent class ("typical").
 
-.
-## Usage
-.
-- **Web Applications** :
-To launch the web applications home page, you should download the project on your computer, then type "python app.py" in the terminal while being in the right folder.
+| Evaluation | Test trials | Accuracy | Majority-class baseline |
+|---|---|---|---|
+| Random 70/30 split, 4 subjects pooled (3,222 trials) | 967 | 0.689 | 0.698 |
+| Random 70/30 split, 1 subject (706 trials) | 212 | 0.599 | 0.665 |
+| Leave-one-subject-out (train on 3, test on the 4th) | 725 | 0.152 | 0.745 |
 
-- **Testing session** :
-You can find the protocole in the git project, in the main branch :[link here](https://gitlab.telecom-paris.fr/proj104/aiot/-/blob/main/Protocole.txt?ref_type=heads)
-To register for the database, just use your email adress and a password.
+The classifier does not beat the majority-class baseline. Training accuracy is 1.0 in every setting, and on the
+held-out subject the model predicts "slow" for every trial. Per-class recall on the pooled split is 0.176 (slow),
+0.924 (typical) and 0.095 (fast). With four subjects and one feature per channel and frequency band, the
+classifier overfits the training subjects.
 
-.
+## Installation
 
-## Roadmap for the Project
+```bash
+python -m venv .venv && source .venv/bin/activate   # Python 3.12
+pip install -r requirements.txt
+```
 
-.
+## Quick start
 
-### Our part :
+Run the tests in a browser (results go to `webapp/instance/attention.db`):
 
-- **Research about attention and memory** :
-We used the ressources given by the doctorants, in addition to personal research approved by our supervisor.
-- **Web Applications** :
-Both team decided to implements games based on our research, using different languages (Java, React..). We also created a database to gather the results (the EEG files and the scores of the games).
-- **Protocole** :
-After meetings with the doctorant team, we worked on the protocoles, in order to produce consistent data between tests. It also should conform to the requirements of the psychological committee (for the legal aspect of the projects outside of our realm).
-- **Gathering Data** :
-On multiple sessions, we installed the helmet that measures the EEG signals of mutliple points on the head (about 84 electrodes). Each session lasts 1 hour 45 minutes. It takes one hour to set up the helmet and 40 minutes to complete the protocole.
+```bash
+cd webapp
+python app.py
+```
 
-.
+Train and evaluate the classifier on your own recordings, listed in `data/recordings.csv` (see [Data](#data)):
 
-### The rest of the project :
-.
+```bash
+python -m classifier.train --manifest data/recordings.csv --subjects S1 S2 S3 S4
+python -m classifier.train --manifest data/recordings.csv --subjects S1 S2 S3 --test-subject S4
+```
 
-- **Clean the data** :
-The doctorants worked on signal treatment (different types of transforms such as Fourrier Transform) in order for the models to learn things.
-EEG signals contain a lot of noise that needs to be removed before using them as a data set. 
+The first command uses a random 70/30 split, the second holds out one subject. Both print the confusion matrix,
+per-class precision and recall, and the majority-class baseline. On the original recordings the second command
+gives the same confusion matrix as the notebook.
 
-- **Choose a model to train** :
-The team looked at different types of model that would be adapted to our usage.
+Plot the reaction times of one session:
 
-- **Implementation** :
-Ultimately, the goal of the trained model is to be implemented in a small embedded device, wich should resemble earphones. It should display real time information about the attention and memory levels of the wearer.
+```bash
+python -m classifier.plot_reaction_times --db webapp/instance/attention.db --email s1@example.com --session 1 --test 2
+```
 
-.
+## Repository structure
 
-## Credits
-.
+- `webapp/app.py`: Flask routes (sign-up, tests, result storage, leaderboard); `webapp/models.py`: SQLite tables.
+- `webapp/templates/`, `webapp/static/`: arrow tests (`script.js`), ball game (`sketch.js`), image and word memory games (`prisha.js`).
+- `webapp/Manon/`: React build of the number-sequence memory game; `webapp/images/`: images of the image-recall game.
+- `classifier/session_data.py`: reads and cleans the trials of one session from the database.
+- `classifier/features.py`: EEG windows between answers and band power; `classifier/labels.py`: reaction-time labels.
+- `classifier/dataset.py`: builds (X, y) per subject from the manifest; `classifier/train.py`: training and evaluation.
+- `notebooks/01_random_forest_eeg.ipynb`: original experiments with their outputs.
+- `docs/`: test protocols, protocol meeting notes and the team progress log (in French).
 
-We would like to thank our supervisor, **Van-Tam Nguyen**, which helped us navigate this complex project.
+## Method
 
-Thanks also to the doctorant team, composed of : Nasim Bagheri Shouraki, Remi Nahon, Aël Quélennec, YingHao Wang, who helped answer our questions and provided support during the whole time of the project.
+- **Tests**: a central arrow appears above or below the screen centre and the participant presses the matching arrow
+  key. The flanking arrows point the same way (congruent test, `testId` 1, preceded by an alert sound) or the opposite
+  way (non-congruent test, `testId` 2). A trial without an answer within 1700 ms is a miss. Each of the four subjects
+  in the results has 1 congruent and 3 non-congruent recordings.
+- **Synchronisation**: the time codes of the web app (ms since the start of the test) are compared with the EEG
+  timestamps (ms since the first sample), assuming the recording and the test start together.
+- **Features**: the window from the previous key press to the current one is zero-padded to 2000 samples,
+  transformed with a 2048-point real FFT per channel and averaged into 36 bands of 4 bins, in dB. The band layout
+  assumes 256 Hz while the cap samples at 250 Hz, so the bands are 0.49 Hz wide and cover 0-17.6 Hz.
+- **Labels**: per recording, with mu and sigma the mean and standard deviation of answered reaction times:
+  fast if below mu - sigma, slow if above mu + sigma (misses and wrong answers included), typical otherwise.
+- **Classifier**: scikit-learn `RandomForestClassifier(n_estimators=100, random_state=42)` on the flattened
+  36 x 64 features.
 
-.
+## Data
+
+The EEG recordings (XDF, 64 channels, 250 Hz) and the web app databases contain personal data of the participants
+and are not included. To run the classifier, put your files in `data/` (gitignored) and list one recording per row:
+
+```csv
+subject,xdf_path,db_path,email,session_id,test_id,double_sent
+S1,data/eeg/S1_NonCongruent_1.xdf,data/attention.db,s1@example.com,1,2,1
+```
+
+`double_sent` is 1 for sessions recorded with the early front end that sent every trial twice, 0 otherwise.
+In the original data, one congruent recording has 49 of its 51 trials marked as misses or wrong answers.
+
+## Team
+
+Students: Quentin Revillon, Charles Kayssieh, Félicité Yvert (attention tests), Prisha Chandiramani,
+Manon Strasser (memory tests).
+
+- Quentin Revillon: Flask back end and database, EEG/web-app synchronisation, signal processing, Random Forest classifier.
+- Charles Kayssieh: arrow tests and leaderboard, reaction-time analysis and labelling.
+- Prisha Chandiramani: image-recall and word-sequence memory games, protocol for the ethics committee.
+- Manon Strasser: number-sequence memory game.
+
+Supervisor: Van-Tam Nguyen (Télécom Paris). PhD students: Nasim Bagheri Shouraki, Rémi Nahon, Aël Quélennec,
+Yinghao Wang, Anh Dung Nguyen.
