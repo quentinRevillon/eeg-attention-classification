@@ -1,8 +1,0 @@
-1. Jeux
-2. bdd
-3. nettoyage bdd
-4. Labelisation
-4. Signaux bruts
-5. Découpages, fft
-6. X, Y
-7. training
